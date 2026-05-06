@@ -788,6 +788,246 @@
 
   /* ic */
   .ic { font-family: var(--mono); font-size: 0.85em; background: rgba(255,255,255,0.07); padding: 0.1em 0.35em; border-radius: 4px; color: var(--accent); }
+
+  /* ═══ PHASE 3 STYLES ═══════════════════════════════════ */
+  .internal-entry-btn {
+    display:inline-flex;align-items:center;gap:1rem;
+    background:linear-gradient(135deg,rgba(255,107,107,0.1),rgba(79,140,255,0.1));
+    border:2px solid var(--accent2);color:var(--accent2);
+    font-family:var(--mono);font-size:1rem;
+    padding:1rem 2.5rem;border-radius:12px;cursor:pointer;
+    transition:all 0.3s;animation:glow-pulse2 2.5s ease-in-out infinite;
+  }
+  .internal-entry-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(79,140,255,0.25);}
+  @keyframes glow-pulse2{0%,100%{box-shadow:0 0 0 0 rgba(79,140,255,0.3);}50%{box-shadow:0 0 20px rgba(79,140,255,0.15);}}
+  .phase3-hidden{display:none;opacity:0;}
+  .phase3-visible{display:block;animation:phase3-reveal 0.8s ease forwards;}
+  @keyframes phase3-reveal{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:none;}}
+  .p3-hero{
+    position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#030507 0%,var(--bg) 100%);
+    border-bottom:1px solid var(--border);padding:6rem 2rem 4rem;text-align:center;
+  }
+  .p3-scan-line{
+    position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--accent2),transparent);
+    animation:scan 3s linear infinite;
+  }
+  @keyframes scan{0%{top:-2px;}100%{top:100%;}}
+  .p3-hero-content{position:relative;z-index:1;}
+  .p3-badge{font-family:var(--mono);font-size:0.72rem;color:var(--accent3);letter-spacing:2px;margin-bottom:1.5rem;}
+  .p3-title{
+    font-family:var(--mono);font-size:clamp(1.8rem,4vw,3rem);font-weight:700;margin-bottom:1rem;
+    background:linear-gradient(135deg,#fff 0%,var(--accent3) 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .p3-sub{font-size:1.05rem;color:var(--muted);max-width:580px;margin:0 auto;}
+  .p3-nav{
+    position:sticky;top:56px;z-index:89;
+    background:rgba(5,7,9,0.96);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+    display:flex;gap:0;overflow-x:auto;padding:0 1rem;
+  }
+  .p3-nav-link{
+    font-family:var(--mono);font-size:0.72rem;color:var(--muted);
+    text-decoration:none;padding:0.75rem 1rem;white-space:nowrap;
+    border-bottom:2px solid transparent;transition:all 0.2s;
+  }
+  .p3-nav-link:hover{color:var(--accent3);border-bottom-color:var(--accent3);}
+  .p3-section{max-width:1000px;margin:0 auto;padding:5rem 2rem 3rem;border-bottom:1px solid var(--border);}
+  .p3-sec-label{font-family:var(--mono);font-size:0.68rem;color:var(--accent3);letter-spacing:3px;text-transform:uppercase;margin-bottom:0.75rem;}
+  .p3-sec-title{font-family:var(--mono);font-size:clamp(1.3rem,3vw,1.9rem);font-weight:700;margin-bottom:1rem;}
+  .p3-sec-desc{color:var(--muted);font-size:0.97rem;max-width:700px;margin-bottom:2.5rem;line-height:1.7;}
+  .p3-analogy{background:rgba(255,107,107,0.05);border:1px solid rgba(255,107,107,0.2);border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0;display:flex;gap:1rem;align-items:flex-start;font-size:0.9rem;line-height:1.65;}
+  .p3-fade{opacity:0;transform:translateY(24px);transition:all 0.55s ease;}
+  .p3-fade.visible{opacity:1;transform:none;}
+  .p3-code{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:1.25rem;font-family:var(--mono);font-size:0.8rem;color:#cdd9e5;line-height:1.8;overflow-x:auto;white-space:pre;margin-top:1rem;}
+  .p3-explainer{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-top:1.5rem;}
+  .p3-eb-title{font-family:var(--mono);font-size:0.85rem;color:var(--accent3);margin-bottom:0.75rem;font-weight:700;}
+
+  /* NAME DEMO */
+  .name-demo{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:2rem;margin:2rem 0;}
+  .nd-step-container{min-height:200px;}
+  .nd-step{display:none;}
+  .nd-step.active{display:block;animation:slideIn 0.3s ease;}
+  .nd-step-num{font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--accent3);margin-bottom:0.5rem;}
+  .nd-step-title{font-family:var(--mono);font-size:0.9rem;color:var(--text);margin-bottom:0.5rem;font-weight:700;}
+  .nd-step-desc{font-size:0.88rem;color:var(--muted);line-height:1.65;margin-bottom:0.5rem;}
+  .nd-controls{display:flex;align-items:center;gap:1rem;margin-top:1.5rem;flex-wrap:wrap;}
+  .nd-btn{padding:0.5rem 1.25rem;border-radius:7px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-family:var(--mono);font-size:0.8rem;cursor:pointer;transition:all 0.2s;}
+  .nd-btn:hover{border-color:var(--accent3);color:var(--accent3);}
+  .nd-btn-next{border-color:var(--accent3);color:var(--accent3);}
+  .nd-counter{font-family:var(--mono);font-size:0.78rem;color:var(--muted);}
+
+  /* STACK DEMO */
+  .stack-demo{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:2rem 0;}
+  .stack-visual-area{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;}
+  @media(max-width:600px){.stack-visual-area{grid-template-columns:1fr;}}
+  .sv-stack,.sv-memory{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:1rem;min-height:180px;}
+  .sv-title{font-family:var(--mono);font-size:0.75rem;color:var(--muted);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:1px;}
+  .sv-stack-frames{display:flex;flex-direction:column-reverse;gap:0.35rem;min-height:100px;}
+  .sv-frame{background:var(--surface3);border:1px solid var(--accent2);border-radius:5px;padding:0.4rem 0.75rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent2);animation:stackPush 0.3s ease;}
+  .sv-frame.top-frame{border-color:var(--accent);color:var(--accent);background:rgba(0,229,160,0.08);}
+  @keyframes stackPush{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .sv-bottom{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-top:0.5rem;text-align:center;}
+  .sv-vars{font-family:var(--mono);font-size:0.78rem;min-height:100px;}
+  .sv-var-item{padding:0.3rem 0;border-bottom:1px solid var(--border);color:var(--text);animation:slideIn 0.3s ease;}
+  .sv-var-key{color:var(--accent2);}
+  .sv-var-val{color:var(--accent4);}
+  .sv-empty{color:var(--muted);font-size:0.78rem;font-style:italic;}
+  .sv-log-area{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:1rem;max-height:140px;overflow-y:auto;margin-bottom:1rem;}
+  .sv-log-title{font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-bottom:0.5rem;}
+  .sv-log{font-family:var(--mono);font-size:0.75rem;color:var(--muted);}
+  .sv-log-entry{margin-bottom:0.2rem;animation:slideIn 0.25s ease;}
+  .sv-log-entry.enter{color:var(--accent);}
+  .sv-log-entry.exit{color:var(--accent3);}
+  .sv-log-entry.info{color:var(--accent4);}
+  .sv-controls{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;}
+  .sv-btn{padding:0.5rem 1.25rem;border-radius:7px;border:1px solid var(--accent3);background:transparent;color:var(--accent3);font-family:var(--mono);font-size:0.8rem;cursor:pointer;transition:all 0.2s;}
+  .sv-btn:hover{background:rgba(255,107,107,0.1);}
+  .sv-btn2{border-color:var(--muted);color:var(--muted);}
+  .sv-btn2:hover{background:rgba(255,255,255,0.05);}
+  .sv-step-label{font-family:var(--mono);font-size:0.75rem;color:var(--muted);}
+
+  /* WHILE DEMO */
+  .while-demo{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0;}
+  @media(max-width:650px){.while-demo{grid-template-columns:1fr;}}
+  .wd-title{font-family:var(--mono);font-size:0.78rem;color:var(--muted);margin-bottom:1rem;text-transform:uppercase;letter-spacing:1px;}
+  .wd-compare{display:flex;flex-direction:column;gap:0.75rem;}
+  .wd-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;}
+  .wd-box-label{font-family:var(--mono);font-size:0.72rem;margin-bottom:0.5rem;}
+  .wd-box-label.bad{color:var(--accent3);}
+  .wd-box-label.good{color:var(--accent);}
+  .while-anim{display:flex;flex-direction:column;align-items:center;gap:0.35rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;}
+  .wa-node{padding:0.6rem 1.5rem;border-radius:7px;font-family:var(--mono);font-size:0.8rem;text-align:center;border:1px solid var(--border);transition:all 0.3s;min-width:160px;}
+  .wa-while{border-color:var(--accent2);color:var(--accent2);}
+  .wa-menu{border-color:var(--accent4);color:var(--accent4);}
+  .wa-fn{border-color:var(--accent);color:var(--accent);}
+  .wa-back{border-color:var(--muted);color:var(--muted);}
+  .wa-node.active-node{filter:brightness(1.4);box-shadow:0 0 12px currentColor;transform:scale(1.05);}
+  .wa-arrow{color:var(--muted);font-size:0.9rem;}
+  .wa-loop-arrow{font-family:var(--mono);font-size:0.72rem;color:var(--muted);padding-top:0.5rem;opacity:0;transition:opacity 0.5s;}
+  .wa-loop-arrow.visible{opacity:1;}
+  .wd-controls{display:flex;align-items:center;gap:1rem;margin-top:1rem;}
+  .wd-btn{padding:0.5rem 1rem;border-radius:7px;border:1px solid var(--accent2);background:transparent;color:var(--accent2);font-family:var(--mono);font-size:0.78rem;cursor:pointer;transition:all 0.2s;}
+  .wd-btn:hover{background:rgba(79,140,255,0.1);}
+  .wd-cycle-count{font-family:var(--mono);font-size:0.75rem;color:var(--muted);}
+
+  /* EXIT DEMO */
+  .exit-demo{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:2rem;margin:2rem 0;}
+  .ed-flow{display:flex;flex-direction:column;align-items:center;gap:0;}
+  .ed-node{padding:0.75rem 2rem;border-radius:8px;font-family:var(--mono);font-size:0.82rem;text-align:center;border:1px solid var(--border);background:var(--surface);min-width:240px;opacity:0.35;transition:all 0.4s;}
+  .ed-node.active-ed{opacity:1;border-color:var(--accent3);color:var(--accent3);box-shadow:0 0 16px rgba(255,107,107,0.2);}
+  .ed-node.done-ed{opacity:0.6;border-color:var(--muted);}
+  .ed-conn{width:2px;height:28px;background:var(--border);position:relative;}
+  .ed-conn.active{background:var(--accent3);}
+  .ed-controls{display:flex;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap;}
+  .ed-btn{padding:0.5rem 1.2rem;border-radius:7px;border:1px solid var(--accent3);background:transparent;color:var(--accent3);font-family:var(--mono);font-size:0.78rem;cursor:pointer;transition:all 0.2s;}
+  .ed-btn:hover{background:rgba(255,107,107,0.1);}
+  .ed-btn2{border-color:var(--muted);color:var(--muted);}
+  .ed-explanation{font-family:var(--mono);font-size:0.78rem;color:var(--muted);margin-top:0.75rem;min-height:2rem;}
+  .exit-explain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem;}
+  .eeg-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;}
+  .eeg-icon{font-size:1.5rem;margin-bottom:0.5rem;}
+  .eeg-title{font-family:var(--mono);font-size:0.82rem;font-weight:700;margin-bottom:0.4rem;}
+  .eeg-desc{font-size:0.82rem;color:var(--muted);line-height:1.6;}
+
+  /* PRESERVAR DEMO */
+  .preservar-demo{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:2rem 0;}
+  .pd-state{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:center;margin-bottom:1.25rem;}
+  @media(max-width:600px){.pd-state{grid-template-columns:1fr;}}
+  .pd-ram,.pd-csv{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:1rem;}
+  .pd-label{font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-bottom:0.5rem;}
+  .pd-ram-content{font-family:var(--mono);font-size:0.76rem;color:#cdd9e5;line-height:1.7;}
+  .pd-csv-content{font-family:var(--mono);font-size:0.8rem;color:var(--muted);min-height:80px;transition:all 0.3s;}
+  .pd-arrow-area{text-align:center;}
+  .pd-writing-arrow{font-size:1.5rem;color:var(--accent3);animation:pulse-arrow 1s ease-in-out infinite;display:none;}
+  .pd-writing-arrow.active{display:block;}
+  .pd-writing-label{font-family:var(--mono);font-size:0.68rem;color:var(--muted);}
+  @keyframes pulse-arrow{0%,100%{opacity:0.4;}50%{opacity:1;}}
+  .pd-code-walker{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:1rem;font-family:var(--mono);font-size:0.78rem;color:var(--muted);line-height:1.8;margin-bottom:1rem;}
+  .pw-line{padding:0.1rem 0.4rem;border-radius:3px;transition:all 0.3s;border-left:3px solid transparent;}
+  .pw-line.active-line{background:rgba(255,107,107,0.1);border-left-color:var(--accent3);color:var(--text);}
+  .pw-line.done-line{color:rgba(205,217,229,0.4);}
+  .pd-explanation{font-family:var(--mono);font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem;min-height:2rem;}
+  .pd-controls{display:flex;gap:0.75rem;}
+  .pd-btn{padding:0.5rem 1.2rem;border-radius:7px;border:1px solid var(--accent3);background:transparent;color:var(--accent3);font-family:var(--mono);font-size:0.78rem;cursor:pointer;transition:all 0.2s;}
+  .pd-btn:hover{background:rgba(255,107,107,0.1);}
+  .pd-btn2{border-color:var(--muted);color:var(--muted);}
+  .pd-btn2:hover{background:rgba(255,255,255,0.05);}
+
+  /* RECOVERY DEMO */
+  .recov-demo{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:2rem 0;}
+  .rd-state{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;align-items:start;margin-bottom:1rem;}
+  @media(max-width:600px){.rd-state{grid-template-columns:1fr;}}
+  .rd-csv,.rd-dict{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:1rem;}
+  .rd-label{font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-bottom:0.5rem;}
+  .rd-csv-lines{font-family:var(--mono);font-size:0.78rem;line-height:2;}
+  .rd-highlight{color:var(--muted);transition:all 0.3s;}
+  .rd-highlight.reading{color:var(--accent4);background:rgba(255,209,102,0.1);padding:0.1rem 0.3rem;border-radius:3px;}
+  .rd-highlight.done{color:rgba(205,217,229,0.3);}
+  .rd-transform{background:rgba(79,140,255,0.06);border:1px solid rgba(79,140,255,0.2);border-radius:8px;padding:1rem;}
+  .rd-t-title{font-family:var(--mono);font-size:0.72rem;color:var(--accent2);margin-bottom:0.5rem;}
+  .rd-t-content{font-family:var(--mono);font-size:0.75rem;color:var(--muted);line-height:1.7;min-height:80px;}
+  .rd-dict-content{font-family:var(--mono);font-size:0.76rem;color:#cdd9e5;line-height:1.7;transition:all 0.3s;}
+  .rd-explanation{font-family:var(--mono);font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem;min-height:2rem;}
+  .rd-controls{display:flex;gap:0.75rem;}
+  .rd-btn{padding:0.5rem 1.2rem;border-radius:7px;border:1px solid var(--accent4);background:transparent;color:var(--accent4);font-family:var(--mono);font-size:0.78rem;cursor:pointer;transition:all 0.2s;}
+  .rd-btn:hover{background:rgba(255,209,102,0.1);}
+  .rd-btn2{border-color:var(--muted);color:var(--muted);}
+  .conversion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem;}
+  .cg-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;}
+  .cg-from,.cg-to{font-family:var(--mono);font-size:0.8rem;margin-bottom:0.25rem;}
+  .cg-arrow{font-family:var(--mono);font-size:0.75rem;color:var(--accent);margin:0.25rem 0;}
+  .cg-why{font-size:0.78rem;color:var(--muted);margin-top:0.5rem;line-height:1.5;}
+
+  /* JOURNEY */
+  .journey-demo{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0;align-items:start;}
+  @media(max-width:650px){.journey-demo{grid-template-columns:1fr;}}
+  .jd-steps{display:flex;flex-direction:column;align-items:stretch;}
+  .jd-step{display:flex;align-items:center;gap:0.75rem;padding:0.7rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all 0.2s;}
+  .jd-step:hover,.jd-step.active-step{border-color:var(--accent2);background:rgba(79,140,255,0.06);}
+  .jd-step.active-step .jd-num{background:var(--accent2);color:#000;}
+  .jd-num{font-family:var(--mono);font-size:0.75rem;font-weight:700;width:24px;height:24px;border-radius:50%;background:var(--surface3);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+  .jd-label{font-family:var(--mono);font-size:0.75rem;color:var(--muted);}
+  .jd-conn{width:2px;height:12px;background:var(--border);margin:0 auto;margin-left:21px;}
+  .jd-detail-panel{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1.25rem;position:sticky;top:120px;}
+  .jdd-placeholder{color:var(--muted);font-size:0.85rem;}
+  .jdd-title{font-family:var(--mono);font-size:0.88rem;color:var(--accent2);margin-bottom:0.6rem;font-weight:700;}
+  .jdd-desc{font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:0.75rem;}
+
+  /* MEMORY COMPARE */
+  .memory-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;align-items:center;margin:2rem 0;}
+  @media(max-width:650px){.memory-compare{grid-template-columns:1fr;}}
+  .mc-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;}
+  .mc-ram{border-color:rgba(0,229,160,0.25);}
+  .mc-disk{border-color:rgba(79,140,255,0.25);}
+  .mc-icon{font-size:2rem;margin-bottom:0.75rem;}
+  .mc-title{font-family:var(--mono);font-size:0.85rem;font-weight:700;margin-bottom:1rem;}
+  .mc-props{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;}
+  .mc-prop{font-size:0.82rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;}
+  .mc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .mc-example{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:0.75rem;font-size:0.8rem;}
+  .mc-ex-label{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-bottom:0.3rem;}
+  .mc-vs{display:flex;flex-direction:column;align-items:center;gap:1rem;}
+  .mc-vs-text{font-family:var(--mono);font-size:1.2rem;color:var(--muted);}
+  .mc-transfer{display:flex;flex-direction:column;gap:0.5rem;align-items:center;}
+  .mct-btn{padding:0.4rem 0.75rem;border-radius:6px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);font-family:var(--mono);font-size:0.72rem;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+  .mct-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .mct-arrow{font-family:var(--mono);font-size:1.2rem;color:var(--muted);transition:all 0.3s;}
+  .transfer-log{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:1rem;font-family:var(--mono);font-size:0.76rem;min-height:60px;max-height:100px;overflow-y:auto;margin-top:1rem;}
+
+  /* CONCEPTS */
+  .concepts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin:2rem 0;}
+  .concept-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.2s;}
+  .concept-card:hover{border-color:var(--accent3);}
+  .cc-header{display:flex;align-items:center;gap:0.75rem;padding:1rem 1.25rem;}
+  .cc-icon{font-size:1.1rem;}
+  .cc-title{font-family:var(--mono);font-size:0.82rem;flex:1;font-weight:700;}
+  .cc-toggle{font-family:var(--mono);font-size:1.2rem;color:var(--muted);transition:transform 0.2s;}
+  .concept-card.open .cc-toggle{transform:rotate(45deg);}
+  .cc-body{display:none;padding:0 1.25rem 1.25rem;font-size:0.85rem;color:var(--muted);line-height:1.65;}
+  .concept-card.open .cc-body{display:block;animation:slideIn 0.25s ease;}
 </style>
 </head>
 <body>
@@ -1913,11 +2153,469 @@ solicitar_con_validacion(<span class="c-bool-t">validar_numero</span>, <span cla
 
 </div><!-- end #phase2 -->
 
+<!-- PHASE 3 ENTRY -->
+<section id="phase3-entry" style="text-align:center;padding:3rem 2rem 6rem;background:linear-gradient(180deg,var(--bg) 0%,#050709 100%);">
+  <p style="font-family:var(--mono);font-size:0.72rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;">// Nivel máximo de profundidad</p>
+  <button id="enter-internal-btn" onclick="enterInternal()" class="internal-entry-btn">
+    <span class="ib-text">⬡ Ver la ejecución real del programa</span>
+  </button>
+  <p style="font-size:0.82rem;color:var(--muted);margin-top:1.25rem">Memoria · Pila de llamadas · Flujo de datos interno</p>
+</section>
+
+<div id="phase3" class="phase3-hidden">
+  <div class="p3-hero">
+    <div class="p3-scan-line"></div>
+    <div class="p3-hero-content">
+      <div class="p3-badge">// FASE 3 — EJECUCIÓN INTERNA</div>
+      <h2 class="p3-title">Dentro de la máquina</h2>
+      <p class="p3-sub">Cómo Python ejecuta el programa, cómo viajan los datos, cómo funciona la memoria — y por qué cada pieza encaja exactamente donde está.</p>
+    </div>
+  </div>
+
+  <div class="p3-nav">
+    <a href="#p3-s1" class="p3-nav-link">__name__</a>
+    <a href="#p3-s2" class="p3-nav-link">Pila llamadas</a>
+    <a href="#p3-s3" class="p3-nav-link">while True</a>
+    <a href="#p3-s4" class="p3-nav-link">exit()</a>
+    <a href="#p3-s5" class="p3-nav-link">preservar()</a>
+    <a href="#p3-s6" class="p3-nav-link">recuperacion()</a>
+    <a href="#p3-s7" class="p3-nav-link">Viaje del dato</a>
+    <a href="#p3-s8" class="p3-nav-link">RAM vs Disco</a>
+    <a href="#p3-s9" class="p3-nav-link">Conceptos</a>
+  </div>
+
+  <!-- S1 -->
+  <section id="p3-s1" class="p3-section p3-fade">
+    <div class="p3-sec-label">INTERNO 01</div>
+    <h3 class="p3-sec-title">La puerta de entrada: <span class="hl-green">if __name__ == '__main__'</span></h3>
+    <p class="p3-sec-desc">Esta línea es la que dispara todo. Sin ella, Python carga el archivo pero no ejecuta nada automáticamente. Es la señal que le dice: "sí, corre este programa ahora".</p>
+    <div class="p3-analogy"><span>🚪</span><div><strong>Analogía:</strong> El archivo Python es como un libro de recetas. Puedes leerlo sin cocinar (importarlo en otro script). El <code class="ic">if __name__ == '__main__'</code> es la señal "vamos a cocinar hoy" — solo activa main() cuando ejecutas el archivo directamente.</div></div>
+    <div class="name-demo">
+      <div class="nd-step-container">
+        <div class="nd-step active" id="nds-0">
+          <div class="nd-step-num">1</div>
+          <div class="nd-step-content">
+            <div class="nd-step-title">Python carga el archivo de arriba a abajo</div>
+            <div class="nd-step-desc">Lee y <em>define</em> todas las funciones en memoria. No las ejecuta — solo las registra para saber que existen.</div>
+            <div class="p3-code"><span class="c-comment"># Python lee esto y registra las funciones:</span>
+<span class="c-key">def</span> preservar(...): ...
+<span class="c-key">def</span> recuperacion(...): ...
+<span class="c-key">def</span> main(...): ...
+<span class="c-comment"># Ninguna se ejecuta aún</span></div>
+          </div>
+        </div>
+        <div class="nd-step" id="nds-1">
+          <div class="nd-step-num">2</div>
+          <div class="nd-step-content">
+            <div class="nd-step-title">Python asigna __name__ automáticamente</div>
+            <div class="nd-step-desc">Cuando ejecutas el archivo directamente, Python establece <code class="ic">__name__ = '__main__'</code>. Si fuera importado por otro archivo, sería diferente.</div>
+            <div class="p3-code"><span class="c-comment"># Python hace esto internamente:</span>
+__name__ = <span class="c-str">'__main__'</span>
+<span class="c-comment"># Si otro archivo hiciera: import veterinaria</span>
+<span class="c-comment"># entonces __name__ = 'veterinaria'</span></div>
+          </div>
+        </div>
+        <div class="nd-step" id="nds-2">
+          <div class="nd-step-num">3</div>
+          <div class="nd-step-content">
+            <div class="nd-step-title">La condición se evalúa</div>
+            <div class="nd-step-desc">Python llega al final y evalúa el if. Como <code class="ic">__name__</code> es <code class="ic">'__main__'</code>, la condición es True y se ejecuta main().</div>
+            <div class="p3-code"><span class="c-key">if</span> __name__ == <span class="c-str">'__main__'</span>:  <span class="c-comment"># → True ✓</span>
+    main()  <span class="c-comment"># ¡El programa arranca aquí!</span></div>
+          </div>
+        </div>
+        <div class="nd-step" id="nds-3">
+          <div class="nd-step-num">4</div>
+          <div class="nd-step-content">
+            <div class="nd-step-title">main() toma el control total</div>
+            <div class="nd-step-desc">main() carga el CSV anterior y entra en el ciclo infinito. El programa ya está vivo y atendiendo al usuario.</div>
+            <div class="p3-code"><span class="c-key">def</span> main(ruta_csv=<span class="c-str">'catalogo_pacientes.csv'</span>):
+    catalogo = recuperacion({}, ruta_csv)
+    <span class="c-key">while</span> <span class="c-bool-t">True</span>:
+        menu(catalogo, ruta_csv)</div>
+          </div>
+        </div>
+      </div>
+      <div class="nd-controls">
+        <button class="nd-btn" onclick="ndPrev()">← Anterior</button>
+        <span class="nd-counter" id="nd-counter">Paso 1 de 4</span>
+        <button class="nd-btn nd-btn-next" onclick="ndNext()">Siguiente →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- S2 -->
+  <section id="p3-s2" class="p3-section p3-fade">
+    <div class="p3-sec-label">INTERNO 02</div>
+    <h3 class="p3-sec-title">La pila de llamadas: <span class="hl-blue">cómo Python recuerda dónde estaba</span></h3>
+    <p class="p3-sec-desc">Cada vez que una función llama a otra, Python apila una nota de "estaba aquí". Al terminar, la quita y regresa exactamente ahí. Simula paso a paso:</p>
+    <div class="stack-demo">
+      <div class="stack-visual-area">
+        <div class="sv-stack">
+          <div class="sv-title">🗂️ Pila de llamadas</div>
+          <div class="sv-stack-frames" id="sv-frames"><div class="sv-empty">Pila vacía</div></div>
+          <div class="sv-bottom">▼ BASE</div>
+        </div>
+        <div class="sv-memory">
+          <div class="sv-title">🧠 Variables activas</div>
+          <div class="sv-vars" id="sv-vars"><div class="sv-empty">Ninguna aún</div></div>
+        </div>
+      </div>
+      <div class="sv-log-area">
+        <div class="sv-log-title">📋 Flujo de ejecución</div>
+        <div class="sv-log" id="sv-log"></div>
+      </div>
+      <div class="sv-controls">
+        <button class="sv-btn" onclick="stackStep()">▶ Siguiente paso</button>
+        <button class="sv-btn sv-btn2" onclick="stackReset()">↺ Reiniciar</button>
+        <span class="sv-step-label" id="sv-step-label">Listo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 -->
+  <section id="p3-s3" class="p3-section p3-fade">
+    <div class="p3-sec-label">INTERNO 03</div>
+    <h3 class="p3-sec-title">El <span class="hl-yellow">while True</span>: el corazón que no para</h3>
+    <p class="p3-sec-desc">Un ciclo normal termina cuando una condición se vuelve falsa. <code class="ic">while True</code> nunca se vuelve falso — corre para siempre <em>intencionalmente</em> hasta que <code class="ic">exit()</code> mata el proceso completo.</p>
+    <div class="while-demo">
+      <div class="wd-left">
+        <div class="wd-title">Ciclo normal vs while True</div>
+        <div class="wd-compare">
+          <div class="wd-box">
+            <div class="wd-box-label bad">Con condición</div>
+            <div class="p3-code" style="font-size:0.75rem">i = 0
+<span class="c-key">while</span> i &lt; 3:
+    print(i)
+    i += 1
+<span class="c-comment"># Para cuando i llega a 3</span></div>
+          </div>
+          <div class="wd-box">
+            <div class="wd-box-label good">while True</div>
+            <div class="p3-code" style="font-size:0.75rem"><span class="c-key">while</span> <span class="c-bool-t">True</span>:
+    menu(catalogo, ruta)
+<span class="c-comment"># True NUNCA es False</span>
+<span class="c-comment"># Solo exit() lo detiene</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="wd-right">
+        <div class="wd-title">Visualización animada</div>
+        <div class="while-anim">
+          <div class="wa-node wa-while" id="wa-while">while True</div>
+          <div class="wa-arrow">↓</div>
+          <div class="wa-node wa-menu" id="wa-menu">menu()</div>
+          <div class="wa-arrow">↓</div>
+          <div class="wa-node wa-fn" id="wa-fn">función elegida</div>
+          <div class="wa-arrow">↓</div>
+          <div class="wa-node wa-back" id="wa-back">regresa al while</div>
+          <div class="wa-loop-arrow" id="wa-loop">↩ repite</div>
+        </div>
+        <div class="wd-controls">
+          <button class="wd-btn" id="while-toggle-btn" onclick="toggleWhile()">▶ Iniciar ciclo</button>
+          <span class="wd-cycle-count">Iteración: <span id="while-iter">0</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="p3-explainer">
+      <div class="p3-eb-title">¿Por qué NO usamos break?</div>
+      <p>Con <code class="ic">break</code> saldrías del ciclo pero el programa continuaría. Con <code class="ic">exit()</code> el proceso completo termina — limpio y definitivo, sin código que se ejecute después.</p>
+    </div>
+  </section>
+
+  <!-- S4 -->
+  <section id="p3-s4" class="p3-section p3-fade">
+    <div class="p3-sec-label">INTERNO 04</div>
+    <h3 class="p3-sec-title"><span class="hl-red">exit()</span>: la única salida real</h3>
+    <p class="p3-sec-desc">No rompe el while — mata el proceso completo de Python. Es como apagar la máquina, no solo pausarla.</p>
+    <div class="exit-demo">
+      <div class="ed-flow">
+        <div class="ed-node ed-while" id="ed-while">🔄 while True corriendo</div>
+        <div class="ed-conn"></div>
+        <div class="ed-node ed-menu" id="ed-menu">menu() → opción 6</div>
+        <div class="ed-conn"></div>
+        <div class="ed-node ed-confirm" id="ed-confirm">¿Confirmar salida? → s</div>
+        <div class="ed-conn"></div>
+        <div class="ed-node ed-preservar" id="ed-preservar">preservar() escribe CSV</div>
+        <div class="ed-conn"></div>
+        <div class="ed-node ed-exit" id="ed-exit">exit() — señal SystemExit</div>
+        <div class="ed-conn"></div>
+        <div class="ed-node ed-dead" id="ed-dead">Proceso Python: terminado</div>
+      </div>
+      <div class="ed-controls">
+        <button class="ed-btn" onclick="exitStep()">▶ Siguiente paso</button>
+        <button class="ed-btn ed-btn2" onclick="exitReset()">↺ Reiniciar</button>
+      </div>
+      <div class="ed-explanation" id="ed-explanation">Presiona "Siguiente paso" para simular la secuencia de salida</div>
+    </div>
+    <div class="p3-explainer" style="margin-top:1.5rem">
+      <div class="p3-eb-title">¿Qué hace exactamente exit()?</div>
+      <div class="exit-explain-grid">
+        <div class="eeg-item"><div class="eeg-icon">💀</div><div class="eeg-title">Mata el proceso</div><p class="eeg-desc">Lanza <code class="ic">SystemExit</code>, una señal especial que Python captura a nivel del sistema operativo. El proceso termina completamente.</p></div>
+        <div class="eeg-item"><div class="eeg-icon">🔗</div><div class="eeg-title">No necesita break</div><p class="eeg-desc">No importa cuántos ciclos haya activos. exit() los rompe todos de golpe porque el proceso deja de existir.</p></div>
+        <div class="eeg-item"><div class="eeg-icon">💾</div><div class="eeg-title">Primero preservar()</div><p class="eeg-desc">preservar() se llama ANTES de exit(). Una vez que exit() corre, ya no hay oportunidad de hacer nada más.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S5 -->
+  <section id="p3-s5" class="p3-section p3-fade">
+    <div class="p3-sec-label">INTERNO 05</div>
+    <h3 class="p3-sec-title"><span class="hl-green">preservar()</span> línea por línea</h3>
+    <p class="p3-sec-desc">Toma el diccionario en RAM y lo convierte en texto plano en un archivo. Cada línea del código tiene una razón concreta.</p>
+    <div class="preservar-demo">
+      <div class="pd-state">
+        <div class="pd-ram">
+          <div class="pd-label">🧠 RAM</div>
+          <div class="pd-ram-content">catalogo = {<br>&nbsp;&nbsp;<span class="c-key">1</span>: [<span class="c-bool-t">True</span>, <span class="c-str">"FIRULAIS"</span>, <span class="c-str">"PERRO"</span>, <span class="c-num">5</span>],<br>&nbsp;&nbsp;<span class="c-key">2</span>: [<span class="c-bool-f">False</span>, <span class="c-str">"MICHI"</span>, <span class="c-str">"GATO"</span>, <span class="c-num">2</span>],<br>&nbsp;&nbsp;<span class="c-key">3</span>: [<span class="c-bool-t">True</span>, <span class="c-str">"ROCCO"</span>, <span class="c-str">"CONEJO"</span>, <span class="c-num">3</span>]<br>}</div>
+        </div>
+        <div class="pd-arrow-area">
+          <div class="pd-writing-arrow" id="pd-arrow">⟶</div>
+          <div class="pd-writing-label">writerow()</div>
+        </div>
+        <div class="pd-csv">
+          <div class="pd-label">💾 CSV</div>
+          <div class="pd-csv-content" id="pd-csv">vacío</div>
+        </div>
+      </div>
+      <div class="pd-code-walker">
+        <div class="pw-line" id="pwl-0">with open(ruta, <span class="c-str">'w'</span>, encoding=<span class="c-str">'UTF-8'</span>) as archivo:</div>
+        <div class="pw-line" id="pwl-1">&nbsp;&nbsp;writer = csv.writer(archivo)</div>
+        <div class="pw-line" id="pwl-2">&nbsp;&nbsp;<span class="c-key">for</span> clave, datos <span class="c-key">in</span> estado.items():</div>
+        <div class="pw-line" id="pwl-3">&nbsp;&nbsp;&nbsp;&nbsp;writer.writerow([clave, *datos])  <span class="c-comment">→ escribe fila 1</span></div>
+        <div class="pw-line" id="pwl-4">&nbsp;&nbsp;&nbsp;&nbsp;writer.writerow([clave, *datos])  <span class="c-comment">→ escribe fila 2</span></div>
+        <div class="pw-line" id="pwl-5">&nbsp;&nbsp;&nbsp;&nbsp;writer.writerow([clave, *datos])  <span class="c-comment">→ escribe fila 3</span></div>
+        <div class="pw-line" id="pwl-6"><span class="c-comment"># with cierra el archivo automáticamente</span></div>
+      </div>
+      <div class="pd-explanation" id="pd-explanation"><em>Presiona "Siguiente línea" para ver cómo se escribe el CSV</em></div>
+      <div class="pd-controls">
+        <button class="pd-btn" onclick="preservarStep()">▶ Siguiente línea</button>
+        <button class="pd-btn pd-btn2" onclick="preservarReset()">↺ Reiniciar</button>
+      </div>
+    </div>
+    <div class="p3-explainer" style="margin-top:1.5rem">
+      <div class="p3-eb-title">El operador <code class="ic">*datos</code> — desempacar la lista</div>
+      <p>El asterisco "desempaca" la lista en elementos separados:</p>
+      <div class="p3-code">clave = 1
+datos = [True, "FIRULAIS", "PERRO", 5]
+writer.writerow([clave, *datos])
+<span class="c-comment"># Equivale a:</span>
+writer.writerow([1, True, "FIRULAIS", "PERRO", 5])
+<span class="c-comment"># Resultado en CSV: 1,True,FIRULAIS,PERRO,5</span></div>
+    </div>
+  </section>
+
+  <!-- S6 -->
+  <section id="p3-s6" class="p3-section p3-fade">
+    <div class="p3-sec-label">INTERNO 06</div>
+    <h3 class="p3-sec-title"><span class="hl-yellow">recuperacion()</span>: el CSV revive como diccionario</h3>
+    <p class="p3-sec-desc">Hace el camino inverso: texto plano → diccionario Python con tipos correctos. El problema: en CSV todo es texto, y debemos convertir de vuelta.</p>
+    <div class="recov-demo">
+      <div class="rd-state">
+        <div class="rd-csv">
+          <div class="rd-label">💾 CSV (todo texto)</div>
+          <div class="rd-csv-lines">
+            <div class="rd-line"><span class="rd-highlight" id="rdh-0">1,True,FIRULAIS,PERRO,5</span></div>
+            <div class="rd-line"><span class="rd-highlight" id="rdh-1">2,False,MICHI,GATO,2</span></div>
+            <div class="rd-line"><span class="rd-highlight" id="rdh-2">3,True,ROCCO,CONEJO,3</span></div>
+          </div>
+        </div>
+        <div class="rd-transform">
+          <div class="rd-t-title">🔄 Transformación</div>
+          <div class="rd-t-content" id="rd-t-content">esperando...</div>
+        </div>
+        <div class="rd-dict">
+          <div class="rd-label">🧠 Diccionario RAM</div>
+          <div class="rd-dict-content" id="rd-dict-content">catalogo = {}</div>
+        </div>
+      </div>
+      <div class="rd-explanation" id="rd-explanation"><em>Presiona "Procesar línea" para ver la reconstrucción</em></div>
+      <div class="rd-controls">
+        <button class="rd-btn" onclick="recovStep()">▶ Procesar línea</button>
+        <button class="rd-btn rd-btn2" onclick="recovReset()">↺ Reiniciar</button>
+      </div>
+    </div>
+    <div class="p3-explainer" style="margin-top:1.5rem">
+      <div class="p3-eb-title">El problema del texto — conversiones obligatorias</div>
+      <div class="conversion-grid">
+        <div class="cg-item">
+          <div class="cg-from">CSV: <code class="ic">"1"</code></div>
+          <div class="cg-arrow">→ <code class="ic">int("1")</code> →</div>
+          <div class="cg-to">Python: <code class="ic" style="color:#f78166">1</code></div>
+          <div class="cg-why">Sin int(), sería el string "1" y la suma de claves fallaría.</div>
+        </div>
+        <div class="cg-item">
+          <div class="cg-from">CSV: <code class="ic">"5"</code></div>
+          <div class="cg-arrow">→ <code class="ic">int("5")</code> →</div>
+          <div class="cg-to">Python: <code class="ic" style="color:#f78166">5</code></div>
+          <div class="cg-why">La edad debe ser número para comparaciones.</div>
+        </div>
+        <div class="cg-item">
+          <div class="cg-from">CSV: <code class="ic">"True"</code></div>
+          <div class="cg-arrow">→ <code class="ic">== 'True'</code> →</div>
+          <div class="cg-to">Python: <code class="ic" style="color:#56d364">True</code></div>
+          <div class="cg-why">Comparar el string 'True' con 'True' produce el booleano real.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 -->
+  <section id="p3-s7" class="p3-section p3-fade">
+    <div class="p3-sec-label">INTERNO 07</div>
+    <h3 class="p3-sec-title">El <span class="hl-blue">viaje completo</span> de un paciente</h3>
+    <p class="p3-sec-desc">Desde que el usuario escribe el nombre hasta que el paciente reaparece en la próxima ejecución. Haz clic en cada paso para ver qué ocurre internamente.</p>
+    <div class="journey-demo">
+      <div class="jd-steps">
+        <div class="jd-step" id="js-0" onclick="journeyActivate(0)"><div class="jd-num">1</div><div class="jd-label">Usuario escribe "LUNA"</div></div>
+        <div class="jd-conn"></div>
+        <div class="jd-step" id="js-1" onclick="journeyActivate(1)"><div class="jd-num">2</div><div class="jd-label">validar_cadena()</div></div>
+        <div class="jd-conn"></div>
+        <div class="jd-step" id="js-2" onclick="journeyActivate(2)"><div class="jd-num">3</div><div class="jd-label">generar_clave()</div></div>
+        <div class="jd-conn"></div>
+        <div class="jd-step" id="js-3" onclick="journeyActivate(3)"><div class="jd-num">4</div><div class="jd-label">catalogo[4] = [True,"LUNA","GATO",3]</div></div>
+        <div class="jd-conn"></div>
+        <div class="jd-step" id="js-4" onclick="journeyActivate(4)"><div class="jd-num">5</div><div class="jd-label">Regresa al menú (while True)</div></div>
+        <div class="jd-conn"></div>
+        <div class="jd-step" id="js-5" onclick="journeyActivate(5)"><div class="jd-num">6</div><div class="jd-label">Usuario elige salir → preservar()</div></div>
+        <div class="jd-conn"></div>
+        <div class="jd-step" id="js-6" onclick="journeyActivate(6)"><div class="jd-num">7</div><div class="jd-label">CSV: "4,True,LUNA,GATO,3"</div></div>
+        <div class="jd-conn"></div>
+        <div class="jd-step" id="js-7" onclick="journeyActivate(7)"><div class="jd-num">8</div><div class="jd-label">exit() — RAM vaciada</div></div>
+        <div class="jd-conn"></div>
+        <div class="jd-step" id="js-8" onclick="journeyActivate(8)"><div class="jd-num">9</div><div class="jd-label">Nueva ejecución → recuperacion()</div></div>
+        <div class="jd-conn"></div>
+        <div class="jd-step" id="js-9" onclick="journeyActivate(9)"><div class="jd-num">10</div><div class="jd-label">LUNA reaparece en el catálogo ✓</div></div>
+      </div>
+      <div class="jd-detail-panel" id="jd-detail"><div class="jdd-placeholder">👆 Haz clic en cualquier paso para ver qué ocurre internamente</div></div>
+    </div>
+  </section>
+
+  <!-- S8 -->
+  <section id="p3-s8" class="p3-section p3-fade">
+    <div class="p3-sec-label">INTERNO 08</div>
+    <h3 class="p3-sec-title">RAM vs Disco: <span class="hl-yellow">dos mundos</span></h3>
+    <p class="p3-sec-desc">El programa trabaja con dos tipos de almacenamiento simultáneamente. Entender la diferencia explica por qué existe el CSV y por qué los datos se pierden sin él.</p>
+    <div class="memory-compare">
+      <div class="mc-card mc-ram">
+        <div class="mc-icon">⚡</div>
+        <div class="mc-title">RAM — Memoria volátil</div>
+        <div class="mc-props">
+          <div class="mc-prop"><span class="mc-dot" style="background:var(--accent)"></span>Velocidad: ultrarrápida</div>
+          <div class="mc-prop"><span class="mc-dot" style="background:var(--accent3)"></span>Persistencia: ninguna (se borra al apagar)</div>
+          <div class="mc-prop"><span class="mc-dot" style="background:var(--accent4)"></span>Formato: objetos Python (dict, list, bool, int)</div>
+          <div class="mc-prop"><span class="mc-dot" style="background:var(--accent2)"></span>Acceso: directo por variable</div>
+        </div>
+        <div class="mc-example"><div class="mc-ex-label">Vive aquí:</div><code class="ic">catalogo</code> — el diccionario completo</div>
+      </div>
+      <div class="mc-vs">
+        <div class="mc-vs-text">vs</div>
+        <div class="mc-transfer">
+          <button class="mct-btn" onclick="animateTransfer('save')">💾 preservar()</button>
+          <div class="mct-arrow" id="mct-arrow">⟷</div>
+          <button class="mct-btn" onclick="animateTransfer('load')">📂 recuperacion()</button>
+        </div>
+      </div>
+      <div class="mc-card mc-disk">
+        <div class="mc-icon">💾</div>
+        <div class="mc-title">Disco — Almacenamiento permanente</div>
+        <div class="mc-props">
+          <div class="mc-prop"><span class="mc-dot" style="background:var(--accent4)"></span>Velocidad: más lenta que RAM</div>
+          <div class="mc-prop"><span class="mc-dot" style="background:var(--accent)"></span>Persistencia: permanente</div>
+          <div class="mc-prop"><span class="mc-dot" style="background:var(--accent3)"></span>Formato: texto plano CSV</div>
+          <div class="mc-prop"><span class="mc-dot" style="background:var(--accent2)"></span>Acceso: mediante open()</div>
+        </div>
+        <div class="mc-example"><div class="mc-ex-label">Vive aquí:</div><code class="ic">catalogo_pacientes.csv</code></div>
+      </div>
+    </div>
+    <div class="transfer-log" id="transfer-log"><div style="color:var(--muted);font-family:var(--mono);font-size:0.78rem">» Presiona "preservar()" o "recuperacion()" para ver el flujo</div></div>
+  </section>
+
+  <!-- S9 -->
+  <section id="p3-s9" class="p3-section p3-fade" style="border-bottom:none">
+    <div class="p3-sec-label">INTERNO 09</div>
+    <h3 class="p3-sec-title">Lo que normalmente <span class="hl-red">confunde</span> a todos</h3>
+    <p class="p3-sec-desc">Conceptos que parecen abstractos pero tienen una explicación concreta. Haz clic en cada tarjeta para expandirla.</p>
+    <div class="concepts-grid">
+      <div class="concept-card" onclick="toggleConcept(this)">
+        <div class="cc-header"><span class="cc-icon">↩</span><span class="cc-title">¿Qué significa return?</span><span class="cc-toggle">+</span></div>
+        <div class="cc-body">
+          <p>return le dice a la función: "terminé, aquí está mi resultado". La función se apaga y devuelve ese valor exactamente donde fue llamada.</p>
+          <div class="p3-code" style="font-size:0.76rem"><span class="c-key">def</span> generar_clave(catalogo):
+    <span class="c-key">return</span> max(catalogo.keys(), default=<span class="c-num">0</span>) + <span class="c-num">1</span>
+
+clave = generar_clave(catalogo)  <span class="c-comment"># clave = 4</span>
+<span class="c-comment"># "clave" tiene el número que devolvió la función</span></div>
+        </div>
+      </div>
+      <div class="concept-card" onclick="toggleConcept(this)">
+        <div class="cc-header"><span class="cc-icon">⏸</span><span class="cc-title">¿Cómo una función pausa a otra?</span><span class="cc-toggle">+</span></div>
+        <div class="cc-body">
+          <p>Cuando crear_paciente() llama a pedir_datos_paciente(), la ejecución salta. Python recuerda exactamente la línea donde estaba y vuelve ahí cuando la función llamada termina.</p>
+          <div class="p3-code" style="font-size:0.76rem"><span class="c-key">def</span> crear_paciente(catalogo):
+    datos = pedir_datos_paciente()  <span class="c-comment">← PAUSA aquí</span>
+    <span class="c-comment"># Python salta a pedir_datos_paciente()</span>
+    <span class="c-comment"># Cuando termina, VUELVE exactamente aquí</span>
+    clave = generar_clave(catalogo) <span class="c-comment">← continúa</span>
+    catalogo[clave] = datos</div>
+        </div>
+      </div>
+      <div class="concept-card" onclick="toggleConcept(this)">
+        <div class="cc-header"><span class="cc-icon">🗂️</span><span class="cc-title">¿Cómo Python sabe dónde regresar?</span><span class="cc-toggle">+</span></div>
+        <div class="cc-body">
+          <p>Mantiene la pila de llamadas: una pila de notas que dice "estaba en línea X de función Y". Cada llamada agrega una nota; cada return la quita y regresa ahí.</p>
+          <div class="p3-code" style="font-size:0.76rem"><span class="c-comment"># Pila en el momento más profundo:</span>
+<span class="c-comment"># [3] solicitar_con_validacion()  ← activa</span>
+<span class="c-comment"># [2] pedir_datos_paciente()       ← esperando</span>
+<span class="c-comment"># [1] crear_paciente()             ← esperando</span>
+<span class="c-comment"># [0] menu()                       ← esperando</span>
+<span class="c-comment"># Al terminar [3] vuelve a [2], luego [1]...</span></div>
+        </div>
+      </div>
+      <div class="concept-card" onclick="toggleConcept(this)">
+        <div class="cc-header"><span class="cc-icon">🔗</span><span class="cc-title">¿Cómo una variable cambia el estado global?</span><span class="cc-toggle">+</span></div>
+        <div class="cc-body">
+          <p>El diccionario catalogo es un objeto mutable compartido. Cuando lo pasas a funciones, no copias los datos — todas apuntan al mismo objeto. Modificarlo dentro de cualquier función lo modifica para todas.</p>
+          <div class="p3-code" style="font-size:0.76rem"><span class="c-comment"># catalogo es el MISMO objeto en todo el programa</span>
+<span class="c-comment"># main() lo crea → menu() lo recibe → crear lo modifica</span>
+catalogo[clave] = datos  <span class="c-comment">← modifica el objeto compartido</span>
+<span class="c-comment"># La próxima vez que menu() corra, el paciente ya está</span></div>
+        </div>
+      </div>
+      <div class="concept-card" onclick="toggleConcept(this)">
+        <div class="cc-header"><span class="cc-icon">📋</span><span class="cc-title">¿Por qué .copy() en modificar_paciente()?</span><span class="cc-toggle">+</span></div>
+        <div class="cc-body">
+          <p>Si modificas la lista directamente y el usuario cancela, ya cambiaste los datos reales. Con .copy() trabajas en una copia independiente — si confirma se aplica, si cancela la copia se descarta.</p>
+          <div class="p3-code" style="font-size:0.76rem">copia = datos.copy()  <span class="c-comment">← copia independiente</span>
+<span class="c-key">if</span> confirmar == <span class="c-str">'s'</span>:
+    catalogo[clave] = copia  <span class="c-comment">← aplica</span>
+<span class="c-key">else</span>:
+    pass  <span class="c-comment">← datos original intacto, copia descartada</span></div>
+        </div>
+      </div>
+      <div class="concept-card" onclick="toggleConcept(this)">
+        <div class="cc-header"><span class="cc-icon">⚠️</span><span class="cc-title">¿Qué es ValueError y por qué se usa?</span><span class="cc-toggle">+</span></div>
+        <div class="cc-body">
+          <p>Un ValueError es una señal de "dato inválido". validar_cadena() lo lanza si el texto está vacío. solicitar_con_validacion() lo captura con try/except y vuelve a pedir el dato sin romper el programa.</p>
+          <div class="p3-code" style="font-size:0.76rem"><span class="c-key">def</span> validar_cadena(cadena):
+    <span class="c-key">if</span> cadena.strip():
+        <span class="c-key">return</span> cadena          <span class="c-comment">← válido</span>
+    <span class="c-key">raise</span> ValueError(<span class="c-str">'vacío'</span>) <span class="c-comment">← señal de error</span>
+
+<span class="c-comment"># solicitar_con_validacion() la captura:</span>
+<span class="c-key">except</span> ValueError <span class="c-key">as</span> e:
+    print(e)  <span class="c-comment">← avisa y pide de nuevo</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end #phase3 -->
+
 <footer>
   Sistema de Gestión Veterinaria — Programación Avanzada<br>
-  Guía visual interactiva · Fase 1 + Fase 2 · HTML + CSS + JS vanilla
+  Guía visual interactiva · Fases 1, 2 y 3 · HTML + CSS + JS vanilla
 </footer>
-
 <script>
 // ── FADE IN ON SCROLL ──────────────────────────────────────
 const observer = new IntersectionObserver(entries => {
@@ -2201,6 +2899,311 @@ function selectFn(key) {
     ${d.calls.length ? `<div class="fip-calls">→ Llama a: ${d.calls.join(' · ')}</div>` : ''}
     ${d.calledBy.length ? `<div class="fip-called-by">← La llama: ${d.calledBy.join(' · ')}</div>` : ''}
   `;
+}
+
+// ── PHASE 3 ENTRY ─────────────────────────────────────────
+function enterInternal() {
+  const p3 = document.getElementById('phase3');
+  const btn = document.getElementById('enter-internal-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span>Accediendo al motor interno...</span>';
+  setTimeout(() => {
+    p3.classList.remove('phase3-hidden');
+    p3.classList.add('phase3-visible');
+    setTimeout(() => p3.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+  }, 400);
+}
+
+const p3Observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.p3-fade').forEach(el => p3Observer.observe(el));
+
+// ── NAME DEMO ─────────────────────────────────────────────
+let ndCurrent = 0;
+function ndNext() {
+  if (ndCurrent < 3) {
+    document.getElementById('nds-' + ndCurrent).classList.remove('active');
+    ndCurrent++;
+    document.getElementById('nds-' + ndCurrent).classList.add('active');
+    document.getElementById('nd-counter').textContent = 'Paso ' + (ndCurrent + 1) + ' de 4';
+  }
+}
+function ndPrev() {
+  if (ndCurrent > 0) {
+    document.getElementById('nds-' + ndCurrent).classList.remove('active');
+    ndCurrent--;
+    document.getElementById('nds-' + ndCurrent).classList.add('active');
+    document.getElementById('nd-counter').textContent = 'Paso ' + (ndCurrent + 1) + ' de 4';
+  }
+}
+
+// ── CALL STACK DEMO ───────────────────────────────────────
+const stackSteps = [
+  {
+    label: 'Python ejecuta if __name__ == "__main__"',
+    push: 'main()', vars: { catalogo: '{}', ruta: '"catalogo_pacientes.csv"' },
+    log: ['▶ Entra: main()', 'info: Crea catálogo vacío {}'], type: 'enter'
+  },
+  {
+    label: 'main() llama a recuperacion()',
+    push: 'recuperacion(estado={}, ruta)', vars: { estado: '{}', ruta: '"catalogo_pacientes.csv"' },
+    log: ['▶ Entra: recuperacion()', 'info: main() queda esperando...'], type: 'enter'
+  },
+  {
+    label: 'recuperacion() carga el CSV',
+    push: null, vars: { estado: '{1:[True,"FIRULAIS","PERRO",5]}' },
+    log: ['info: Lee CSV, reconstruye diccionario', 'info: return catálogo cargado'], type: 'info'
+  },
+  {
+    label: 'recuperacion() termina → vuelve a main()',
+    pop: true, vars: { catalogo: '{1:[True,"FIRULAIS","PERRO",5]}' },
+    log: ['◀ Sale: recuperacion()', 'info: main() continúa donde se quedó'], type: 'exit'
+  },
+  {
+    label: 'main() entra al while True → llama a menu()',
+    push: 'menu(catalogo, ruta_csv)',
+    vars: { opcion: '? (esperando usuario)' },
+    log: ['▶ Entra: menu()', 'info: muestra las 6 opciones'], type: 'enter'
+  },
+  {
+    label: 'Usuario elige opción 1 → menu() llama a crear_paciente()',
+    push: 'crear_paciente(catalogo)',
+    vars: { datos: '...pidiendo...', clave: '...generando...' },
+    log: ['▶ Entra: crear_paciente()', 'info: menu() queda esperando'], type: 'enter'
+  },
+  {
+    label: 'crear_paciente() termina → vuelve a menu()',
+    pop: true, vars: {},
+    log: ['◀ Sale: crear_paciente()', 'info: menu() continúa'], type: 'exit'
+  },
+  {
+    label: 'menu() termina → while True repite → menu() de nuevo',
+    pop: true, vars: {},
+    log: ['◀ Sale: menu()', 'info: while True: vuelve al inicio del ciclo', '▶ Entra: menu() de nuevo...'], type: 'exit'
+  }
+];
+
+let stackIdx = 0;
+let stackFrames = [];
+function stackStep() {
+  if (stackIdx >= stackSteps.length) { document.getElementById('sv-step-label').textContent = 'Simulación completa'; return; }
+  const step = stackSteps[stackIdx];
+  const framesEl = document.getElementById('sv-frames');
+  const varsEl = document.getElementById('sv-vars');
+  const logEl = document.getElementById('sv-log');
+  if (step.push) {
+    stackFrames.push(step.push);
+    framesEl.innerHTML = '';
+    stackFrames.forEach((f, i) => {
+      const div = document.createElement('div');
+      div.className = 'sv-frame' + (i === stackFrames.length - 1 ? ' top-frame' : '');
+      div.textContent = f;
+      framesEl.appendChild(div);
+    });
+  }
+  if (step.pop) {
+    stackFrames.pop();
+    framesEl.innerHTML = '';
+    if (stackFrames.length === 0) framesEl.innerHTML = '<div class="sv-empty">Pila vacía</div>';
+    stackFrames.forEach((f, i) => {
+      const div = document.createElement('div');
+      div.className = 'sv-frame' + (i === stackFrames.length - 1 ? ' top-frame' : '');
+      div.textContent = f;
+      framesEl.appendChild(div);
+    });
+  }
+  if (step.vars && Object.keys(step.vars).length > 0) {
+    varsEl.innerHTML = '';
+    Object.entries(step.vars).forEach(([k, v]) => {
+      const div = document.createElement('div');
+      div.className = 'sv-var-item';
+      div.innerHTML = `<span class="sv-var-key">${k}</span> = <span class="sv-var-val">${v}</span>`;
+      varsEl.appendChild(div);
+    });
+  }
+  step.log.forEach(msg => {
+    const div = document.createElement('div');
+    div.className = 'sv-log-entry ' + (msg.startsWith('▶') ? 'enter' : msg.startsWith('◀') ? 'exit' : 'info');
+    div.textContent = msg;
+    logEl.appendChild(div);
+    logEl.parentElement.scrollTop = logEl.parentElement.scrollHeight;
+  });
+  document.getElementById('sv-step-label').textContent = step.label;
+  stackIdx++;
+}
+function stackReset() {
+  stackIdx = 0; stackFrames = [];
+  document.getElementById('sv-frames').innerHTML = '<div class="sv-empty">Pila vacía</div>';
+  document.getElementById('sv-vars').innerHTML = '<div class="sv-empty">Ninguna aún</div>';
+  document.getElementById('sv-log').innerHTML = '';
+  document.getElementById('sv-step-label').textContent = 'Listo';
+}
+
+// ── WHILE TRUE ANIMATION ──────────────────────────────────
+let whileRunning = false;
+let whileTimer = null;
+let whileIter = 0;
+const whileNodes = ['wa-while', 'wa-menu', 'wa-fn', 'wa-back'];
+let whileNodeIdx = 0;
+function toggleWhile() {
+  const btn = document.getElementById('while-toggle-btn');
+  if (!whileRunning) {
+    whileRunning = true; btn.textContent = '⏹ Detener ciclo';
+    whileTimer = setInterval(() => {
+      whileNodes.forEach(n => document.getElementById(n).classList.remove('active-node'));
+      document.getElementById(whileNodes[whileNodeIdx]).classList.add('active-node');
+      if (whileNodeIdx === 3) {
+        whileIter++;
+        document.getElementById('while-iter').textContent = whileIter;
+        document.getElementById('wa-loop').classList.add('visible');
+        setTimeout(() => document.getElementById('wa-loop').classList.remove('visible'), 400);
+      }
+      whileNodeIdx = (whileNodeIdx + 1) % 4;
+    }, 700);
+  } else {
+    whileRunning = false; btn.textContent = '▶ Iniciar ciclo';
+    clearInterval(whileTimer);
+    whileNodes.forEach(n => document.getElementById(n).classList.remove('active-node'));
+  }
+}
+
+// ── EXIT DEMO ─────────────────────────────────────────────
+const edNodes = ['ed-while','ed-menu','ed-confirm','ed-preservar','ed-exit','ed-dead'];
+const edExplanations = [
+  'El programa está en el ciclo while True, mostrando el menú repetidamente.',
+  'El usuario escribe "6". match/case detecta la opción de salida.',
+  'El sistema pregunta "¿Salir y guardar? (s/n)". El usuario escribe "s".',
+  'preservar() abre el CSV y escribe todos los pacientes. Datos seguros en disco.',
+  'exit() lanza SystemExit. El proceso de Python termina completamente.',
+  'RAM vaciada. CSV intacto en disco. El programa ya no existe en memoria.'
+];
+let edIdx = 0;
+function exitStep() {
+  if (edIdx >= edNodes.length) return;
+  if (edIdx > 0) {
+    document.getElementById(edNodes[edIdx-1]).classList.remove('active-ed');
+    document.getElementById(edNodes[edIdx-1]).classList.add('done-ed');
+    if (edIdx > 1) document.getElementById('ed-conn' + (edIdx-1)); // connectors
+  }
+  document.getElementById(edNodes[edIdx]).classList.add('active-ed');
+  document.getElementById('ed-explanation').textContent = edExplanations[edIdx];
+  edIdx++;
+}
+function exitReset() {
+  edIdx = 0;
+  edNodes.forEach(n => { document.getElementById(n).classList.remove('active-ed','done-ed'); });
+  document.getElementById('ed-explanation').textContent = 'Presiona "Siguiente paso" para simular la secuencia de salida';
+}
+
+// ── PRESERVAR STEP ────────────────────────────────────────
+const pdSteps = [
+  { line: 0, csv: null, arrow: false, msg: 'with open(): Python abre el archivo en modo escritura ("w"). Si ya existe, lo sobreescribe. El "with" garantiza que se cierre aunque haya errores.' },
+  { line: 1, csv: null, arrow: false, msg: 'csv.writer(archivo): crea un escritor CSV que sabe cómo formatear filas con comas y manejar casos especiales.' },
+  { line: 2, csv: null, arrow: false, msg: 'estado.items(): devuelve todos los pares (clave, datos) del diccionario. El for itera sobre ellos uno por uno.' },
+  { line: 3, csv: '1,True,FIRULAIS,PERRO,5', arrow: true, msg: 'Primera iteración: clave=1, datos=[True,"FIRULAIS","PERRO",5]. El *datos desempaca la lista. writerow escribe: 1,True,FIRULAIS,PERRO,5' },
+  { line: 4, csv: '1,True,FIRULAIS,PERRO,5\n2,False,MICHI,GATO,2', arrow: true, msg: 'Segunda iteración: clave=2, datos=[False,"MICHI","GATO",2]. Escribe la segunda fila en el CSV.' },
+  { line: 5, csv: '1,True,FIRULAIS,PERRO,5\n2,False,MICHI,GATO,2\n3,True,ROCCO,CONEJO,3', arrow: true, msg: 'Tercera iteración: clave=3. Escribe la última fila. El for termina.' },
+  { line: 6, csv: null, arrow: false, msg: 'El bloque with termina → Python cierra automáticamente el archivo. Los datos están seguros en disco.' }
+];
+let pdIdx = 0;
+function preservarStep() {
+  if (pdIdx >= pdSteps.length) return;
+  const step = pdSteps[pdIdx];
+  document.querySelectorAll('.pw-line').forEach((l, i) => {
+    l.classList.remove('active-line');
+    if (i < step.line) l.classList.add('done-line');
+  });
+  document.getElementById('pwl-' + step.line).classList.add('active-line');
+  if (step.csv) { document.getElementById('pd-csv').textContent = step.csv; document.getElementById('pd-csv').style.color = 'var(--accent)'; }
+  if (step.arrow) { document.getElementById('pd-arrow').classList.add('active'); } else { document.getElementById('pd-arrow').classList.remove('active'); }
+  document.getElementById('pd-explanation').textContent = step.msg;
+  pdIdx++;
+}
+function preservarReset() {
+  pdIdx = 0;
+  document.querySelectorAll('.pw-line').forEach(l => l.classList.remove('active-line','done-line'));
+  document.getElementById('pd-csv').textContent = 'vacío';
+  document.getElementById('pd-csv').style.color = '';
+  document.getElementById('pd-arrow').classList.remove('active');
+  document.getElementById('pd-explanation').innerHTML = '<em>Presiona "Siguiente línea" para ver cómo se escribe el CSV</em>';
+}
+
+// ── RECOVERY STEP ─────────────────────────────────────────
+const rdData = [
+  { idx: 0, id: 'rdh-0', raw: '1,True,FIRULAIS,PERRO,5',
+    transform: 'id_ = "1"\nexiste = "True"\nnombre = "FIRULAIS"\nespecie = "PERRO"\nedad = "5"\n\n→ int("1") = 1\n→ "True"=="True" = True\n→ int("5") = 5',
+    dict: 'catalogo = {\n  1: [True, "FIRULAIS", "PERRO", 5]\n}',
+    msg: 'Línea 1 procesada. Todo era texto. int() convirtió 1 y 5. La comparación == "True" produjo el booleano True.' },
+  { idx: 1, id: 'rdh-1', raw: '2,False,MICHI,GATO,2',
+    transform: 'id_ = "2"\nexiste = "False"\nnombre = "MICHI"\nespecie = "GATO"\nedad = "2"\n\n→ int("2") = 2\n→ "False"=="True" = False\n→ int("2") = 2',
+    dict: 'catalogo = {\n  1: [True, "FIRULAIS", "PERRO", 5],\n  2: [False, "MICHI", "GATO", 2]\n}',
+    msg: 'Línea 2 procesada. "False" comparado con "True" produce el booleano False. MICHI queda como inactivo.' },
+  { idx: 2, id: 'rdh-2', raw: '3,True,ROCCO,CONEJO,3',
+    transform: 'id_ = "3"\nexiste = "True"\nnombre = "ROCCO"\nespecie = "CONEJO"\nedad = "3"\n\n→ int("3") = 3\n→ "True"=="True" = True\n→ int("3") = 3',
+    dict: 'catalogo = {\n  1: [True, "FIRULAIS", "PERRO", 5],\n  2: [False, "MICHI", "GATO", 2],\n  3: [True, "ROCCO", "CONEJO", 3]\n}',
+    msg: 'Línea 3 procesada. Diccionario completamente reconstruido. recuperacion() devuelve el catálogo a main().' }
+];
+let rdIdx = 0;
+function recovStep() {
+  if (rdIdx >= rdData.length) return;
+  const step = rdData[rdIdx];
+  if (rdIdx > 0) { document.getElementById(rdData[rdIdx-1].id).classList.remove('reading'); document.getElementById(rdData[rdIdx-1].id).classList.add('done'); }
+  document.getElementById(step.id).classList.add('reading');
+  document.getElementById('rd-t-content').textContent = step.transform;
+  document.getElementById('rd-dict-content').textContent = step.dict;
+  document.getElementById('rd-dict-content').style.color = 'var(--accent)';
+  document.getElementById('rd-explanation').textContent = step.msg;
+  rdIdx++;
+}
+function recovReset() {
+  rdIdx = 0;
+  document.querySelectorAll('.rd-highlight').forEach(el => { el.classList.remove('reading','done'); });
+  document.getElementById('rd-t-content').textContent = 'esperando...';
+  document.getElementById('rd-dict-content').textContent = 'catalogo = {}';
+  document.getElementById('rd-dict-content').style.color = '';
+  document.getElementById('rd-explanation').innerHTML = '<em>Presiona "Procesar línea" para ver la reconstrucción</em>';
+}
+
+// ── JOURNEY DEMO ──────────────────────────────────────────
+const journeyDetails = [
+  { title: 'El usuario escribe "LUNA"', desc: 'input() captura el texto. La variable local tiene el valor "LUNA" como string. Todavía no está validado ni guardado en ningún lado.' },
+  { title: 'validar_cadena("LUNA")', desc: '"LUNA".strip() no está vacío → devuelve "LUNA". Si el usuario hubiera escrito espacios o nada, habría lanzado ValueError y solicitar_con_validacion() lo repetiría.' },
+  { title: 'generar_clave(catalogo)', desc: 'max({1,2,3}.keys()) = 3 → 3 + 1 = 4. La función devuelve 4. Este número nunca se repetirá, incluso si hay 1000 pacientes o se reinicia el programa.' },
+  { title: 'catalogo[4] = [True, "LUNA", "GATO", 3]', desc: 'El diccionario en RAM ahora tiene 4 entradas. El cambio es instantáneo. El paciente existe en memoria pero todavía NO está en disco.' },
+  { title: 'Regresa al menú (while True continúa)', desc: 'crear_paciente() terminó y devolvió el control a menu(). menu() terminó y devolvió el control al while True. El ciclo repite y muestra el menú de nuevo.' },
+  { title: 'Usuario elige salir → preservar()', desc: 'El usuario escribe 6 y confirma. preservar() itera sobre los 4 registros (incluyendo LUNA) y escribe cada uno como una fila CSV.' },
+  { title: 'CSV: "4,True,LUNA,GATO,3"', desc: 'El archivo catalogo_pacientes.csv ahora contiene esta línea. Está en disco permanentemente. La RAM sigue teniendo el diccionario activo por unos microsegundos más.' },
+  { title: 'exit() — RAM vaciada', desc: 'exit() lanza SystemExit. Python libera toda la RAM. El diccionario con los 4 pacientes desaparece. Pero el CSV persiste en disco.' },
+  { title: 'Nueva ejecución → recuperacion()', desc: 'Al correr el programa de nuevo, recuperacion() abre el CSV y lee las 4 filas. Reconstruye el diccionario con int() y == "True". LUNA está incluida.' },
+  { title: 'LUNA reaparece ✓', desc: 'catalogo[4] = [True, "LUNA", "GATO", 3] existe en el nuevo diccionario. Desde la perspectiva del usuario, LUNA "nunca se fue". La persistencia funcionó perfectamente.' }
+];
+function journeyActivate(idx) {
+  document.querySelectorAll('.jd-step').forEach(s => s.classList.remove('active-step'));
+  document.getElementById('js-' + idx).classList.add('active-step');
+  const d = journeyDetails[idx];
+  document.getElementById('jd-detail').innerHTML = `<div class="jdd-title">${d.title}</div><div class="jdd-desc">${d.desc}</div>`;
+}
+
+// ── MEMORY TRANSFER ───────────────────────────────────────
+function animateTransfer(dir) {
+  const arrow = document.getElementById('mct-arrow');
+  const log = document.getElementById('transfer-log');
+  if (dir === 'save') {
+    arrow.style.color = 'var(--accent)';
+    arrow.textContent = '→';
+    log.innerHTML = '<div style="color:var(--accent);font-family:var(--mono);font-size:0.78rem">» preservar() ejecutándose...<br>» for clave, datos in catalogo.items():<br>» &nbsp;&nbsp;writer.writerow([clave, *datos])<br>» Archivo cerrado. Datos en disco ✓</div>';
+  } else {
+    arrow.style.color = 'var(--accent2)';
+    arrow.textContent = '←';
+    log.innerHTML = '<div style="color:var(--accent2);font-family:var(--mono);font-size:0.78rem">» recuperacion() ejecutándose...<br>» Abriendo catalogo_pacientes.csv...<br>» for id_, existe, nombre, especie, edad in reader:<br>» &nbsp;&nbsp;estado[int(id_)] = [existe=="True", nombre, especie, int(edad)]<br>» Diccionario reconstruido en RAM ✓</div>';
+  }
+  setTimeout(() => { arrow.textContent = '⟷'; arrow.style.color = ''; }, 3000);
+}
+
+// ── CONCEPT TOGGLE ────────────────────────────────────────
+function toggleConcept(card) {
+  card.classList.toggle('open');
 }
 </script>
 </body>
