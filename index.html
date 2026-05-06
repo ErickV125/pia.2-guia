@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Veterinaria — Guía Visual</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --surface: #111318;
+    --surface2: #1a1d24;
+    --surface3: #22262f;
+    --border: #2a2e3a;
+    --accent: #00e5a0;
+    --accent2: #4f8cff;
+    --accent3: #ff6b6b;
+    --accent4: #ffd166;
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,12,16,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 2rem;
+    height: 56px;
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); font-weight: 700; white-space: nowrap; }
+  .nav-links { display: flex; gap: 0.25rem; overflow-x: auto; }
+  .nav-links a {
+    font-size: 0.75rem; color: var(--muted); text-decoration: none;
+    padding: 0.3rem 0.6rem; border-radius: 4px;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--accent); background: rgba(0,229,160,0.08); }
+
+  /* SECTIONS */
+  section {
+    max-width: 1100px; margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+  }
+  section:first-of-type { padding-top: 8rem; }
+
+  /* HERO */
+  .hero {
+    text-align: center; padding-top: 10rem; padding-bottom: 5rem;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-family: var(--mono); font-size: 0.7rem; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 99px;
+    padding: 0.3rem 1rem; margin-bottom: 2rem;
+    animation: pulse-border 2s ease-in-out infinite;
+  }
+  @keyframes pulse-border {
+    0%,100% { box-shadow: 0 0 0 0 rgba(0,229,160,0.3); }
+    50% { box-shadow: 0 0 0 8px rgba(0,229,160,0); }
+  }
+  .hero h1 {
+    font-family: var(--mono); font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700; line-height: 1.15;
+    background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+  }
+  .hero p { font-size: 1.15rem; color: var(--muted); max-width: 600px; margin: 0 auto 3rem; }
+
+  .action-pills { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .pill {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.6rem 1.2rem; border-radius: 99px;
+    font-size: 0.85rem; font-weight: 500;
+    border: 1px solid var(--border);
+    background: var(--surface); cursor: default;
+    transition: all 0.25s;
+  }
+  .pill:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-green { background: var(--accent); }
+  .dot-blue { background: var(--accent2); }
+  .dot-red { background: var(--accent3); }
+  .dot-yellow { background: var(--accent4); }
+
+  /* SECTION TITLES */
+  .sec-label {
+    font-family: var(--mono); font-size: 0.7rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+  }
+  .sec-title {
+    font-family: var(--mono); font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700; margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .sec-desc { color: var(--muted); font-size: 1rem; max-width: 700px; margin-bottom: 3rem; line-height: 1.7; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,229,160,0.07); }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+
+  /* CODE BLOCK */
+  .code-block {
+    background: #0d1117; border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.25rem;
+    font-family: var(--mono); font-size: 0.82rem;
+    color: #cdd9e5; overflow-x: auto; line-height: 1.7;
+  }
+  .c-key { color: var(--accent2); }
+  .c-val { color: var(--accent); }
+  .c-bool-t { color: #56d364; }
+  .c-bool-f { color: var(--accent3); }
+  .c-str { color: var(--accent4); }
+  .c-num { color: #f78166; }
+  .c-comment { color: var(--muted); }
+
+  /* DICT VISUAL */
+  .dict-container { background: #0d1117; border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
+  .dict-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem; border-radius: 8px;
+    margin-bottom: 0.75rem; cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .dict-row:hover { background: rgba(255,255,255,0.04); border-color: var(--border); }
+  .dict-key {
+    font-family: var(--mono); font-size: 1rem; font-weight: 700;
+    color: var(--accent2); min-width: 30px;
+  }
+  .dict-arrow { color: var(--muted); font-size: 1.2rem; }
+  .dict-list {
+    display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;
+    font-family: var(--mono); font-size: 0.85rem;
+  }
+  .dict-item {
+    padding: 0.25rem 0.6rem; border-radius: 6px;
+    border: 1px solid var(--border);
+    transition: all 0.2s; position: relative;
+  }
+  .dict-item:hover::after {
+    content: attr(data-tip);
+    position: absolute; bottom: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface3); border: 1px solid var(--border);
+    color: var(--text); font-size: 0.72rem;
+    padding: 0.4rem 0.75rem; border-radius: 6px; white-space: nowrap; z-index: 10;
+    font-family: var(--sans);
+  }
+  .dict-item:hover { background: var(--surface3); border-color: var(--accent); }
+  .item-bool-t { color: #56d364; }
+  .item-bool-f { color: var(--accent3); }
+  .item-str { color: var(--accent4); }
+  .item-num { color: #f78166; }
+  .dict-row.inactive { opacity: 0.5; }
+  .dict-row.inactive .dict-key { color: var(--accent3); }
+
+  /* FLOW DIAGRAM */
+  .flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .flow-node {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 0.75rem 2rem;
+    font-family: var(--mono); font-size: 0.9rem;
+    text-align: center; min-width: 200px;
+    transition: all 0.3s; cursor: pointer;
+    position: relative;
+  }
+  .flow-node:hover, .flow-node.active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,160,0.06); }
+  .flow-arrow {
+    width: 2px; height: 40px; background: var(--border);
+    position: relative;
+    display: flex; align-items: flex-end; justify-content: center;
+  }
+  .flow-arrow::after { content: '▼'; color: var(--muted); font-size: 0.7rem; margin-bottom: -4px; }
+  .flow-branch {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+  .flow-branch-item {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.5rem 1rem;
+    font-size: 0.8rem; font-family: var(--mono); text-align: center;
+    transition: all 0.2s; cursor: pointer;
+  }
+  .flow-branch-item:hover { border-color: var(--accent2); color: var(--accent2); }
+  .flow-info {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem 1.5rem;
+    font-size: 0.88rem; color: var(--muted);
+    max-width: 500px; text-align: center;
+    margin-top: 1rem;
+  }
+
+  /* FUNCTION CARDS */
+  .fn-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    transition: all 0.3s; cursor: pointer;
+  }
+  .fn-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(0,229,160,0.07); }
+  .fn-header {
+    padding: 1rem 1.25rem; background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .fn-icon { font-size: 1.25rem; }
+  .fn-name { font-family: var(--mono); font-size: 0.9rem; color: var(--accent); font-weight: 700; }
+  .fn-body { padding: 1.25rem; }
+  .fn-desc { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; line-height: 1.6; }
+  .fn-example {
+    background: #0d1117; border-radius: 6px; padding: 0.75rem;
+    font-family: var(--mono); font-size: 0.78rem; color: #cdd9e5;
+  }
+  .fn-expand { display: none; }
+  .fn-card.open .fn-expand { display: block; margin-top: 1rem; }
+
+  /* LOGICAL DELETE */
+  .delete-demo {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem; margin: 2rem 0;
+  }
+  .record-row {
+    display: flex; align-items: center; gap: 1rem; padding: 1rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; margin-bottom: 1rem;
+    font-family: var(--mono); font-size: 0.85rem;
+    transition: all 0.5s;
+  }
+  .record-row.deleted { opacity: 0.5; border-color: var(--accent3); }
+  .record-row.deleted .status-badge { background: rgba(255,107,107,0.15); color: var(--accent3); }
+  .status-badge {
+    padding: 0.2rem 0.6rem; border-radius: 99px; font-size: 0.72rem;
+    background: rgba(0,229,160,0.12); color: var(--accent);
+    font-weight: 700; white-space: nowrap;
+  }
+  .delete-btn {
+    padding: 0.5rem 1.2rem; border-radius: 8px; border: 1px solid var(--accent3);
+    background: transparent; color: var(--accent3); font-family: var(--mono); font-size: 0.82rem;
+    cursor: pointer; transition: all 0.2s; margin-right: 0.5rem;
+  }
+  .delete-btn:hover { background: rgba(255,107,107,0.1); }
+  .recover-btn {
+    padding: 0.5rem 1.2rem; border-radius: 8px; border: 1px solid var(--accent);
+    background: transparent; color: var(--accent); font-family: var(--mono); font-size: 0.82rem;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .recover-btn:hover { background: rgba(0,229,160,0.1); }
+
+  /* CSV FLOW */
+  .csv-flow {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1.5rem; flex-wrap: wrap; margin: 2rem 0;
+  }
+  .csv-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem 1.75rem; text-align: center;
+    min-width: 150px;
+  }
+  .csv-box .csv-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .csv-box .csv-label { font-family: var(--mono); font-size: 0.82rem; color: var(--accent); }
+  .csv-box .csv-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+  .csv-arrow {
+    display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+    color: var(--muted); font-size: 0.75rem; font-family: var(--mono);
+  }
+  .csv-arrow .arr { font-size: 1.5rem; }
+
+  /* VALIDATION DEMO */
+  .val-demo { margin: 2rem 0; }
+  .val-input-row { display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .val-field {
+    flex: 1; min-width: 200px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.75rem 1rem;
+    color: var(--text); font-family: var(--mono); font-size: 0.88rem;
+    outline: none; transition: all 0.2s;
+  }
+  .val-field:focus { border-color: var(--accent2); }
+  .val-field.invalid { border-color: var(--accent3); }
+  .val-field.valid { border-color: var(--accent); }
+  .val-btn {
+    padding: 0.75rem 1.5rem; border-radius: 8px;
+    background: var(--accent); color: #000; font-weight: 700;
+    border: none; cursor: pointer; font-family: var(--mono); font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .val-btn:hover { opacity: 0.85; }
+  .val-result {
+    padding: 0.75rem 1rem; border-radius: 8px;
+    font-family: var(--mono); font-size: 0.85rem;
+    min-height: 44px; display: flex; align-items: center; gap: 0.5rem;
+    background: var(--surface2); border: 1px solid var(--border);
+  }
+  .val-result.ok { border-color: var(--accent); color: var(--accent); }
+  .val-result.err { border-color: var(--accent3); color: var(--accent3); }
+
+  /* CRUD */
+  .crud-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2rem 0;
+  }
+  .crud-card {
+    border-radius: 12px; padding: 1.5rem;
+    border: 1px solid var(--border); position: relative; overflow: hidden;
+    transition: all 0.3s;
+  }
+  .crud-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .crud-C::before { background: var(--accent); }
+  .crud-R::before { background: var(--accent2); }
+  .crud-U::before { background: var(--accent4); }
+  .crud-D::before { background: var(--accent3); }
+  .crud-letter {
+    font-family: var(--mono); font-size: 2.5rem; font-weight: 700;
+    margin-bottom: 0.5rem; display: block;
+  }
+  .crud-C .crud-letter { color: var(--accent); }
+  .crud-R .crud-letter { color: var(--accent2); }
+  .crud-U .crud-letter { color: var(--accent4); }
+  .crud-D .crud-letter { color: var(--accent3); }
+  .crud-word { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+  .crud-fn { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+
+  /* REQ TABLE */
+  .req-table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+  .req-table th {
+    text-align: left; padding: 0.75rem 1rem;
+    font-family: var(--mono); font-size: 0.78rem; color: var(--muted);
+    border-bottom: 1px solid var(--border); text-transform: uppercase;
+  }
+  .req-table td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(42,46,58,0.5); font-size: 0.88rem; vertical-align: top; }
+  .req-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .req-tag {
+    display: inline-block; font-family: var(--mono); font-size: 0.75rem;
+    padding: 0.15rem 0.5rem; border-radius: 4px; margin-top: 0.25rem;
+    background: rgba(0,229,160,0.1); color: var(--accent); border: 1px solid rgba(0,229,160,0.25);
+  }
+  .req-check { color: var(--accent); font-size: 1rem; }
+
+  /* SIMULATOR */
+  .sim-container {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden; margin: 2rem 0;
+  }
+  .sim-header {
+    background: var(--surface2); border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem; font-family: var(--mono); font-size: 0.85rem;
+    display: flex; align-items: center; gap: 0.75rem; color: var(--accent);
+  }
+  .sim-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .sim-body { padding: 1.5rem; }
+  .sim-controls { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .sim-input {
+    flex: 1; min-width: 120px; max-width: 160px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.5rem 0.75rem;
+    color: var(--text); font-family: var(--mono); font-size: 0.82rem; outline: none;
+  }
+  .sim-input:focus { border-color: var(--accent2); }
+  .sim-add-btn {
+    padding: 0.5rem 1.25rem; border-radius: 6px;
+    background: var(--accent); color: #000; font-weight: 700;
+    border: none; cursor: pointer; font-family: var(--mono); font-size: 0.82rem;
+    transition: opacity 0.2s;
+  }
+  .sim-add-btn:hover { opacity: 0.8; }
+  .sim-dict {
+    background: #0d1117; border-radius: 8px; padding: 1.25rem;
+    font-family: var(--mono); font-size: 0.82rem; min-height: 120px;
+    border: 1px solid var(--border);
+  }
+  .sim-entry {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.5rem 0.5rem; border-radius: 6px;
+    border: 1px solid transparent; margin-bottom: 0.4rem;
+    animation: slideIn 0.3s ease;
+    transition: all 0.3s;
+  }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+  .sim-entry.deleted { opacity: 0.45; text-decoration: line-through; }
+  .sim-entry .s-key { color: var(--accent2); min-width: 24px; }
+  .sim-entry .s-bool-t { color: #56d364; }
+  .sim-entry .s-bool-f { color: var(--accent3); }
+  .sim-entry .s-str { color: var(--accent4); }
+  .sim-entry .s-num { color: #f78166; }
+  .sim-del-btn, .sim-rec-btn {
+    margin-left: auto; font-size: 0.7rem; padding: 0.2rem 0.5rem;
+    border-radius: 4px; border: 1px solid; cursor: pointer; background: transparent;
+    font-family: var(--mono); transition: all 0.2s;
+  }
+  .sim-del-btn { border-color: var(--accent3); color: var(--accent3); }
+  .sim-del-btn:hover { background: rgba(255,107,107,0.1); }
+  .sim-rec-btn { border-color: var(--accent); color: var(--accent); }
+  .sim-rec-btn:hover { background: rgba(0,229,160,0.1); }
+  .sim-log {
+    margin-top: 1rem; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.75rem; font-family: var(--mono); font-size: 0.75rem;
+    color: var(--muted); max-height: 80px; overflow-y: auto;
+  }
+  .sim-log .log-entry { margin-bottom: 0.2rem; }
+  .sim-log .log-ok { color: var(--accent); }
+  .sim-log .log-del { color: var(--accent3); }
+  .sim-log .log-rec { color: var(--accent2); }
+  .sim-empty { color: var(--muted); font-size: 0.82rem; padding: 0.5rem; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
+
+  /* TOOLTIP LEGEND */
+  .legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; font-size: 0.82rem; color: var(--muted); }
+  .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* ANALOGY BOX */
+  .analogy {
+    background: rgba(79,140,255,0.07); border: 1px solid rgba(79,140,255,0.25);
+    border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .analogy-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .analogy-text { font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+  .analogy-text strong { color: var(--accent2); }
+
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 3rem 2rem;
+    font-family: var(--mono); font-size: 0.78rem; color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">🐾 VET.SYS</div>
+  <div class="nav-links">
+    <a href="#intro">Intro</a>
+    <a href="#estructura">Estructura</a>
+    <a href="#flujo">Flujo</a>
+    <a href="#funciones">Funciones</a>
+    <a href="#eliminacion">Eliminación</a>
+    <a href="#csv">CSV</a>
+    <a href="#validaciones">Validaciones</a>
+    <a href="#crud">CRUD</a>
+    <a href="#reqs">Requerimientos</a>
+    <a href="#simulador">Simulador</a>
+  </div>
+</nav>
+
+<!-- ① INTRO -->
+<section id="intro" class="hero fade-in">
+  <div class="hero-badge">Proyecto Final — Programación Avanzada</div>
+  <h1>Sistema de Gestión<br>de Pacientes Veterinarios</h1>
+  <p>Una guía visual para entender cómo funciona nuestro programa de Python, paso a paso, sin complicaciones.</p>
+  <div class="action-pills">
+    <div class="pill"><span class="dot dot-green"></span> Agregar paciente</div>
+    <div class="pill"><span class="dot dot-blue"></span> Modificar datos</div>
+    <div class="pill"><span class="dot dot-red"></span> Eliminar (lógico)</div>
+    <div class="pill"><span class="dot dot-yellow"></span> Recuperar paciente</div>
+    <div class="pill"><span class="dot" style="background:#a78bfa"></span> Reportar lista</div>
+  </div>
+</section>
+
+<!-- ② ESTRUCTURA DE DATOS -->
+<section id="estructura" class="fade-in">
+  <div class="sec-label">02 — Estructura de datos</div>
+  <h2 class="sec-title">El corazón del programa:<br>el diccionario</h2>
+  <p class="sec-desc">Todo el sistema vive en una sola variable: un <strong>diccionario</strong>. Piénsalo como un archivero donde cada cajón tiene un número, y dentro hay la ficha completa del paciente.</p>
+
+  <div class="analogy">
+    <div class="analogy-icon">🗄️</div>
+    <div class="analogy-text"><strong>Analogía:</strong> Imagina un archivero físico. Cada cajón tiene un número (la clave). Dentro del cajón hay una tarjeta con: si el paciente sigue activo, su nombre, su especie y su edad.</div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#56d364"></span> True = activo</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--accent3)"></span> False = eliminado</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--accent4)"></span> Texto (nombre/especie)</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#f78166"></span> Número (edad)</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--accent2)"></span> Clave única</div>
+  </div>
+  <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;">💡 Pasa el mouse sobre cada parte para ver qué significa</p>
+
+  <div class="dict-container">
+    <div style="font-family:var(--mono);font-size:0.85rem;color:var(--muted);margin-bottom:1.25rem;">catalogo = {</div>
+    <div class="dict-row" id="row1">
+      <div class="dict-key">1</div>
+      <div class="dict-arrow">→</div>
+      <div class="dict-list">
+        <span>[</span>
+        <span class="dict-item item-bool-t" data-tip="True = el paciente está ACTIVO en el sistema">True</span>
+        <span>,</span>
+        <span class="dict-item item-str" data-tip='"FIRULAIS" = Nombre del paciente (siempre en mayúsculas)'>"FIRULAIS"</span>
+        <span>,</span>
+        <span class="dict-item item-str" data-tip='"PERRO" = Especie del animal'>"PERRO"</span>
+        <span>,</span>
+        <span class="dict-item item-num" data-tip="5 = Edad en años (número entero)">5</span>
+        <span>]</span>
+      </div>
+    </div>
+    <div class="dict-row inactive" id="row2">
+      <div class="dict-key">2</div>
+      <div class="dict-arrow">→</div>
+      <div class="dict-list">
+        <span>[</span>
+        <span class="dict-item item-bool-f" data-tip="False = el paciente fue ELIMINADO (pero sigue guardado)">False</span>
+        <span>,</span>
+        <span class="dict-item item-str" data-tip='"MICHI" = Nombre del paciente'>"MICHI"</span>
+        <span>,</span>
+        <span class="dict-item item-str" data-tip='"GATO" = Especie del animal'>"GATO"</span>
+        <span>,</span>
+        <span class="dict-item item-num" data-tip="2 = Edad en años">2</span>
+        <span>]</span>
+      </div>
+    </div>
+    <div class="dict-row" id="row3">
+      <div class="dict-key">3</div>
+      <div class="dict-arrow">→</div>
+      <div class="dict-list">
+        <span>[</span>
+        <span class="dict-item item-bool-t" data-tip="True = el paciente está ACTIVO en el sistema">True</span>
+        <span>,</span>
+        <span class="dict-item item-str" data-tip='"ROCCO" = Nombre del paciente'>"ROCCO"</span>
+        <span>,</span>
+        <span class="dict-item item-str" data-tip='"CONEJO" = Especie del animal'>"CONEJO"</span>
+        <span>,</span>
+        <span class="dict-item item-num" data-tip="3 = Edad en años">3</span>
+        <span>]</span>
+      </div>
+    </div>
+    <div style="font-family:var(--mono);font-size:0.85rem;color:var(--muted);margin-top:0.5rem;">}</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="sec-label" style="margin-bottom:0.5rem">La CLAVE</div>
+      <p style="font-size:0.9rem;color:var(--muted)">Es el número al inicio (1, 2, 3…). Es <strong style="color:var(--text)">única</strong> — nunca se repite, ni siquiera si reinicias el programa. La genera automáticamente la función <code style="color:var(--accent)">generar_clave()</code> sumando 1 al número más alto que ya existe.</p>
+    </div>
+    <div class="card">
+      <div class="sec-label" style="margin-bottom:0.5rem">La LISTA interna</div>
+      <p style="font-size:0.9rem;color:var(--muted)">Cada cajón contiene una lista de 4 cosas en orden fijo:<br>
+      <span style="color:#56d364">[0] Estado (True/False)</span><br>
+      <span style="color:var(--accent4)">[1] Nombre</span><br>
+      <span style="color:var(--accent4)">[2] Especie</span><br>
+      <span style="color:#f78166">[3] Edad</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ③ FLUJO DEL PROGRAMA -->
+<section id="flujo" class="fade-in">
+  <div class="sec-label">03 — Flujo del programa</div>
+  <h2 class="sec-title">Cómo empieza y cómo funciona</h2>
+  <p class="sec-desc">El programa sigue un camino claro cada vez que lo ejecutas. Haz clic en cada nodo para ver qué hace.</p>
+
+  <div style="display:flex;justify-content:center;margin:2rem 0;">
+    <div class="flow">
+      <div class="flow-node" onclick="showFlowInfo('main')">main()</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-node" onclick="showFlowInfo('recuperacion')">recuperacion()</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-node" onclick="showFlowInfo('loop')" style="border-color:var(--accent2);color:var(--accent2)">🔄 Ciclo infinito</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-node" onclick="showFlowInfo('menu')">menu()</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-branch">
+        <div class="flow-branch-item" onclick="showFlowInfo('crear')">crear_paciente()</div>
+        <div class="flow-branch-item" onclick="showFlowInfo('modificar')">modificar_paciente()</div>
+        <div class="flow-branch-item" onclick="showFlowInfo('eliminar')">eliminar_paciente()</div>
+        <div class="flow-branch-item" onclick="showFlowInfo('recuperar')">recuperar_paciente()</div>
+        <div class="flow-branch-item" onclick="showFlowInfo('reportar')">reportar_pacientes()</div>
+        <div class="flow-branch-item" onclick="showFlowInfo('salir')" style="color:var(--accent3)">preservar() → salir</div>
+      </div>
+      <div class="flow-info" id="flow-info">👆 Haz clic en cualquier bloque para ver qué hace</div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ FUNCIONES -->
+<section id="funciones" class="fade-in">
+  <div class="sec-label">04 — Funciones importantes</div>
+  <h2 class="sec-title">Las piezas del rompecabezas</h2>
+  <p class="sec-desc">Cada función tiene una tarea específica. Haz clic en cada tarjeta para ver más detalles.</p>
+
+  <div class="grid-2">
+    <div class="fn-card" onclick="toggleFn(this)">
+      <div class="fn-header">
+        <span class="fn-icon">💾</span>
+        <span class="fn-name">preservar(estado, ruta)</span>
+      </div>
+      <div class="fn-body">
+        <p class="fn-desc">Guarda todo el catálogo en un archivo CSV cuando el usuario decide salir. Sin esta función, los datos se perderían al cerrar el programa.</p>
+        <div class="fn-expand">
+          <div class="fn-example">
+# Abre el archivo y escribe fila por fila<br>
+for clave, datos in estado.items():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;writer.writerow([clave, *datos])
+          </div>
+          <p style="font-size:0.82rem;color:var(--muted);margin-top:0.75rem">El <code>*datos</code> "desempaca" la lista para escribirla como columnas separadas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fn-card" onclick="toggleFn(this)">
+      <div class="fn-header">
+        <span class="fn-icon">📂</span>
+        <span class="fn-name">recuperacion(estado, ruta)</span>
+      </div>
+      <div class="fn-body">
+        <p class="fn-desc">Al iniciar el programa, busca el archivo CSV guardado anteriormente y lo carga en memoria. Si no existe, simplemente empieza vacío.</p>
+        <div class="fn-expand">
+          <div class="fn-example">
+try:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;# Lee el CSV y reconstruye el diccionario<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for id_, existe, nombre, especie, edad in reader:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;estado[int(id_)] = [existe == 'True', ...]<br>
+except FileNotFoundError:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pass  # No hay archivo, comenzamos vacíos
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fn-card" onclick="toggleFn(this)">
+      <div class="fn-header">
+        <span class="fn-icon">🔍</span>
+        <span class="fn-name">buscar_paciente(catalogo, clave)</span>
+      </div>
+      <div class="fn-body">
+        <p class="fn-desc">Busca un paciente por su número de clave. Si no existe o está eliminado (y no se permite ver eliminados), avisa al usuario y devuelve None.</p>
+        <div class="fn-expand">
+          <div class="fn-example">
+# Si el paciente existe pero está eliminado y<br>
+# no pedimos incluir eliminados → error<br>
+if not incluir_eliminados and not paciente[0]:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;raise ValueError()
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fn-card" onclick="toggleFn(this)">
+      <div class="fn-header">
+        <span class="fn-icon">🔢</span>
+        <span class="fn-name">generar_clave(catalogo)</span>
+      </div>
+      <div class="fn-body">
+        <p class="fn-desc">Genera automáticamente el siguiente número de clave disponible. Siempre toma el número más alto que existe y le suma 1, garantizando que nunca se repita.</p>
+        <div class="fn-expand">
+          <div class="fn-example">
+return max(catalogo.keys(), default=0) + 1<br>
+<br>
+# Si el catálogo tiene claves 1, 2, 5 → devuelve 6<br>
+# Si está vacío (default=0) → devuelve 1
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fn-card" onclick="toggleFn(this)">
+      <div class="fn-header">
+        <span class="fn-icon">✏️</span>
+        <span class="fn-name">modificar_paciente(catalogo)</span>
+      </div>
+      <div class="fn-body">
+        <p class="fn-desc">Permite editar los datos de un paciente activo. Muestra cada campo y permite presionar ENTER para conservarlo sin cambios. Pide confirmación antes de aplicar.</p>
+        <div class="fn-expand">
+          <div class="fn-example">
+# Crea una COPIA para no modificar el original<br>
+copia = datos.copy()<br>
+# Si el usuario cancela, los datos originales<br>
+# siguen intactos en el diccionario
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fn-card" onclick="toggleFn(this)">
+      <div class="fn-header">
+        <span class="fn-icon">🗑️</span>
+        <span class="fn-name">eliminar_paciente(catalogo)</span>
+      </div>
+      <div class="fn-body">
+        <p class="fn-desc">Marca al paciente como inactivo cambiando el primer valor de True a False. El paciente sigue existiendo en el diccionario, simplemente "desaparece" de la vista normal.</p>
+        <div class="fn-expand">
+          <div class="fn-example">
+# Solo cambia el estado, NO borra el registro<br>
+catalogo[clave][0] = False
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fn-card" onclick="toggleFn(this)">
+      <div class="fn-header">
+        <span class="fn-icon">♻️</span>
+        <span class="fn-name">recuperar_paciente(catalogo)</span>
+      </div>
+      <div class="fn-body">
+        <p class="fn-desc">Lista todos los pacientes eliminados (con False) y permite reactivar uno, cambiando su estado de False a True. El paciente vuelve a aparecer normalmente.</p>
+        <div class="fn-expand">
+          <div class="fn-example">
+# Muestra solo los eliminados<br>
+for clave, datos in catalogo.items():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if not datos[0]:  # Si está inactivo<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(clave, datos[1])<br>
+<br>
+# Para recuperar:<br>
+catalogo[clave][0] = True
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fn-card" onclick="toggleFn(this)">
+      <div class="fn-header">
+        <span class="fn-icon">📋</span>
+        <span class="fn-name">reportar_pacientes(catalogo)</span>
+      </div>
+      <div class="fn-body">
+        <p class="fn-desc">Muestra en pantalla una tabla ordenada con todos los pacientes activos. Solo incluye los que tienen True, ignorando los eliminados.</p>
+        <div class="fn-expand">
+          <div class="fn-example">
+# Filtra solo los activos<br>
+activos = [(k, v) for k, v in catalogo.items() if v[0]]<br>
+<br>
+# Imprime en formato de tabla
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ ELIMINACIÓN LÓGICA -->
+<section id="eliminacion" class="fade-in">
+  <div class="sec-label">05 — Eliminación lógica</div>
+  <h2 class="sec-title">No borramos, marcamos</h2>
+  <p class="sec-desc">Esta es una decisión de diseño muy importante. Cuando "eliminamos" un paciente, <strong>no lo borramos realmente</strong>. Solo cambiamos un valor de True a False. Esto permite recuperarlo después.</p>
+
+  <div class="analogy">
+    <div class="analogy-icon">📦</div>
+    <div class="analogy-text"><strong>Analogía:</strong> Es como tachar un nombre en una lista de papel con lápiz en lugar de borrar la hoja. La información sigue ahí, puedes leerla, pero el sistema la trata como "no existe". Y si quieres, puedes borrar el tachado y el nombre vuelve a estar activo.</div>
+  </div>
+
+  <div class="delete-demo">
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:1.25rem;">Prueba los botones para ver cómo cambia visualmente el estado del paciente:</p>
+    <div id="demo-records">
+      <div class="record-row" id="demo-1">
+        <span style="color:var(--accent2);font-family:var(--mono)">1</span>
+        <span class="status-badge" id="badge-1">✓ ACTIVO</span>
+        <span style="color:var(--accent4)">"FIRULAIS"</span>
+        <span style="color:var(--muted)">"PERRO"</span>
+        <span style="color:#f78166">5 años</span>
+        <button class="delete-btn" onclick="logicDelete(1)">Eliminar</button>
+        <button class="recover-btn" onclick="logicRecover(1)" style="display:none" id="rec-1">Recuperar</button>
+      </div>
+      <div class="record-row" id="demo-2">
+        <span style="color:var(--accent2);font-family:var(--mono)">2</span>
+        <span class="status-badge" id="badge-2">✓ ACTIVO</span>
+        <span style="color:var(--accent4)">"MICHI"</span>
+        <span style="color:var(--muted)">"GATO"</span>
+        <span style="color:#f78166">2 años</span>
+        <button class="delete-btn" onclick="logicDelete(2)">Eliminar</button>
+        <button class="recover-btn" onclick="logicRecover(2)" style="display:none" id="rec-2">Recuperar</button>
+      </div>
+    </div>
+    <div class="code-block" style="margin-top:1.25rem">
+      <span class="c-comment"># Antes de eliminar:</span><br>
+      catalogo[<span class="c-key">1</span>] = [<span class="c-bool-t">True</span>, <span class="c-str">"FIRULAIS"</span>, <span class="c-str">"PERRO"</span>, <span class="c-num">5</span>]<br>
+      <br>
+      <span class="c-comment"># Después de "eliminar":</span><br>
+      catalogo[<span class="c-key">1</span>] = [<span class="c-bool-f">False</span>, <span class="c-str">"FIRULAIS"</span>, <span class="c-str">"PERRO"</span>, <span class="c-num">5</span>]<br>
+      <span class="c-comment"># ↑ Solo cambió esto. El resto sigue igual.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ CSV -->
+<section id="csv" class="fade-in">
+  <div class="sec-label">06 — Archivos CSV</div>
+  <h2 class="sec-title">Cómo se guarda la información</h2>
+  <p class="sec-desc">Un CSV es un archivo de texto donde los datos se separan por comas. Es como una hoja de cálculo muy simple. Lo usamos para que el catálogo sobreviva aunque cierres el programa.</p>
+
+  <div class="analogy">
+    <div class="analogy-icon">📝</div>
+    <div class="analogy-text"><strong>Analogía:</strong> Imagina que tienes los datos en la cabeza (memoria RAM). Cuando "duermes" (cierras el programa), los olvidas todo. El CSV es como anotar en papel antes de dormir — al día siguiente puedes releer tus notas y recordar todo.</div>
+  </div>
+
+  <div class="csv-flow">
+    <div class="csv-box">
+      <div class="csv-icon">🧠</div>
+      <div class="csv-label">Memoria RAM</div>
+      <div class="csv-sub">Diccionario Python<br>(solo mientras corre)</div>
+    </div>
+    <div class="csv-arrow">
+      <div style="font-size:0.72rem">preservar()</div>
+      <div class="arr">→</div>
+      <div style="font-size:0.72rem">Al salir</div>
+    </div>
+    <div class="csv-box">
+      <div class="csv-icon">📄</div>
+      <div class="csv-label">catalogo_pacientes.csv</div>
+      <div class="csv-sub">Archivo en disco<br>(permanente)</div>
+    </div>
+    <div class="csv-arrow">
+      <div style="font-size:0.72rem">recuperacion()</div>
+      <div class="arr">→</div>
+      <div style="font-size:0.72rem">Al iniciar</div>
+    </div>
+    <div class="csv-box">
+      <div class="csv-icon">🧠</div>
+      <div class="csv-label">Memoria RAM</div>
+      <div class="csv-sub">Diccionario reconstruido<br>(próxima ejecución)</div>
+    </div>
+  </div>
+
+  <p style="font-size:0.88rem;color:var(--muted);margin-bottom:0.75rem">Así luce el CSV guardado en disco:</p>
+  <div class="code-block">
+1,True,FIRULAIS,PERRO,5<br>
+2,False,MICHI,GATO,2<br>
+3,True,ROCCO,CONEJO,3
+  </div>
+  <p style="font-size:0.82rem;color:var(--muted);margin-top:0.75rem">Cada fila = un paciente. Columnas: ID, estado, nombre, especie, edad.</p>
+</section>
+
+<!-- ⑦ VALIDACIONES -->
+<section id="validaciones" class="fade-in">
+  <div class="sec-label">07 — Validaciones</div>
+  <h2 class="sec-title">El filtro de calidad de datos</h2>
+  <p class="sec-desc">Antes de guardar cualquier dato, el sistema verifica que sea correcto. Hay tres funciones clave para esto.</p>
+
+  <div class="grid-3" style="margin-bottom:2rem">
+    <div class="card">
+      <div class="fn-name" style="margin-bottom:0.5rem">validar_cadena()</div>
+      <p style="font-size:0.85rem;color:var(--muted)">Verifica que el texto no esté vacío ni sea solo espacios. Rechaza: <code style="color:var(--accent3)">""</code> o <code style="color:var(--accent3)">"   "</code></p>
+    </div>
+    <div class="card">
+      <div class="fn-name" style="margin-bottom:0.5rem">validar_numero()</div>
+      <p style="font-size:0.85rem;color:var(--muted)">Verifica que sea un número entero. Rechaza: <code style="color:var(--accent3)">"abc"</code>, <code style="color:var(--accent3)">"3.5"</code>, <code style="color:var(--accent3)">"-1"</code></p>
+    </div>
+    <div class="card">
+      <div class="fn-name" style="margin-bottom:0.5rem">solicitar_con_validacion()</div>
+      <p style="font-size:0.85rem;color:var(--muted)">Combina las dos anteriores. Si el dato falla, vuelve a preguntar automáticamente hasta recibir algo válido.</p>
+    </div>
+  </div>
+
+  <div class="val-demo">
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:1rem">🧪 Prueba el validador — escribe algo y haz clic en verificar:</p>
+    <div style="margin-bottom:1.5rem">
+      <p style="font-size:0.82rem;color:var(--accent);font-family:var(--mono);margin-bottom:0.5rem">validar_cadena() — para nombres y especies:</p>
+      <div class="val-input-row">
+        <input class="val-field" id="val-str" placeholder='Escribe un nombre...' oninput="clearValResult('res-str')">
+        <button class="val-btn" onclick="validateString()">Verificar</button>
+      </div>
+      <div class="val-result" id="res-str">Esperando entrada...</div>
+    </div>
+    <div>
+      <p style="font-size:0.82rem;color:var(--accent);font-family:var(--mono);margin-bottom:0.5rem">validar_numero() — para edades:</p>
+      <div class="val-input-row">
+        <input class="val-field" id="val-num" placeholder='Escribe una edad...' oninput="clearValResult('res-num')">
+        <button class="val-btn" onclick="validateNumber()">Verificar</button>
+      </div>
+      <div class="val-result" id="res-num">Esperando entrada...</div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ CRUD -->
+<section id="crud" class="fade-in">
+  <div class="sec-label">08 — CRUD</div>
+  <h2 class="sec-title">Las 4 operaciones fundamentales</h2>
+  <p class="sec-desc">Todo sistema de datos hace 4 cosas básicas. Nuestro sistema cubre las 4 completamente.</p>
+
+  <div class="crud-grid">
+    <div class="crud-card crud-C">
+      <span class="crud-letter">C</span>
+      <div class="crud-word">CREATE — Crear</div>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem">Agregar un nuevo paciente al sistema con todos sus datos.</p>
+      <div class="crud-fn">crear_paciente()</div>
+    </div>
+    <div class="crud-card crud-R">
+      <span class="crud-letter">R</span>
+      <div class="crud-word">READ — Leer</div>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem">Ver la información de los pacientes en una tabla.</p>
+      <div class="crud-fn">reportar_pacientes()</div>
+    </div>
+    <div class="crud-card crud-U">
+      <span class="crud-letter">U</span>
+      <div class="crud-word">UPDATE — Actualizar</div>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem">Editar los datos de un paciente existente.</p>
+      <div class="crud-fn">modificar_paciente()</div>
+    </div>
+    <div class="crud-card crud-D">
+      <span class="crud-letter">D</span>
+      <div class="crud-word">DELETE — Eliminar</div>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem">Marcar un paciente como inactivo (eliminación lógica).</p>
+      <div class="crud-fn">eliminar_paciente()</div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑨ REQUERIMIENTOS -->
+<section id="reqs" class="fade-in">
+  <div class="sec-label">09 — Requerimientos del PIA</div>
+  <h2 class="sec-title">Cómo cumple el código cada requisito</h2>
+  <p class="sec-desc">El PIA pedía funcionalidades específicas. Aquí verás cómo cada una está cubierta en el código.</p>
+
+  <table class="req-table">
+    <thead>
+      <tr>
+        <th>✓</th>
+        <th>Requerimiento</th>
+        <th>Cómo lo cumple</th>
+        <th>Función</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Clave única que no se repite entre ejecuciones</td>
+        <td>Toma el máximo del diccionario y suma 1. Gracias al CSV, recuerda las claves anteriores</td>
+        <td><span class="req-tag">generar_clave()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Nombre y especie no vacíos ni solo espacios</td>
+        <td>Valida con strip() antes de aceptar el dato</td>
+        <td><span class="req-tag">validar_cadena()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Edad como número entero positivo</td>
+        <td>Usa isnumeric() que solo acepta dígitos positivos</td>
+        <td><span class="req-tag">validar_numero()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Agregar paciente</td>
+        <td>Pide datos, genera clave automática, inserta en diccionario</td>
+        <td><span class="req-tag">crear_paciente()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Editar paciente con confirmación</td>
+        <td>Trabaja en copia separada, aplica solo si el usuario confirma</td>
+        <td><span class="req-tag">modificar_paciente()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Eliminación lógica (no física)</td>
+        <td>Solo cambia datos[0] de True a False, el registro persiste</td>
+        <td><span class="req-tag">eliminar_paciente()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Recuperar pacientes eliminados</td>
+        <td>Lista todos con False y permite reactivar uno</td>
+        <td><span class="req-tag">recuperar_paciente()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Reporte tabular de pacientes activos</td>
+        <td>Filtra solo los que tienen True e imprime tabla formateada</td>
+        <td><span class="req-tag">reportar_pacientes()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Guardar y recuperar con CSV</td>
+        <td>Al salir guarda, al iniciar carga. Si no hay archivo, empieza vacío</td>
+        <td><span class="req-tag">preservar()</span> <span class="req-tag">recuperacion()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Validación centralizada sin duplicar código</td>
+        <td>Una sola función reutilizable que recibe el validador como parámetro</td>
+        <td><span class="req-tag">solicitar_con_validacion()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Datos en mayúsculas</td>
+        <td>El sistema guarda todo en uppercase para consistencia</td>
+        <td><span class="req-tag">pedir_datos_paciente()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Punto de entrada main()</td>
+        <td>La función main() controla el inicio y el ciclo del programa</td>
+        <td><span class="req-tag">main()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Menú con opciones inválidas controladas</td>
+        <td>Usa match/case y avisa si la opción no es válida</td>
+        <td><span class="req-tag">menu()</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ⑩ SIMULADOR -->
+<section id="simulador" class="fade-in">
+  <div class="sec-label">10 — Simulador interactivo</div>
+  <h2 class="sec-title">Prueba el sistema en vivo</h2>
+  <p class="sec-desc">Agrega, elimina y recupera pacientes. Observa cómo cambia el diccionario en tiempo real.</p>
+
+  <div class="sim-container">
+    <div class="sim-header">
+      <div class="sim-dot" style="background:#ff5f57"></div>
+      <div class="sim-dot" style="background:#febc2e"></div>
+      <div class="sim-dot" style="background:#28c840"></div>
+      <span style="margin-left:0.5rem">catalogo_pacientes.py — simulación</span>
+    </div>
+    <div class="sim-body">
+      <div class="sim-controls">
+        <input class="sim-input" id="sim-nombre" placeholder="Nombre" maxlength="15">
+        <input class="sim-input" id="sim-especie" placeholder="Especie" maxlength="12">
+        <input class="sim-input" id="sim-edad" placeholder="Edad" maxlength="3" type="number" min="0">
+        <button class="sim-add-btn" onclick="simAdd()">+ Agregar paciente</button>
+      </div>
+
+      <p style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);margin-bottom:0.5rem">catalogo = {</p>
+      <div class="sim-dict" id="sim-dict">
+        <div class="sim-empty">El catálogo está vacío. Agrega tu primer paciente ↑</div>
+      </div>
+      <p style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);margin-top:0.5rem">}</p>
+
+      <div class="sim-log" id="sim-log">
+        <div class="log-entry">» Sistema iniciado. Catálogo vacío.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Sistema de Gestión Veterinaria — Programación Avanzada<br>
+  Guía visual interactiva · HTML + CSS + JS vanilla
+</footer>
+
+<script>
+// ── FADE IN ON SCROLL ──────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── FLOW INFO ──────────────────────────────────────────────
+const flowData = {
+  main: { title: 'main()', desc: 'Es el punto de entrada del programa. Carga el CSV al inicio y luego entra en un ciclo infinito mostrando el menú una y otra vez.' },
+  recuperacion: { title: 'recuperacion()', desc: 'Busca el archivo CSV guardado de la última ejecución. Si existe, reconstruye el diccionario. Si no existe, empieza vacío sin error.' },
+  loop: { title: '🔄 Ciclo while True:', desc: 'El programa nunca termina por sí solo. Siempre vuelve al menú después de cada operación. Solo sale cuando el usuario elige la opción 6 y confirma.' },
+  menu: { title: 'menu()', desc: 'Muestra las 6 opciones al usuario y espera su elección. Usa match/case para dirigir al usuario a la función correcta.' },
+  crear: { title: 'crear_paciente()', desc: 'Pide nombre, especie y edad con validación. Genera la clave automática y agrega el paciente al diccionario con estado True.' },
+  modificar: { title: 'modificar_paciente()', desc: 'Busca el paciente, muestra cada campo con su valor actual. El usuario puede cambiar o presionar ENTER para conservar. Pide confirmación final.' },
+  eliminar: { title: 'eliminar_paciente()', desc: 'Busca el paciente, muestra sus datos y pide confirmación. Si acepta, cambia datos[0] de True a False. No borra nada.' },
+  recuperar: { title: 'recuperar_paciente()', desc: 'Lista todos los pacientes con False. El usuario elige uno y confirma. Cambia su estado a True para que vuelva a ser visible.' },
+  reportar: { title: 'reportar_pacientes()', desc: 'Filtra todos los pacientes con True y los muestra en una tabla ordenada con ID, nombre, especie y edad.' },
+  salir: { title: 'preservar() → exit()', desc: 'Si el usuario confirma salir, escribe todo el catálogo (activos e inactivos) en el CSV antes de cerrar el programa.' },
+};
+function showFlowInfo(key) {
+  const d = flowData[key];
+  const el = document.getElementById('flow-info');
+  el.innerHTML = `<strong style="color:var(--accent);font-family:var(--mono)">${d.title}</strong><br><br>${d.desc}`;
+}
+
+// ── FUNCTION CARDS TOGGLE ──────────────────────────────────
+function toggleFn(card) {
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.fn-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+// ── LOGICAL DELETE DEMO ────────────────────────────────────
+function logicDelete(id) {
+  const row = document.getElementById('demo-' + id);
+  const badge = document.getElementById('badge-' + id);
+  const recBtn = document.getElementById('rec-' + id);
+  const delBtn = row.querySelector('.delete-btn');
+  row.classList.add('deleted');
+  badge.textContent = '✗ INACTIVO';
+  badge.style.background = 'rgba(255,107,107,0.15)';
+  badge.style.color = 'var(--accent3)';
+  delBtn.style.display = 'none';
+  recBtn.style.display = 'inline-block';
+}
+function logicRecover(id) {
+  const row = document.getElementById('demo-' + id);
+  const badge = document.getElementById('badge-' + id);
+  const recBtn = document.getElementById('rec-' + id);
+  const delBtn = row.querySelector('.delete-btn');
+  row.classList.remove('deleted');
+  badge.textContent = '✓ ACTIVO';
+  badge.style.background = '';
+  badge.style.color = '';
+  delBtn.style.display = 'inline-block';
+  recBtn.style.display = 'none';
+}
+
+// ── VALIDATIONS ────────────────────────────────────────────
+function clearValResult(id) {
+  const el = document.getElementById(id);
+  el.className = 'val-result';
+  el.textContent = 'Esperando entrada...';
+}
+function validateString() {
+  const val = document.getElementById('val-str').value;
+  const el = document.getElementById('res-str');
+  const field = document.getElementById('val-str');
+  if (val.trim().length === 0) {
+    el.className = 'val-result err';
+    el.innerHTML = '❌ Error: la cadena está vacía o solo tiene espacios. No se acepta.';
+    field.className = 'val-field invalid';
+  } else {
+    el.className = 'val-result ok';
+    el.innerHTML = `✅ Válido: "${val.trim()}" se aceptaría y se guardaría en mayúsculas → "${val.trim().toUpperCase()}"`;
+    field.className = 'val-field valid';
+  }
+}
+function validateNumber() {
+  const val = document.getElementById('val-num').value;
+  const el = document.getElementById('res-num');
+  const field = document.getElementById('val-num');
+  if (val.trim() === '' || isNaN(val) || !Number.isInteger(Number(val)) || Number(val) < 0) {
+    el.className = 'val-result err';
+    el.innerHTML = '❌ Error: se necesita un número entero positivo. Ejemplos válidos: 1, 5, 12. Inválidos: abc, 3.5, -1, vacío.';
+    field.className = 'val-field invalid';
+  } else {
+    el.className = 'val-result ok';
+    el.innerHTML = `✅ Válido: ${val} es un número entero positivo. Se guardaría como int(${val}) = ${parseInt(val)}.`;
+    field.className = 'val-field valid';
+  }
+}
+
+// ── SIMULATOR ──────────────────────────────────────────────
+let simCatalog = {};
+let simNextKey = 1;
+
+function simLog(msg, type = '') {
+  const log = document.getElementById('sim-log');
+  const entry = document.createElement('div');
+  entry.className = 'log-entry' + (type ? ' ' + type : '');
+  entry.textContent = '» ' + msg;
+  log.appendChild(entry);
+  log.scrollTop = log.scrollHeight;
+}
+
+function renderSimDict() {
+  const dict = document.getElementById('sim-dict');
+  const keys = Object.keys(simCatalog);
+  if (keys.length === 0) {
+    dict.innerHTML = '<div class="sim-empty">El catálogo está vacío.</div>';
+    return;
+  }
+  dict.innerHTML = '';
+  keys.forEach(k => {
+    const d = simCatalog[k];
+    const entry = document.createElement('div');
+    entry.className = 'sim-entry' + (d[0] ? '' : ' deleted');
+    entry.innerHTML = `
+      <span class="s-key">${k}</span>
+      <span style="color:var(--muted)">→</span>
+      <span>[</span>
+      <span class="${d[0] ? 's-bool-t' : 's-bool-f'}">${d[0]}</span>,
+      <span class="s-str">"${d[1]}"</span>,
+      <span class="s-str">"${d[2]}"</span>,
+      <span class="s-num">${d[3]}</span>
+      <span>]</span>
+      ${d[0]
+        ? `<button class="sim-del-btn" onclick="simDelete(${k})">Eliminar</button>`
+        : `<button class="sim-rec-btn" onclick="simRecover(${k})">Recuperar</button>`
+      }
+    `;
+    dict.appendChild(entry);
+  });
+}
+
+function simAdd() {
+  const nombre = document.getElementById('sim-nombre').value.trim().toUpperCase();
+  const especie = document.getElementById('sim-especie').value.trim().toUpperCase();
+  const edadRaw = document.getElementById('sim-edad').value.trim();
+  const edad = parseInt(edadRaw);
+
+  if (!nombre) { simLog('Error: el nombre no puede estar vacío.', 'log-del'); return; }
+  if (!especie) { simLog('Error: la especie no puede estar vacía.', 'log-del'); return; }
+  if (!edadRaw || isNaN(edad) || edad < 0) { simLog('Error: la edad debe ser un número entero positivo.', 'log-del'); return; }
+
+  const clave = simNextKey++;
+  simCatalog[clave] = [true, nombre, especie, edad];
+  renderSimDict();
+  simLog(`Paciente "${nombre}" agregado con clave ${clave}.`, 'log-ok');
+  document.getElementById('sim-nombre').value = '';
+  document.getElementById('sim-especie').value = '';
+  document.getElementById('sim-edad').value = '';
+}
+
+function simDelete(k) {
+  simCatalog[k][0] = false;
+  renderSimDict();
+  simLog(`Paciente clave ${k} eliminado (lógicamente). Sigue en el diccionario con False.`, 'log-del');
+}
+
+function simRecover(k) {
+  simCatalog[k][0] = true;
+  renderSimDict();
+  simLog(`Paciente clave ${k} recuperado. Estado cambiado a True.`, 'log-rec');
+}
+</script>
+</body>
+</html>
