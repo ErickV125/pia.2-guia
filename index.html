@@ -462,6 +462,332 @@
     font-family: var(--mono); font-size: 0.78rem; color: var(--muted);
     border-top: 1px solid var(--border);
   }
+
+  /* ═══ PHASE 2 STYLES ═══════════════════════════════════ */
+
+  /* Entry button */
+  .core-entry-btn {
+    display: inline-flex; align-items: center; gap: 1rem;
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent); font-family: var(--mono); font-size: 1rem;
+    padding: 1rem 2.5rem; border-radius: 12px; cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: all 0.3s;
+    animation: glow-pulse 2.5s ease-in-out infinite;
+  }
+  .core-entry-btn::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,160,0.1) 0%, transparent 100%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .core-entry-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,229,160,0.25); }
+  .core-entry-btn:hover::before { opacity: 1; }
+  .btn-icon { font-size: 1.25rem; animation: spin-hex 4s linear infinite; }
+  .btn-arrow { animation: bounce-down 1.5s ease-in-out infinite; }
+  @keyframes glow-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(0,229,160,0.3); } 50% { box-shadow: 0 0 20px rgba(0,229,160,0.15); } }
+  @keyframes spin-hex { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(180deg); } }
+  @keyframes bounce-down { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+  /* Phase 2 hidden/visible */
+  .phase2-hidden { display: none; opacity: 0; }
+  .phase2-visible { display: block; animation: phase2-reveal 0.8s ease forwards; }
+  @keyframes phase2-reveal { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+
+  /* Phase 2 hero */
+  .p2-hero {
+    position: relative; overflow: hidden;
+    background: linear-gradient(180deg, #050709 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 6rem 2rem 4rem; text-align: center;
+  }
+  .p2-grid-bg {
+    position: absolute; inset: 0; opacity: 0.07;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .p2-hero-content { position: relative; z-index: 1; }
+  .p2-badge {
+    font-family: var(--mono); font-size: 0.72rem; color: var(--accent2);
+    letter-spacing: 2px; margin-bottom: 1.5rem;
+  }
+  .p2-title {
+    font-family: var(--mono); font-size: clamp(1.8rem,4vw,3rem);
+    font-weight: 700; margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff 0%, var(--accent2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .p2-sub { font-size: 1.05rem; color: var(--muted); max-width: 580px; margin: 0 auto; }
+  .p2-sub em { color: var(--accent); font-style: normal; }
+
+  /* P2 nav */
+  .p2-nav {
+    position: sticky; top: 56px; z-index: 90;
+    background: rgba(10,12,16,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 0; overflow-x: auto; padding: 0 1rem;
+  }
+  .p2-nav-link {
+    font-family: var(--mono); font-size: 0.72rem; color: var(--muted);
+    text-decoration: none; padding: 0.75rem 1rem; white-space: nowrap;
+    border-bottom: 2px solid transparent; transition: all 0.2s;
+  }
+  .p2-nav-link:hover { color: var(--accent2); border-bottom-color: var(--accent2); }
+
+  /* P2 sections */
+  .p2-section {
+    max-width: 1000px; margin: 0 auto; padding: 5rem 2rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .p2-sec-label {
+    font-family: var(--mono); font-size: 0.68rem; color: var(--accent2);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.75rem;
+  }
+  .p2-sec-title {
+    font-family: var(--mono); font-size: clamp(1.3rem,3vw,1.9rem);
+    font-weight: 700; margin-bottom: 1rem;
+  }
+  .p2-sec-desc { color: var(--muted); font-size: 0.97rem; max-width: 700px; margin-bottom: 2.5rem; line-height: 1.7; }
+  .hl-green { color: var(--accent); }
+  .hl-blue { color: var(--accent2); }
+  .hl-yellow { color: var(--accent4); }
+  .hl-red { color: var(--accent3); }
+
+  /* P2 analogy */
+  .p2-analogy {
+    background: rgba(79,140,255,0.06); border: 1px solid rgba(79,140,255,0.2);
+    border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1.5rem 0;
+    display: flex; gap: 1rem; align-items: flex-start; font-size: 0.9rem; line-height: 1.65;
+  }
+  .p2-a-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+  /* P2 fade */
+  .p2-fade { opacity: 0; transform: translateY(24px); transition: all 0.55s ease; }
+  .p2-fade.visible { opacity: 1; transform: none; }
+
+  /* FLOW2 */
+  .flow2-wrapper { display: flex; justify-content: center; margin: 2.5rem 0; }
+  .flow2 { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .flow2-node {
+    border-radius: 10px; padding: 0.85rem 2.5rem; text-align: center;
+    border: 1px solid var(--border); background: var(--surface); min-width: 220px;
+    transition: all 0.3s;
+  }
+  .f2-label { font-family: var(--mono); font-size: 0.92rem; font-weight: 700; }
+  .f2-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+  .f2-main { border-color: var(--accent); color: var(--accent); }
+  .f2-load { border-color: var(--accent4); color: var(--accent4); }
+  .f2-loop { border-color: var(--accent2); color: var(--accent2); background: rgba(79,140,255,0.07); }
+  .f2-menu { border-color: #a78bfa; color: #a78bfa; }
+  .flow2-line {
+    width: 2px; height: 36px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent2) 100%);
+    position: relative;
+    animation: flow-pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes flow-pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+  .flow2-line::after { content: '▼'; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); color: var(--accent2); font-size: 0.65rem; }
+  .flow2-branches { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-top: 1rem; }
+  .flow2-bnode {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.4rem 0.85rem;
+    font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+    transition: all 0.2s; cursor: default;
+  }
+  .flow2-bnode:hover { border-color: var(--accent); color: var(--accent); }
+  .flow2-return-arrow {
+    font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+    margin-top: 1.25rem; border-top: 1px dashed var(--border); padding-top: 0.75rem;
+    animation: fade-in-loop 2s ease-in-out infinite;
+  }
+  @keyframes fade-in-loop { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+  /* EXPLAINER BOX */
+  .p2-explainer-box {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem; margin-top: 2rem;
+  }
+  .p2-eb-title { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); margin-bottom: 0.75rem; font-weight: 700; }
+  .p2-code {
+    background: #0d1117; border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.25rem;
+    font-family: var(--mono); font-size: 0.8rem;
+    color: #cdd9e5; line-height: 1.8; overflow-x: auto;
+    white-space: pre;
+    margin-top: 1rem;
+  }
+
+  /* COMPARE */
+  .compare-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .compare-card {
+    border-radius: 10px; padding: 1.25rem;
+    border: 1px solid var(--border); background: var(--surface);
+  }
+  .compare-card.bad { border-color: rgba(255,107,107,0.25); background: rgba(255,107,107,0.04); }
+  .compare-card.good { border-color: rgba(0,229,160,0.3); background: rgba(0,229,160,0.04); }
+  .compare-head { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .compare-why { font-size: 0.82rem; color: var(--muted); margin-top: 0.75rem; padding: 0.6rem; background: rgba(0,0,0,0.2); border-radius: 6px; }
+
+  /* ACCESS VISUAL */
+  .access-visual { margin-top: 1rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .av-catalog { flex: 1; min-width: 200px; }
+  .av-row { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); padding: 0.3rem 0.6rem; border-radius: 4px; margin-bottom: 0.2rem; transition: all 0.2s; }
+  .av-row span { color: var(--accent2); }
+  .av-row.highlight-row { background: rgba(0,229,160,0.1); color: var(--accent); border: 1px solid rgba(0,229,160,0.3); }
+  .av-pointer { font-family: var(--mono); font-size: 0.82rem; color: var(--accent); animation: pointer-pulse 1.5s ease-in-out infinite; }
+  @keyframes pointer-pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+  /* LIST ANATOMY */
+  .list-anatomy { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
+  .la-title { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin-bottom: 1.25rem; }
+  .la-row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+  .la-bracket { font-family: var(--mono); font-size: 1.5rem; color: var(--muted); }
+  .la-sep { font-family: var(--mono); font-size: 1rem; color: var(--muted); }
+  .la-item {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 0.6rem 0.9rem; border-radius: 8px; border: 1px solid var(--border);
+    cursor: pointer; transition: all 0.2s; min-width: 80px;
+  }
+  .la-item:hover { transform: translateY(-3px); }
+  .la-bool { border-color: rgba(86,211,100,0.4); background: rgba(86,211,100,0.07); }
+  .la-bool:hover { border-color: #56d364; box-shadow: 0 4px 16px rgba(86,211,100,0.2); }
+  .la-str { border-color: rgba(255,209,102,0.4); background: rgba(255,209,102,0.07); }
+  .la-str:hover { border-color: var(--accent4); }
+  .la-str2 { border-color: rgba(255,209,102,0.3); background: rgba(255,209,102,0.05); }
+  .la-str2:hover { border-color: var(--accent4); }
+  .la-num { border-color: rgba(247,129,102,0.4); background: rgba(247,129,102,0.07); }
+  .la-num:hover { border-color: #f78166; }
+  .la-index { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); margin-bottom: 0.25rem; }
+  .la-value { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; }
+  .la-bool .la-value { color: #56d364; }
+  .la-str .la-value, .la-str2 .la-value { color: var(--accent4); }
+  .la-num .la-value { color: #f78166; }
+  .la-label { font-size: 0.68rem; color: var(--muted); margin-top: 0.3rem; }
+  .la-tooltip { margin-top: 1.25rem; font-size: 0.85rem; color: var(--muted); font-style: italic; transition: all 0.3s; min-height: 3rem; }
+  .la-tooltip.active { color: var(--text); font-style: normal; background: rgba(0,229,160,0.06); border: 1px solid rgba(0,229,160,0.2); padding: 0.75rem 1rem; border-radius: 8px; }
+
+  /* BENEFITS */
+  .benefit-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.75rem; }
+  .benefit-item { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.88rem; }
+  .b-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  /* PERSISTENCE DEMO */
+  .persistence-demo { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
+  .ps-title { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.75rem; }
+  .ps-phase { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); margin-bottom: 1.25rem; }
+  .ps-ram, .ps-disk {
+    border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem;
+    border: 1px solid var(--border); background: #0d1117;
+  }
+  .ps-label { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .ps-dict { font-family: var(--mono); font-size: 0.78rem; color: #cdd9e5; line-height: 1.7; transition: all 0.5s; }
+  .ps-csv-content { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); transition: all 0.5s; }
+  .ps-controls { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1.25rem 0 0.75rem; }
+  .ps-btn {
+    padding: 0.55rem 1rem; border-radius: 7px; border: 1px solid var(--accent);
+    background: transparent; color: var(--accent); font-family: var(--mono); font-size: 0.78rem;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .ps-btn:hover { background: rgba(0,229,160,0.1); }
+  .ps-btn2 { border-color: var(--accent2); color: var(--accent2); }
+  .ps-btn2:hover { background: rgba(79,140,255,0.1); }
+  .ps-btn3 { border-color: var(--muted); color: var(--muted); }
+  .ps-btn3:hover { background: rgba(255,255,255,0.05); }
+  .ps-log { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); padding: 0.6rem; background: rgba(0,0,0,0.2); border-radius: 5px; }
+  .persist-cycle { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+  .pc-step { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.82rem; flex: 1; min-width: 130px; }
+  .pc-num { font-family: var(--mono); font-size: 1.1rem; color: var(--accent); font-weight: 700; margin-bottom: 0.3rem; }
+  .pc-arrow { color: var(--muted); font-size: 1.2rem; flex-shrink: 0; }
+
+  /* ELIM DEMO */
+  .elim-viz { margin: 1rem 0; }
+  .ev-row { font-family: var(--mono); font-size: 0.76rem; padding: 0.4rem 0.6rem; border-radius: 5px; margin-bottom: 0.25rem; border: 1px solid transparent; transition: all 0.5s; color: var(--muted); }
+  .ev-active { color: var(--text); border-color: rgba(0,229,160,0.2); background: rgba(0,229,160,0.05); }
+  .ev-deleted { color: var(--muted); text-decoration: line-through; border-color: rgba(255,107,107,0.2); background: rgba(255,107,107,0.04); }
+  .ev-gone { display: none; }
+  .elim-btn { margin: 0.75rem 0; padding: 0.5rem 1rem; border-radius: 7px; border: 1px solid var(--accent3); background: transparent; color: var(--accent3); font-family: var(--mono); font-size: 0.78rem; cursor: pointer; transition: all 0.2s; }
+  .elim-btn:hover { background: rgba(255,107,107,0.1); }
+  .elim-btn-good { border-color: var(--accent); color: var(--accent); }
+  .elim-btn-good:hover { background: rgba(0,229,160,0.1); }
+  .elim-cons, .elim-pros { font-size: 0.8rem; margin-top: 0.5rem; }
+  .con-item { color: var(--accent3); padding: 0.2rem 0; }
+  .pro-item { color: var(--accent); padding: 0.2rem 0; }
+
+  /* VAL COMPARE */
+  .val-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 2rem 0; }
+  @media (max-width: 640px) { .val-compare { grid-template-columns: 1fr; } }
+  .vc-bad, .vc-good { border-radius: 10px; padding: 1.25rem; border: 1px solid var(--border); background: var(--surface); }
+  .vc-bad { border-color: rgba(255,107,107,0.25); }
+  .vc-good { border-color: rgba(0,229,160,0.25); }
+  .vc-head { font-family: var(--mono); font-size: 0.82rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .vc-why { font-size: 0.8rem; color: var(--accent3); margin-top: 0.75rem; padding: 0.5rem; background: rgba(255,107,107,0.07); border: 1px solid rgba(255,107,107,0.15); border-radius: 6px; }
+
+  /* FN MAP */
+  .fn-map-wrapper { margin: 2rem 0; }
+  .fn-map {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      ". . main main . ."
+      "recuperacion recuperacion recuperacion menu menu menu"
+      "crear modificar eliminar recuperar reportar preservar"
+      ". pedir generar buscar nuevo_dato sol_val"
+      ". . . val_cad val_cad val_num";
+    gap: 0.75rem; margin-bottom: 1.25rem;
+  }
+  @media (max-width: 700px) {
+    .fn-map { grid-template-columns: 1fr 1fr; grid-template-areas: none; }
+    .fn-map > div { grid-area: unset !important; }
+  }
+  .fm-node {
+    border-radius: 8px; padding: 0.55rem 0.75rem; text-align: center;
+    font-family: var(--mono); font-size: 0.74rem; border: 1px solid var(--border);
+    background: var(--surface); cursor: pointer; transition: all 0.2s;
+    line-height: 1.3;
+  }
+  .fm-node:hover { transform: translateY(-2px); }
+  .fm-center { border-color: var(--accent); color: var(--accent); font-weight: 700; font-size: 0.85rem; }
+  .fm-l1 { border-color: var(--accent4); color: var(--accent4); }
+  .fm-l2 { border-color: var(--accent2); color: var(--accent2); }
+  .fm-l3 { border-color: #a78bfa; color: #a78bfa; }
+  .fm-l4 { border-color: #f78166; color: #f78166; }
+  .fm-node.fm-selected { filter: brightness(1.3); box-shadow: 0 0 16px rgba(0,229,160,0.2); transform: scale(1.05); }
+  .fn-info-panel {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem; min-height: 100px;
+  }
+  .fip-placeholder { color: var(--muted); font-size: 0.88rem; }
+  .fip-title { font-family: var(--mono); font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem; font-weight: 700; }
+  .fip-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.75rem; line-height: 1.6; }
+  .fip-calls { font-family: var(--mono); font-size: 0.78rem; color: var(--accent2); margin-bottom: 0.35rem; }
+  .fip-called-by { font-family: var(--mono); font-size: 0.78rem; color: var(--accent4); }
+
+  /* PHILOSOPHY */
+  .philosophy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+  .ph-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; transition: all 0.3s; }
+  .ph-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+  .ph-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+  .ph-title { font-family: var(--mono); font-size: 0.85rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text); }
+  .ph-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+  .p2-final-card {
+    background: linear-gradient(135deg, rgba(0,229,160,0.08) 0%, rgba(79,140,255,0.08) 100%);
+    border: 1px solid rgba(0,229,160,0.25); border-radius: 14px;
+    padding: 2rem; margin-top: 2rem; text-align: center;
+  }
+  .pfc-title { font-family: var(--mono); font-size: 0.9rem; color: var(--text); margin-bottom: 1.25rem; }
+  .pfc-tags { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.25rem; }
+  .pfc-tag {
+    font-family: var(--mono); font-size: 0.75rem;
+    padding: 0.3rem 0.8rem; border-radius: 99px;
+    border: 1px solid rgba(0,229,160,0.35); color: var(--accent);
+    background: rgba(0,229,160,0.07);
+  }
+  .pfc-desc { font-size: 0.9rem; color: var(--muted); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+  /* ic */
+  .ic { font-family: var(--mono); font-size: 0.85em; background: rgba(255,255,255,0.07); padding: 0.1em 0.35em; border-radius: 4px; color: var(--accent); }
 </style>
 </head>
 <body>
@@ -1067,9 +1393,529 @@ activos = [(k, v) for k, v in catalogo.items() if v[0]]<br>
   </div>
 </section>
 
+<!-- PHASE 2 ENTRY BUTTON -->
+<section id="phase2-entry" style="text-align:center;padding:3rem 2rem 6rem;">
+  <p style="font-family:var(--mono);font-size:0.78rem;color:var(--muted);margin-bottom:1.5rem;letter-spacing:2px;text-transform:uppercase;">¿Quieres entender la ingeniería detrás?</p>
+  <button id="enter-core-btn" onclick="enterCore()" class="core-entry-btn">
+    <span class="btn-icon">⬡</span>
+    <span class="btn-text">Entrar al núcleo del sistema</span>
+    <span class="btn-arrow">↓</span>
+  </button>
+  <p style="font-size:0.82rem;color:var(--muted);margin-top:1.25rem">Descubre por qué cada decisión de diseño fue tomada</p>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PHASE 2 — EL NÚCLEO
+══════════════════════════════════════════ -->
+<div id="phase2" class="phase2-hidden">
+
+  <!-- PHASE 2 HERO -->
+  <div class="p2-hero">
+    <div class="p2-grid-bg"></div>
+    <div class="p2-hero-content">
+      <div class="p2-badge">// FASE 2 — INGENIERÍA INTERNA</div>
+      <h2 class="p2-title">El motor del programa</h2>
+      <p class="p2-sub">No solo qué hace el sistema, sino <em>por qué</em> fue diseñado así. La arquitectura, las decisiones, la lógica profunda.</p>
+    </div>
+  </div>
+
+  <!-- P2 NAV -->
+  <div class="p2-nav">
+    <a href="#p2-s1" class="p2-nav-link">Cerebro</a>
+    <a href="#p2-s2" class="p2-nav-link">Diccionario</a>
+    <a href="#p2-s3" class="p2-nav-link">Lista interna</a>
+    <a href="#p2-s4" class="p2-nav-link">Persistencia</a>
+    <a href="#p2-s5" class="p2-nav-link">Elim. lógica</a>
+    <a href="#p2-s6" class="p2-nav-link">Validaciones</a>
+    <a href="#p2-s7" class="p2-nav-link">Conexiones</a>
+    <a href="#p2-s8" class="p2-nav-link">Filosofía</a>
+  </div>
+
+  <!-- ── P2 S1: CEREBRO / MAIN() ── -->
+  <section id="p2-s1" class="p2-section p2-fade">
+    <div class="p2-sec-label">NÚCLEO 01</div>
+    <h3 class="p2-sec-title">El cerebro: <span class="hl-green">main()</span></h3>
+    <p class="p2-sec-desc">Todo programa necesita un punto de partida. En Python, ese punto es la función <code class="ic">main()</code>. Desde aquí el programa cobra vida y nunca para hasta que tú lo ordenes.</p>
+
+    <div class="p2-analogy">
+      <span class="p2-a-icon">🧠</span>
+      <div><strong>Analogía:</strong> Imagina a un recepcionista de hotel. Cuando llega al trabajo (main inicia), primero revisa las reservas del día anterior (recuperacion). Luego se sienta en su escritorio y atiende clientes uno por uno, siempre volviendo a esperar al siguiente. Nunca se va hasta que alguien le dice "ya puedes irte" (opción 6).</div>
+    </div>
+
+    <div class="flow2-wrapper">
+      <div class="flow2">
+        <div class="flow2-node f2-main" id="f2n-main">
+          <div class="f2-label">main()</div>
+          <div class="f2-sub">Punto de entrada</div>
+        </div>
+        <div class="flow2-line" id="fl1"></div>
+        <div class="flow2-node f2-load" id="f2n-load">
+          <div class="f2-label">recuperacion()</div>
+          <div class="f2-sub">Carga el CSV anterior</div>
+        </div>
+        <div class="flow2-line" id="fl2"></div>
+        <div class="flow2-node f2-loop" id="f2n-loop">
+          <div class="f2-label">while True: 🔄</div>
+          <div class="f2-sub">Ciclo infinito</div>
+        </div>
+        <div class="flow2-line" id="fl3"></div>
+        <div class="flow2-node f2-menu" id="f2n-menu">
+          <div class="f2-label">menu()</div>
+          <div class="f2-sub">Muestra opciones</div>
+        </div>
+        <div class="flow2-line" id="fl4"></div>
+        <div class="flow2-branches">
+          <div class="flow2-bnode bc1">crear</div>
+          <div class="flow2-bnode bc2">modificar</div>
+          <div class="flow2-bnode bc3">eliminar</div>
+          <div class="flow2-bnode bc4">recuperar</div>
+          <div class="flow2-bnode bc5">reportar</div>
+          <div class="flow2-bnode bc6">salir ↗</div>
+        </div>
+        <div class="flow2-return-arrow">↩ regresa al menú automáticamente</div>
+      </div>
+    </div>
+
+    <div class="p2-explainer-box">
+      <div class="p2-eb-title">¿Qué es el ciclo <code class="ic">while True</code>?</div>
+      <p>Normalmente un programa hace sus cosas y termina. Pero nosotros necesitamos que el sistema <strong>siga funcionando</strong> hasta que el usuario decida salir. La instrucción <code class="ic">while True</code> crea un bucle eterno. El programa repite: "muestra el menú → espera la opción → ejecuta la función → vuelve al menú" indefinidamente.</p>
+      <div class="p2-code">
+<span class="c-comment"># Así funciona el ciclo infinito:</span>
+<span class="c-key">while</span> <span class="c-bool-t">True</span>:       <span class="c-comment"># ← siempre verdadero = nunca para</span>
+    menu(catalogo, ruta_csv)  <span class="c-comment"># ← muestra menú y procesa opción</span>
+    <span class="c-comment"># ↑ cuando menu() termina, vuelve aquí y repite</span>
+
+<span class="c-comment"># Solo sale si dentro de menu() se llama exit()</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── P2 S2: POR QUÉ DICCIONARIO ── -->
+  <section id="p2-s2" class="p2-section p2-fade">
+    <div class="p2-sec-label">NÚCLEO 02</div>
+    <h3 class="p2-sec-title">Por qué elegimos un <span class="hl-green">diccionario</span></h3>
+    <p class="p2-sec-desc">Podríamos haber guardado los pacientes de muchas formas. Elegimos el diccionario por razones muy concretas. Compara:</p>
+
+    <div class="compare-grid">
+      <div class="compare-card bad">
+        <div class="compare-head">❌ Variables separadas</div>
+        <div class="p2-code" style="font-size:0.76rem">
+nombre1 = "FIRULAIS"<br>
+especie1 = "PERRO"<br>
+nombre2 = "MICHI"<br>
+especie2 = "GATO"<br>
+<span class="c-comment"># ¿Y si hay 500 pacientes?</span>
+        </div>
+        <p class="compare-why">Imposible de manejar. Cada nuevo paciente requiere nuevas variables. Sin estructura.</p>
+      </div>
+      <div class="compare-card bad">
+        <div class="compare-head">❌ Lista de listas</div>
+        <div class="p2-code" style="font-size:0.76rem">
+pacientes = [<br>
+&nbsp;&nbsp;["FIRULAIS","PERRO",5],<br>
+&nbsp;&nbsp;["MICHI","GATO",2]<br>
+]<br>
+<span class="c-comment"># Para buscar clave 47:</span><br>
+<span class="c-comment"># hay que recorrer TODA la lista</span>
+        </div>
+        <p class="compare-why">Lento para buscar. No hay acceso directo. La clave 47 requiere revisar 1 a 46 primero.</p>
+      </div>
+      <div class="compare-card good">
+        <div class="compare-head">✅ Diccionario</div>
+        <div class="p2-code" style="font-size:0.76rem">
+catalogo = {<br>
+&nbsp;&nbsp;1: [True,"FIRULAIS","PERRO",5],<br>
+&nbsp;&nbsp;47: [True,"MICHI","GATO",2]<br>
+}<br>
+<span class="c-comment"># Para buscar clave 47:</span><br>
+catalogo[<span class="c-num">47</span>]  <span class="c-comment"># ← directo, instantáneo</span>
+        </div>
+        <p class="compare-why">Acceso instantáneo por clave. Sin importar cuántos pacientes haya, siempre es igual de rápido.</p>
+      </div>
+    </div>
+
+    <div class="p2-analogy">
+      <span class="p2-a-icon">🗄️</span>
+      <div>
+        <strong>Analogía del archivero:</strong> Imagina buscar un expediente. Con variables sería revisar hojas sueltas tiradas en el suelo. Con lista sería revisar uno por uno desde el primer cajón. Con diccionario es como tener cajones numerados: vas directo al cajón 47 sin abrir los demás.
+      </div>
+    </div>
+
+    <div class="dict-access-demo">
+      <div class="p2-explainer-box">
+        <div class="p2-eb-title">La magia de <code class="ic">catalogo[clave]</code></div>
+        <p>Cuando escribimos <code class="ic">catalogo[47]</code>, Python va <strong>directamente</strong> al espacio de memoria donde está guardado el paciente 47. No revisa el 1, el 2, el 3... Va directamente. Esto se llama acceso O(1) — tiempo constante, siempre igual de rápido.</p>
+        <div class="access-visual">
+          <div class="av-catalog">
+            <div class="av-row" id="avr1">🗂️ <span>1 →</span> FIRULAIS</div>
+            <div class="av-row" id="avr2">🗂️ <span>2 →</span> MICHI</div>
+            <div class="av-row" id="avr3">🗂️ <span>3 →</span> ROCCO</div>
+            <div class="av-row highlight-row" id="avr47">🗂️ <span>47 →</span> LUNA ← acceso directo</div>
+            <div class="av-row" id="avr48">🗂️ <span>48 →</span> MAX</div>
+          </div>
+          <div class="av-pointer" id="av-ptr">catalogo[47] ──→</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── P2 S3: LISTA INTERNA ── -->
+  <section id="p2-s3" class="p2-section p2-fade">
+    <div class="p2-sec-label">NÚCLEO 03</div>
+    <h3 class="p2-sec-title">Por qué una <span class="hl-blue">lista dentro</span> del diccionario</h3>
+    <p class="p2-sec-desc">Dentro de cada cajón del diccionario hay una lista. No fue accidental. Hay una razón muy concreta para agrupar los 4 datos juntos.</p>
+
+    <div class="list-anatomy">
+      <div class="la-title">Anatomía de un paciente:</div>
+      <div class="la-row">
+        <div class="la-bracket">[</div>
+        <div class="la-item la-bool" data-detail="El 'interruptor'. True = paciente activo y visible. False = paciente 'eliminado' pero guardado. Es el índice [0] de la lista.">
+          <div class="la-index">[0]</div>
+          <div class="la-value">True</div>
+          <div class="la-label">Estado</div>
+        </div>
+        <div class="la-sep">,</div>
+        <div class="la-item la-str" data-detail="El nombre de la mascota en mayúsculas. Siempre texto. Es el índice [1] de la lista.">
+          <div class="la-index">[1]</div>
+          <div class="la-value">"FIRULAIS"</div>
+          <div class="la-label">Nombre</div>
+        </div>
+        <div class="la-sep">,</div>
+        <div class="la-item la-str2" data-detail="La especie: PERRO, GATO, CONEJO, etc. Siempre texto en mayúsculas. Es el índice [2].">
+          <div class="la-index">[2]</div>
+          <div class="la-value">"PERRO"</div>
+          <div class="la-label">Especie</div>
+        </div>
+        <div class="la-sep">,</div>
+        <div class="la-item la-num" data-detail="La edad en años, siempre número entero positivo. Nunca texto. Es el índice [3] de la lista.">
+          <div class="la-index">[3]</div>
+          <div class="la-value">5</div>
+          <div class="la-label">Edad</div>
+        </div>
+        <div class="la-bracket">]</div>
+      </div>
+      <div class="la-tooltip" id="la-tooltip">👆 Haz clic en cualquier campo para ver por qué está ahí</div>
+    </div>
+
+    <div class="compare-grid" style="grid-template-columns:1fr 1fr;margin-top:2rem">
+      <div class="compare-card bad">
+        <div class="compare-head">❌ Sin lista — datos separados</div>
+        <div class="p2-code" style="font-size:0.76rem">
+nombres = {1: "FIRULAIS"}<br>
+especies = {1: "PERRO"}<br>
+edades = {1: 5}<br>
+estados = {1: True}<br>
+<span class="c-comment"># 4 diccionarios para 1 paciente</span><br>
+<span class="c-comment"># Muy fácil desincronizar</span>
+        </div>
+      </div>
+      <div class="compare-card good">
+        <div class="compare-head">✅ Con lista — todo junto</div>
+        <div class="p2-code" style="font-size:0.76rem">
+catalogo = {<br>
+&nbsp;&nbsp;1: [True, "FIRULAIS", "PERRO", 5]<br>
+}<br>
+<span class="c-comment"># 1 acceso = todos los datos</span><br>
+<span class="c-comment"># catalogo[1] devuelve TODO</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p2-explainer-box" style="margin-top:1.5rem">
+      <div class="p2-eb-title">Ventajas concretas de agrupar en lista</div>
+      <div class="benefit-list">
+        <div class="benefit-item"><span class="b-icon">⚡</span><div><strong>Un acceso, todos los datos:</strong> <code class="ic">catalogo[1]</code> devuelve el estado, nombre, especie y edad de una vez.</div></div>
+        <div class="benefit-item"><span class="b-icon">✏️</span><div><strong>Modificación directa:</strong> <code class="ic">catalogo[1][3] = 6</code> cambia solo la edad. Preciso y limpio.</div></div>
+        <div class="benefit-item"><span class="b-icon">💾</span><div><strong>CSV simplificado:</strong> Con <code class="ic">writer.writerow([clave, *datos])</code> guardamos todo en una sola línea.</div></div>
+        <div class="benefit-item"><span class="b-icon">🔄</span><div><strong>Reconstrucción fácil:</strong> Al leer el CSV, reconstruimos la lista en el mismo orden y funciona igual.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── P2 S4: PERSISTENCIA ── -->
+  <section id="p2-s4" class="p2-section p2-fade">
+    <div class="p2-sec-label">NÚCLEO 04</div>
+    <h3 class="p2-sec-title">Persistencia de datos: <span class="hl-yellow">sobrevivir al cierre</span></h3>
+    <p class="p2-sec-desc">Aquí está uno de los problemas más importantes de cualquier programa: los datos en memoria RAM desaparecen cuando el programa cierra. Necesitamos algo más permanente.</p>
+
+    <div class="persistence-demo">
+      <div class="persist-state" id="persist-state">
+        <div class="ps-title">Estado actual:</div>
+        <div class="ps-phase" id="ps-phase">Programa corriendo</div>
+        <div class="ps-ram" id="ps-ram">
+          <div class="ps-label">🧠 RAM (memoria volátil)</div>
+          <div class="ps-dict" id="ps-dict-content">
+            catalogo = {<br>
+            &nbsp;&nbsp;1: [True, "FIRULAIS", "PERRO", 5],<br>
+            &nbsp;&nbsp;2: [False, "MICHI", "GATO", 2]<br>
+            }
+          </div>
+        </div>
+        <div class="ps-disk" id="ps-disk">
+          <div class="ps-label">💾 Disco (CSV)</div>
+          <div class="ps-csv-content" id="ps-csv-content">vacío</div>
+        </div>
+        <div class="ps-controls">
+          <button class="ps-btn" onclick="persistSave()">💾 Guardar y salir (preservar)</button>
+          <button class="ps-btn ps-btn2" onclick="persistLoad()">▶ Iniciar programa (recuperacion)</button>
+          <button class="ps-btn ps-btn3" onclick="persistReset()">↺ Reset demo</button>
+        </div>
+        <div class="ps-log" id="ps-log">» Programa corriendo. Datos en RAM.</div>
+      </div>
+    </div>
+
+    <div class="p2-explainer-box" style="margin-top:1.5rem">
+      <div class="p2-eb-title">El ciclo completo de persistencia</div>
+      <div class="persist-cycle">
+        <div class="pc-step">
+          <div class="pc-num">1</div>
+          <div class="pc-content"><strong>Usuario agrega pacientes</strong><br><span style="color:var(--muted)">Los datos viven en el diccionario en RAM</span></div>
+        </div>
+        <div class="pc-arrow">→</div>
+        <div class="pc-step">
+          <div class="pc-num">2</div>
+          <div class="pc-content"><strong>Usuario sale confirmando</strong><br><span style="color:var(--muted)">preservar() escribe todo al CSV</span></div>
+        </div>
+        <div class="pc-arrow">→</div>
+        <div class="pc-step">
+          <div class="pc-num">3</div>
+          <div class="pc-content"><strong>Programa cierra</strong><br><span style="color:var(--muted)">RAM se vacía, pero CSV persiste en disco</span></div>
+        </div>
+        <div class="pc-arrow">→</div>
+        <div class="pc-step">
+          <div class="pc-num">4</div>
+          <div class="pc-content"><strong>Nueva ejecución</strong><br><span style="color:var(--muted)">recuperacion() lee el CSV y reconstruye el diccionario</span></div>
+        </div>
+      </div>
+      <div class="p2-code" style="margin-top:1.25rem">
+<span class="c-comment"># preservar() — escribe al disco</span>
+<span class="c-key">with</span> open(ruta, <span class="c-str">'w'</span>) <span class="c-key">as</span> archivo:
+    writer = csv.writer(archivo)
+    <span class="c-key">for</span> clave, datos <span class="c-key">in</span> estado.items():
+        writer.writerow([clave, *datos])  <span class="c-comment"># ← expande la lista como columnas</span>
+
+<span class="c-comment"># recuperacion() — lee del disco</span>
+<span class="c-key">for</span> id_, existe, nombre, especie, edad <span class="c-key">in</span> reader:
+    estado[<span class="c-key">int</span>(id_)] = [existe == <span class="c-str">'True'</span>, nombre, especie, <span class="c-key">int</span>(edad)]
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:0.75rem">El truco de <code class="ic">existe == 'True'</code>: en CSV todo es texto, así que "True" es un string. Compararlo con 'True' convierte el texto de vuelta a booleano.</p>
+    </div>
+  </section>
+
+  <!-- ── P2 S5: ELIMINACIÓN LÓGICA PROFUNDA ── -->
+  <section id="p2-s5" class="p2-section p2-fade">
+    <div class="p2-sec-label">NÚCLEO 05</div>
+    <h3 class="p2-sec-title">Eliminación lógica: <span class="hl-red">no borrar, marcar</span></h3>
+    <p class="p2-sec-desc">Esta es una decisión de arquitectura con consecuencias importantes. Comparemos las dos opciones:</p>
+
+    <div class="compare-grid">
+      <div class="compare-card bad" style="border-color:rgba(255,107,107,0.4)">
+        <div class="compare-head">❌ Eliminación física</div>
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem">Se borra el registro completamente del diccionario.</p>
+        <div class="elim-viz" id="elim-phys">
+          <div class="ev-row ev-active">1 → [True, "FIRULAIS", "PERRO", 5]</div>
+          <div class="ev-row ev-active" id="ev-michi-phys">2 → [True, "MICHI", "GATO", 2]</div>
+          <div class="ev-row ev-active">3 → [True, "ROCCO", "CONEJO", 3]</div>
+        </div>
+        <button class="elim-btn" onclick="physDelete()">Eliminar MICHI</button>
+        <div class="elim-cons">
+          <div class="con-item">🚫 No se puede recuperar</div>
+          <div class="con-item">🚫 La clave 2 queda huérfana para siempre</div>
+          <div class="con-item">🚫 Si fue error del usuario, se perdió todo</div>
+        </div>
+      </div>
+      <div class="compare-card good" style="border-color:rgba(0,229,160,0.4)">
+        <div class="compare-head">✅ Eliminación lógica</div>
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem">Solo se cambia el estado a False. El registro permanece.</p>
+        <div class="elim-viz" id="elim-logic">
+          <div class="ev-row ev-active">1 → [True, "FIRULAIS", "PERRO", 5]</div>
+          <div class="ev-row ev-active" id="ev-michi-logic">2 → [True, "MICHI", "GATO", 2]</div>
+          <div class="ev-row ev-active">3 → [True, "ROCCO", "CONEJO", 3]</div>
+        </div>
+        <button class="elim-btn elim-btn-good" onclick="logicDeleteDemo()">Marcar MICHI como inactivo</button>
+        <div class="elim-pros">
+          <div class="pro-item">✅ Recuperable en cualquier momento</div>
+          <div class="pro-item">✅ Historial completo preservado</div>
+          <div class="pro-item">✅ El CSV guarda activos e inactivos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p2-explainer-box" style="margin-top:1.5rem">
+      <div class="p2-eb-title">Cómo el sistema filtra sin borrar</div>
+      <p style="margin-bottom:1rem">Las funciones como <code class="ic">reportar_pacientes()</code> no ven a los inactivos porque filtran por <code class="ic">datos[0]</code>:</p>
+      <div class="p2-code">
+<span class="c-comment"># Solo incluye pacientes donde datos[0] == True</span>
+activos = [(k, v) <span class="c-key">for</span> k, v <span class="c-key">in</span> catalogo.items() <span class="c-key">if</span> v[<span class="c-num">0</span>]]
+
+<span class="c-comment"># buscar_paciente() también filtra:</span>
+<span class="c-key">if not</span> incluir_eliminados <span class="c-key">and not</span> paciente[<span class="c-num">0</span>]:
+    <span class="c-key">raise</span> ValueError()  <span class="c-comment"># ← paciente inactivo, no se muestra</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── P2 S6: VALIDACIONES CENTRALIZADAS ── -->
+  <section id="p2-s6" class="p2-section p2-fade">
+    <div class="p2-sec-label">NÚCLEO 06</div>
+    <h3 class="p2-sec-title">Validaciones centralizadas: <span class="hl-blue">no repetir código</span></h3>
+    <p class="p2-sec-desc">Este es un principio fundamental del buen código: si haces lo mismo en varios lugares, extráelo a una sola función. Llámala cada vez que la necesites.</p>
+
+    <div class="p2-analogy">
+      <span class="p2-a-icon">🏭</span>
+      <div><strong>Analogía:</strong> En una fábrica, no construyes una máquina diferente para cada tornillo que quieres apretar. Construyes una llave y la usas en todos lados. Las funciones de validación son esa llave reutilizable.</div>
+    </div>
+
+    <div class="val-compare">
+      <div class="vc-bad">
+        <div class="vc-head">❌ Sin centralizar — código repetido</div>
+        <div class="p2-code" style="font-size:0.76rem">
+<span class="c-comment"># En crear_paciente():</span>
+<span class="c-key">while True</span>:
+    nombre = input(<span class="c-str">"Nombre: "</span>)
+    <span class="c-key">if</span> nombre.strip(): <span class="c-key">break</span>
+    print(<span class="c-str">"Error"</span>)
+
+<span class="c-comment"># En modificar_paciente():</span>
+<span class="c-key">while True</span>:
+    nombre = input(<span class="c-str">"Nombre: "</span>)
+    <span class="c-key">if</span> nombre.strip(): <span class="c-key">break</span>
+    print(<span class="c-str">"Error"</span>)
+
+<span class="c-comment"># ← mismo código 3, 4, 5 veces...</span>
+        </div>
+        <div class="vc-why">Si encuentras un bug, tienes que corregirlo en 5 lugares distintos. Fácil olvidar uno.</div>
+      </div>
+      <div class="vc-good">
+        <div class="vc-head">✅ Centralizado — una sola función</div>
+        <div class="p2-code" style="font-size:0.76rem">
+<span class="c-comment"># Una sola vez, en solicitar_con_validacion():</span>
+<span class="c-key">def</span> solicitar_con_validacion(validar, mensaje):
+    <span class="c-key">while True</span>:
+        <span class="c-key">try</span>:
+            <span class="c-key">return</span> validar(input(mensaje))
+        <span class="c-key">except</span> ValueError <span class="c-key">as</span> e:
+            print(<span class="c-str">f'Error: {e}'</span>)
+
+<span class="c-comment"># En cualquier función, solo llamas:</span>
+solicitar_con_validacion(validar_cadena, <span class="c-str">"Nombre: "</span>)
+solicitar_con_validacion(validar_numero, <span class="c-str">"Edad: "</span>)
+        </div>
+        <div class="vc-why" style="background:rgba(0,229,160,0.07);border-color:rgba(0,229,160,0.2);color:var(--accent)">Un solo lugar para corregir. Funciona igual en todos lados. Código limpio.</div>
+      </div>
+    </div>
+
+    <div class="p2-explainer-box" style="margin-top:1.5rem">
+      <div class="p2-eb-title">El patrón: pasar funciones como parámetros</div>
+      <p style="margin-bottom:1rem">Un detalle elegante: <code class="ic">solicitar_con_validacion</code> recibe <em>qué función usar para validar</em> como parámetro. Esto la hace flexible — puede validar cualquier cosa:</p>
+      <div class="p2-code">
+<span class="c-comment"># Pasamos validar_cadena como argumento → valida texto</span>
+solicitar_con_validacion(<span class="c-bool-t">validar_cadena</span>, <span class="c-str">"Ingrese el nombre: "</span>)
+
+<span class="c-comment"># Pasamos validar_numero como argumento → valida números</span>
+solicitar_con_validacion(<span class="c-bool-t">validar_numero</span>, <span class="c-str">"Ingrese la edad: "</span>)
+
+<span class="c-comment"># La función no sabe qué valida; solo sabe cómo preguntar</span>
+<span class="c-comment"># y repetir si falla. Eso la hace reutilizable.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── P2 S7: MAPA DE CONEXIONES ── -->
+  <section id="p2-s7" class="p2-section p2-fade">
+    <div class="p2-sec-label">NÚCLEO 07</div>
+    <h3 class="p2-sec-title">Cómo se <span class="hl-green">conectan</span> las funciones</h3>
+    <p class="p2-sec-desc">Las funciones no trabajan solas. Cada una llama a otras funciones más pequeñas. Haz clic en cualquier función para ver sus conexiones.</p>
+
+    <div class="fn-map-wrapper">
+      <div class="fn-map" id="fn-map">
+        <!-- main -->
+        <div class="fm-node fm-center" data-fn="main" onclick="selectFn('main')" style="grid-area:main">main()</div>
+        <!-- level 1 -->
+        <div class="fm-node fm-l1" data-fn="recuperacion" onclick="selectFn('recuperacion')" style="grid-area:recuperacion">recuperacion()</div>
+        <div class="fm-node fm-l1" data-fn="menu" onclick="selectFn('menu')" style="grid-area:menu">menu()</div>
+        <!-- level 2 -->
+        <div class="fm-node fm-l2" data-fn="crear" onclick="selectFn('crear')" style="grid-area:crear">crear_paciente()</div>
+        <div class="fm-node fm-l2" data-fn="modificar" onclick="selectFn('modificar')" style="grid-area:modificar">modificar_paciente()</div>
+        <div class="fm-node fm-l2" data-fn="eliminar" onclick="selectFn('eliminar')" style="grid-area:eliminar">eliminar_paciente()</div>
+        <div class="fm-node fm-l2" data-fn="recuperar" onclick="selectFn('recuperar')" style="grid-area:recuperar">recuperar_paciente()</div>
+        <div class="fm-node fm-l2" data-fn="reportar" onclick="selectFn('reportar')" style="grid-area:reportar">reportar_pacientes()</div>
+        <div class="fm-node fm-l2" data-fn="preservar" onclick="selectFn('preservar')" style="grid-area:preservar">preservar()</div>
+        <!-- level 3 -->
+        <div class="fm-node fm-l3" data-fn="pedir" onclick="selectFn('pedir')" style="grid-area:pedir">pedir_datos_paciente()</div>
+        <div class="fm-node fm-l3" data-fn="generar" onclick="selectFn('generar')" style="grid-area:generar">generar_clave()</div>
+        <div class="fm-node fm-l3" data-fn="buscar" onclick="selectFn('buscar')" style="grid-area:buscar">buscar_paciente()</div>
+        <div class="fm-node fm-l3" data-fn="nuevo_dato" onclick="selectFn('nuevo_dato')" style="grid-area:nuevo_dato">nuevo_dato()</div>
+        <div class="fm-node fm-l3" data-fn="sol_val" onclick="selectFn('sol_val')" style="grid-area:sol_val">solicitar_con_validacion()</div>
+        <!-- level 4 -->
+        <div class="fm-node fm-l4" data-fn="val_cad" onclick="selectFn('val_cad')" style="grid-area:val_cad">validar_cadena()</div>
+        <div class="fm-node fm-l4" data-fn="val_num" onclick="selectFn('val_num')" style="grid-area:val_num">validar_numero()</div>
+      </div>
+      <div class="fn-info-panel" id="fn-info-panel">
+        <div class="fip-placeholder">👆 Haz clic en cualquier función para ver qué llama y quién la llama</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── P2 S8: FILOSOFÍA ── -->
+  <section id="p2-s8" class="p2-section p2-fade">
+    <div class="p2-sec-label">NÚCLEO 08</div>
+    <h3 class="p2-sec-title">La filosofía <span class="hl-yellow">detrás del diseño</span></h3>
+    <p class="p2-sec-desc">Cada decisión técnica tiene una razón. No escribimos el código "porque sí". Aquí están los principios que guiaron el diseño:</p>
+
+    <div class="philosophy-grid">
+      <div class="ph-card">
+        <div class="ph-icon">🎯</div>
+        <div class="ph-title">Separación de responsabilidades</div>
+        <p class="ph-desc">Cada función hace <em>una sola cosa</em>. <code class="ic">validar_cadena()</code> solo valida, no pregunta. <code class="ic">pedir_datos_paciente()</code> solo pide, no guarda. <code class="ic">generar_clave()</code> solo genera la clave, no crea al paciente. Así cada pieza es fácil de entender y de reparar.</p>
+      </div>
+      <div class="ph-card">
+        <div class="ph-icon">♻️</div>
+        <div class="ph-title">Reutilización</div>
+        <p class="ph-desc"><code class="ic">buscar_paciente()</code> es usada por modificar, eliminar y recuperar. <code class="ic">solicitar_con_validacion()</code> es usada por cualquier función que pida datos. Escribir código una vez y reutilizarlo muchas veces reduce errores y facilita el mantenimiento.</p>
+      </div>
+      <div class="ph-card">
+        <div class="ph-icon">🛡️</div>
+        <div class="ph-title">Defensa de los datos</div>
+        <p class="ph-desc">Las validaciones impiden que entren datos basura. La eliminación lógica impide perder información accidentalmente. La copia en <code class="ic">modificar_paciente()</code> impide modificaciones sin confirmación. El sistema protege los datos del usuario incluso de sus propios errores.</p>
+      </div>
+      <div class="ph-card">
+        <div class="ph-icon">💾</div>
+        <div class="ph-title">Persistencia garantizada</div>
+        <p class="ph-desc">Los datos sobreviven al cierre del programa. El CSV guarda incluso los registros "eliminados" para que puedan recuperarse en la próxima sesión. Nada se pierde mientras el usuario no lo decida explícitamente.</p>
+      </div>
+      <div class="ph-card">
+        <div class="ph-icon">📖</div>
+        <div class="ph-title">Claridad sobre brevedad</div>
+        <p class="ph-desc">Los nombres de las funciones son largos pero descriptivos: <code class="ic">recuperar_paciente()</code>, <code class="ic">solicitar_con_validacion()</code>. Se eligieron nombres que explican su propósito sin necesitar comentarios, porque el código que se lee bien, se mantiene bien.</p>
+      </div>
+      <div class="ph-card">
+        <div class="ph-icon">🏗️</div>
+        <div class="ph-title">Estructura predecible</div>
+        <p class="ph-desc">Siempre: el índice [0] es el estado, [1] es el nombre, [2] es la especie, [3] es la edad. En todo el programa. Esto significa que cualquier función puede trabajar con cualquier paciente sin sorpresas ni inconsistencias.</p>
+      </div>
+    </div>
+
+    <div class="p2-final-card">
+      <div class="pfc-title">En resumen: ¿Qué tipo de sistema construimos?</div>
+      <div class="pfc-tags">
+        <span class="pfc-tag">Persistente</span>
+        <span class="pfc-tag">Modular</span>
+        <span class="pfc-tag">Seguro</span>
+        <span class="pfc-tag">Reutilizable</span>
+        <span class="pfc-tag">Recuperable</span>
+        <span class="pfc-tag">Validado</span>
+        <span class="pfc-tag">Predecible</span>
+      </div>
+      <p class="pfc-desc">Un sistema de gestión de pacientes veterinarios que no solo funciona correctamente hoy, sino que está diseñado para ser fácil de entender, modificar y extender en el futuro. Eso es exactamente lo que se espera de un programa bien diseñado.</p>
+    </div>
+  </section>
+
+</div><!-- end #phase2 -->
+
 <footer>
   Sistema de Gestión Veterinaria — Programación Avanzada<br>
-  Guía visual interactiva · HTML + CSS + JS vanilla
+  Guía visual interactiva · Fase 1 + Fase 2 · HTML + CSS + JS vanilla
 </footer>
 
 <script>
@@ -1238,6 +2084,123 @@ function simRecover(k) {
   simCatalog[k][0] = true;
   renderSimDict();
   simLog(`Paciente clave ${k} recuperado. Estado cambiado a True.`, 'log-rec');
+}
+
+// ── PHASE 2 ───────────────────────────────────────────────
+function enterCore() {
+  const p2 = document.getElementById('phase2');
+  const btn = document.getElementById('enter-core-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span>Descendiendo al núcleo...</span>';
+  setTimeout(() => {
+    p2.classList.remove('phase2-hidden');
+    p2.classList.add('phase2-visible');
+    setTimeout(() => p2.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+  }, 400);
+}
+
+const p2Observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.p2-fade').forEach(el => p2Observer.observe(el));
+
+document.querySelectorAll('.la-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const tip = document.getElementById('la-tooltip');
+    tip.textContent = item.dataset.detail;
+    tip.className = 'la-tooltip active';
+  });
+});
+
+let physDeleted = false;
+function physDelete() {
+  if (physDeleted) return;
+  physDeleted = true;
+  const row = document.getElementById('ev-michi-phys');
+  row.classList.remove('ev-active');
+  row.classList.add('ev-deleted');
+  setTimeout(() => { row.classList.add('ev-gone'); }, 700);
+}
+
+let logicDeleted2 = false;
+function logicDeleteDemo() {
+  const row = document.getElementById('ev-michi-logic');
+  const btn = document.querySelector('.elim-btn-good');
+  if (!logicDeleted2) {
+    logicDeleted2 = true;
+    row.classList.remove('ev-active');
+    row.classList.add('ev-deleted');
+    row.textContent = '2 → [False, "MICHI", "GATO", 2]  ← solo cambió esto';
+    btn.textContent = '♻ Recuperar MICHI';
+    btn.onclick = () => {
+      row.classList.remove('ev-deleted');
+      row.classList.add('ev-active');
+      row.textContent = '2 → [True, "MICHI", "GATO", 2]';
+      btn.textContent = 'Marcar MICHI como inactivo';
+      logicDeleted2 = false;
+      btn.onclick = logicDeleteDemo;
+    };
+  }
+}
+
+let persistSaved = false;
+function persistSave() {
+  document.getElementById('ps-csv-content').textContent = '1,True,FIRULAIS,PERRO,5\n2,False,MICHI,GATO,2';
+  document.getElementById('ps-csv-content').style.color = 'var(--accent)';
+  document.getElementById('ps-dict-content').innerHTML = '<span style="color:var(--accent3)">// RAM vaciada — programa cerrado</span>';
+  document.getElementById('ps-phase').textContent = 'Programa cerrado. CSV guardado en disco.';
+  document.getElementById('ps-phase').style.color = 'var(--accent4)';
+  document.getElementById('ps-log').textContent = '» preservar() ejecutada. CSV escrito. Programa cerrado. RAM vaciada.';
+  persistSaved = true;
+}
+function persistLoad() {
+  if (!persistSaved) { document.getElementById('ps-log').textContent = '» No hay CSV guardado aún. Ejecuta "Guardar y salir" primero.'; return; }
+  document.getElementById('ps-dict-content').innerHTML = 'catalogo = {\n  1: [True, "FIRULAIS", "PERRO", 5],\n  2: [False, "MICHI", "GATO", 2]\n}';
+  document.getElementById('ps-dict-content').style.color = 'var(--accent)';
+  document.getElementById('ps-phase').textContent = '¡Datos restaurados desde CSV!';
+  document.getElementById('ps-phase').style.color = 'var(--accent)';
+  document.getElementById('ps-log').textContent = '» recuperacion() leyó el CSV y reconstruyó el catálogo en RAM.';
+}
+function persistReset() {
+  persistSaved = false;
+  document.getElementById('ps-dict-content').innerHTML = 'catalogo = {\n  1: [True, "FIRULAIS", "PERRO", 5],\n  2: [False, "MICHI", "GATO", 2]\n}';
+  document.getElementById('ps-dict-content').style.color = '';
+  document.getElementById('ps-csv-content').textContent = 'vacío';
+  document.getElementById('ps-csv-content').style.color = '';
+  document.getElementById('ps-phase').textContent = 'Programa corriendo';
+  document.getElementById('ps-phase').style.color = '';
+  document.getElementById('ps-log').textContent = '» Demo reiniciada.';
+}
+
+const fnData = {
+  main: { title: 'main()', desc: 'El punto de entrada del programa. Llama a recuperacion() para cargar el CSV y luego entra en el ciclo infinito llamando a menu() repetidamente.', calls: ['recuperacion()', 'menu()'], calledBy: ['Sistema operativo (al ejecutar el script)'] },
+  recuperacion: { title: 'recuperacion(estado, ruta)', desc: 'Lee el archivo CSV del disco y reconstruye el diccionario en memoria RAM. Si el archivo no existe, simplemente no hace nada (except FileNotFoundError: pass).', calls: ['csv.reader()'], calledBy: ['main()'] },
+  menu: { title: 'menu(catalogo, ruta_csv)', desc: 'Muestra las 6 opciones al usuario y usa match/case para dirigir a la función correcta. Se llama repetidamente desde el ciclo while True de main().', calls: ['desplegar_menu()', 'crear_paciente()', 'modificar_paciente()', 'eliminar_paciente()', 'recuperar_paciente()', 'reportar_pacientes()', 'preservar()'], calledBy: ['main() — en cada iteración del while True'] },
+  crear: { title: 'crear_paciente(catalogo)', desc: 'Orquesta la creación de un nuevo paciente: pide los datos, genera la clave y los inserta en el diccionario.', calls: ['pedir_datos_paciente()', 'generar_clave()'], calledBy: ['menu() — opción 1'] },
+  modificar: { title: 'modificar_paciente(catalogo)', desc: 'Busca el paciente, crea una copia de sus datos, permite editar campo por campo y confirma antes de aplicar los cambios.', calls: ['buscar_paciente()', 'nuevo_dato()'], calledBy: ['menu() — opción 2'] },
+  eliminar: { title: 'eliminar_paciente(catalogo)', desc: 'Busca el paciente activo y, previa confirmación, cambia su estado de True a False. Eliminación lógica.', calls: ['buscar_paciente()'], calledBy: ['menu() — opción 3'] },
+  recuperar: { title: 'recuperar_paciente(catalogo)', desc: 'Lista pacientes con estado False, permite elegir uno y lo reactiva cambiando su estado a True.', calls: ['buscar_paciente(con incluir_eliminados=True)'], calledBy: ['menu() — opción 4'] },
+  reportar: { title: 'reportar_pacientes(catalogo)', desc: 'Filtra pacientes activos y los muestra en tabla formateada. Si no hay ninguno, avisa al usuario.', calls: [], calledBy: ['menu() — opción 5'] },
+  preservar: { title: 'preservar(estado, ruta)', desc: 'Abre el CSV en modo escritura y escribe todos los pacientes (activos e inactivos) fila por fila antes de salir.', calls: ['csv.writer()'], calledBy: ['menu() — opción 6 (al confirmar salida)'] },
+  pedir: { title: 'pedir_datos_paciente()', desc: 'Solicita nombre, especie y edad con validación completa. Devuelve la lista [True, nombre, especie, edad] lista para insertar.', calls: ['solicitar_con_validacion()', 'validar_cadena()', 'validar_numero()'], calledBy: ['crear_paciente()'] },
+  generar: { title: 'generar_clave(catalogo)', desc: 'Calcula la siguiente clave disponible tomando el máximo actual y sumando 1. Si el catálogo está vacío, devuelve 1.', calls: ['max()'], calledBy: ['crear_paciente()'] },
+  buscar: { title: 'buscar_paciente(catalogo, clave, incluir_eliminados)', desc: 'Busca un paciente por clave. Puede incluir o excluir los eliminados según el contexto. Devuelve (clave, datos) o (None, None).', calls: [], calledBy: ['modificar_paciente()', 'eliminar_paciente()', 'recuperar_paciente()'] },
+  nuevo_dato: { title: 'nuevo_dato(dato, indice)', desc: 'Muestra el valor actual de un campo y permite al usuario cambiarlo o conservarlo. Se llama para cada campo del paciente.', calls: ['validar_cadena()', 'validar_numero()'], calledBy: ['modificar_paciente()'] },
+  sol_val: { title: 'solicitar_con_validacion(validar, mensaje)', desc: 'El validador centralizado. Pide un dato, lo valida con la función recibida, y repite si falla. Elimina la duplicación de código.', calls: ['validar_cadena() o validar_numero() — según se le pase'], calledBy: ['pedir_datos_paciente()'] },
+  val_cad: { title: 'validar_cadena(cadena)', desc: 'Verifica que el texto no esté vacío ni sea solo espacios. Lanza ValueError si falla, lo cual captura solicitar_con_validacion().', calls: [], calledBy: ['solicitar_con_validacion()', 'nuevo_dato()'] },
+  val_num: { title: 'validar_numero(numero)', desc: 'Verifica que el texto sea un número entero positivo usando isnumeric(). Lanza ValueError si falla.', calls: [], calledBy: ['solicitar_con_validacion()', 'nuevo_dato()'] }
+};
+
+function selectFn(key) {
+  document.querySelectorAll('.fm-node').forEach(n => n.classList.remove('fm-selected'));
+  document.querySelector(`[data-fn="${key}"]`).classList.add('fm-selected');
+  const d = fnData[key];
+  document.getElementById('fn-info-panel').innerHTML = `
+    <div class="fip-title">${d.title}</div>
+    <div class="fip-desc">${d.desc}</div>
+    ${d.calls.length ? `<div class="fip-calls">→ Llama a: ${d.calls.join(' · ')}</div>` : ''}
+    ${d.calledBy.length ? `<div class="fip-called-by">← La llama: ${d.calledBy.join(' · ')}</div>` : ''}
+  `;
 }
 </script>
 </body>
