@@ -1197,6 +1197,48 @@
   .ms-action-btn.ms-del{border-color:var(--accent3);color:var(--accent3);}
   .ms-action-btn.ms-del:hover{background:rgba(255,107,107,0.1);}
   .ms-log{font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--border);}
+  /* ═══ PIA CHECKLIST STYLES ═════════════════════════════ */
+  .pia-section { max-width:1100px;margin:0 auto;padding:6rem 2rem 4rem;border-bottom:1px solid var(--border); }
+  .pia-hero-strip { background:linear-gradient(135deg,rgba(79,140,255,0.08) 0%,rgba(167,139,250,0.08) 100%);border:1px solid rgba(167,139,250,0.25);border-radius:16px;padding:2.5rem;margin-bottom:3rem;text-align:center; }
+  .pia-hero-icon { font-size:3rem;margin-bottom:1rem; }
+  .pia-hero-title { font-family:var(--mono);font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:#a78bfa;margin-bottom:0.75rem; }
+  .pia-hero-desc { font-size:0.95rem;color:var(--muted);max-width:600px;margin:0 auto;line-height:1.7; }
+  .pia-tabs { display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:2.5rem;overflow-x:auto; }
+  .pia-tab { font-family:var(--mono);font-size:0.78rem;padding:0.75rem 1.5rem;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none; }
+  .pia-tab:hover { color:#a78bfa; }
+  .pia-tab.active { color:#a78bfa;border-bottom-color:#a78bfa; }
+  .pia-tab-content { display:none; }
+  .pia-tab-content.active { display:block;animation:slideIn 0.3s ease; }
+  .pia-group { margin-bottom:2.5rem; }
+  .pia-group-title { font-family:var(--mono);font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border); }
+  .pia-item { background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:0.75rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;cursor:pointer;transition:all 0.2s; }
+  .pia-item:hover { border-color:#a78bfa; }
+  .pia-item.checked { border-color:rgba(0,229,160,0.4);background:rgba(0,229,160,0.03); }
+  .pia-item.checked .pia-checkbox { background:var(--accent);border-color:var(--accent); }
+  .pia-item.checked .pia-checkbox::after { opacity:1; }
+  .pia-checkbox { width:22px;height:22px;border-radius:6px;border:2px solid var(--border);background:transparent;flex-shrink:0;position:relative;transition:all 0.2s;margin-top:1px; }
+  .pia-checkbox::after { content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#000;font-size:0.75rem;font-weight:700;opacity:0;transition:opacity 0.15s; }
+  .pia-item-body { min-width:0; }
+  .pia-item-title { font-size:0.92rem;font-weight:600;color:var(--text);margin-bottom:0.35rem; }
+  .pia-item-desc { font-size:0.82rem;color:var(--muted);line-height:1.55; }
+  .pia-item-desc code { font-family:var(--mono);font-size:0.78em;background:rgba(255,255,255,0.07);padding:0.1em 0.35em;border-radius:3px;color:var(--accent); }
+  .pia-item-tag { font-family:var(--mono);font-size:0.65rem;padding:0.2rem 0.6rem;border-radius:4px;white-space:nowrap;align-self:start;background:rgba(167,139,250,0.12);color:#a78bfa;border:1px solid rgba(167,139,250,0.25); }
+  .pia-item-tag.tag-code { background:rgba(0,229,160,0.1);color:var(--accent);border-color:rgba(0,229,160,0.25); }
+  .pia-item-tag.tag-doc { background:rgba(255,209,102,0.1);color:var(--accent4);border-color:rgba(255,209,102,0.25); }
+  .pia-item-tag.tag-warn { background:rgba(255,107,107,0.1);color:var(--accent3);border-color:rgba(255,107,107,0.25); }
+  .pia-progress-overview { display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2.5rem; }
+  .pia-prog-card { background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem;text-align:center; }
+  .pia-prog-num { font-family:var(--mono);font-size:1.8rem;font-weight:700;margin-bottom:0.25rem; }
+  .pia-prog-label { font-size:0.78rem;color:var(--muted); }
+  .pia-prog-bar { height:4px;background:var(--surface2);border-radius:2px;margin-top:0.75rem;overflow:hidden; }
+  .pia-prog-bar-fill { height:100%;border-radius:2px;transition:width 0.5s ease; }
+  .pia-trap-box { background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.25);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:0.75rem;display:flex;gap:1rem;align-items:flex-start; }
+  .pia-trap-icon { font-size:1.25rem;flex-shrink:0; }
+  .pia-trap-body { font-size:0.88rem;line-height:1.6; }
+  .pia-trap-body strong { color:var(--accent3);display:block;margin-bottom:0.25rem;font-family:var(--mono);font-size:0.82rem; }
+  .pia-reset-btn { font-family:var(--mono);font-size:0.78rem;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:6px;padding:0.4rem 0.9rem;cursor:pointer;transition:all 0.2s;float:right; }
+  .pia-reset-btn:hover { border-color:#a78bfa;color:#a78bfa; }
+
 </style>
 </head>
 <body>
@@ -1214,6 +1256,7 @@
     <a href="#crud">CRUD</a>
     <a href="#reqs">Requerimientos</a>
     <a href="#simulador">Simulador</a>
+    <a href="#pia-checklist" style="color:#a78bfa">📋 PIA</a>
   </div>
 </nav>
 
@@ -2860,6 +2903,367 @@ catalogo[clave] = datos  <span class="c-comment">← modifica el objeto comparti
 
 </div><!-- end #phase3 -->
 
+
+<!-- ════════════════════════════════════
+     PIA CHECKLIST SECTION
+════════════════════════════════════ -->
+<section class="pia-section fade-in" id="pia-checklist">
+  <div class="pia-hero-strip">
+    <div class="pia-hero-icon">📋</div>
+    <div class="pia-hero-title">Checklist del PIA</div>
+    <div class="pia-hero-desc">Todo lo que el PDF pide, explicado claramente y con casillas para que vayas marcando lo que ya tienen cubierto. Sin sorpresas el día de entrega.</div>
+  </div>
+
+  <div class="pia-progress-overview">
+    <div class="pia-prog-card">
+      <div class="pia-prog-num" id="ov-func" style="color:var(--accent)">0/11</div>
+      <div class="pia-prog-label">Funcionalidades del sistema</div>
+      <div class="pia-prog-bar"><div class="pia-prog-bar-fill" id="ov-func-bar" style="background:var(--accent);width:0%"></div></div>
+    </div>
+    <div class="pia-prog-card">
+      <div class="pia-prog-num" id="ov-py" style="color:#a78bfa">0/5</div>
+      <div class="pia-prog-label">Buenas prácticas Python</div>
+      <div class="pia-prog-bar"><div class="pia-prog-bar-fill" id="ov-py-bar" style="background:#a78bfa;width:0%"></div></div>
+    </div>
+    <div class="pia-prog-card">
+      <div class="pia-prog-num" id="ov-doc" style="color:var(--accent4)">0/8</div>
+      <div class="pia-prog-label">Documento Word</div>
+      <div class="pia-prog-bar"><div class="pia-prog-bar-fill" id="ov-doc-bar" style="background:var(--accent4);width:0%"></div></div>
+    </div>
+    <div class="pia-prog-card">
+      <div class="pia-prog-num" id="ov-total" style="color:var(--text)">0/24</div>
+      <div class="pia-prog-label">Total completado</div>
+      <div class="pia-prog-bar"><div class="pia-prog-bar-fill" id="ov-total-bar" style="background:linear-gradient(90deg,var(--accent),#a78bfa);width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="pia-tabs">
+    <button class="pia-tab active" onclick="piaTab(0)">⚙️ Funcionalidades</button>
+    <button class="pia-tab" onclick="piaTab(1)">🐍 Buenas prácticas Python</button>
+    <button class="pia-tab" onclick="piaTab(2)">📄 Documento Word</button>
+    <button class="pia-tab" onclick="piaTab(3)">⚠️ Trampas comunes</button>
+  </div>
+
+  <!-- TAB 0: FUNCIONALIDADES -->
+  <div class="pia-tab-content active" id="pia-tab-0">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem">
+      <span style="font-size:0.88rem;color:var(--muted)">Marca lo que ya tienen implementado y verificado con capturas.</span>
+      <button class="pia-reset-btn" onclick="piaReset('pf')">↺ Limpiar</button>
+    </div>
+
+    <div class="pia-group">
+      <div class="pia-group-title">Validación de datos</div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-0">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Clave numérica única generada automáticamente</div>
+          <div class="pia-item-desc">El usuario nunca escribe la clave. <code>generar_clave()</code> calcula el máximo existente y suma 1. Como el CSV preserva las claves anteriores, nunca se repite entre sesiones.</div>
+        </div>
+        <span class="pia-item-tag tag-code">generar_clave()</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-1">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Nombre y especie: no vacío ni solo espacios</div>
+          <div class="pia-item-desc"><code>validar_cadena()</code> usa <code>.strip()</code> para detectar si el texto es solo espacios. Si falla, <code>solicitar_con_validacion()</code> vuelve a pedir — nunca cancela silenciosamente. Además aplica <code>.upper()</code> automáticamente.</div>
+        </div>
+        <span class="pia-item-tag tag-code">validar_cadena()</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-2">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Edad: número entero positivo — no puede omitirse</div>
+          <div class="pia-item-desc"><code>validar_numero()</code> usa <code>.isnumeric()</code> que rechaza negativos, decimales y texto. La edad es obligatoria — si el dato es inválido, se pide de nuevo.</div>
+        </div>
+        <span class="pia-item-tag tag-code">validar_numero()</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-3">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Opción inválida del menú: avisa y no avanza</div>
+          <div class="pia-item-desc">El <code>case _:</code> en <code>menu()</code> captura cualquier entrada que no sea 1–6, muestra mensaje de error y vuelve al menú. El programa no se rompe ni avanza con datos basura.</div>
+        </div>
+        <span class="pia-item-tag tag-code">menu() → case _</span>
+      </div>
+    </div>
+
+    <div class="pia-group">
+      <div class="pia-group-title">Operaciones CRUD</div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-4">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Agregar paciente con todos sus datos</div>
+          <div class="pia-item-desc">Pide nombre, especie y edad con validación completa. Genera clave automática. Confirma al usuario el número asignado. El paciente queda en el diccionario con <code>Campo.ACTIVO = True</code>.</div>
+        </div>
+        <span class="pia-item-tag tag-code">crear_paciente()</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-5">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Editar: campo por campo, ENTER conserva, confirmación final</div>
+          <div class="pia-item-desc">Muestra el valor actual de cada campo. ENTER lo conserva. Si se escribe un nuevo valor se valida. Al final pide confirmación — si cancela, los datos originales no cambian porque se trabajó en una <code>.copy()</code>.</div>
+        </div>
+        <span class="pia-item-tag tag-code">modificar_paciente()</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-6">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Eliminar: clave inexistente avisa → muestra detalle → confirma → lógico</div>
+          <div class="pia-item-desc">Si la clave no existe, avisa y vuelve al menú. Si existe, muestra nombre, especie y edad antes de pedir confirmación. Al confirmar solo cambia <code>Campo.ACTIVO</code> a <code>False</code> — el registro permanece completo.</div>
+        </div>
+        <span class="pia-item-tag tag-code">eliminar_paciente()</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-7">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Recuperar: lista eliminados → selecciona → muestra detalle → confirma</div>
+          <div class="pia-item-desc">Primero lista todos los pacientes con <code>Campo.ACTIVO = False</code>. El usuario escribe la clave, se muestra el detalle completo y se confirma antes de reactivar. <code>Campo.ACTIVO</code> vuelve a <code>True</code>.</div>
+        </div>
+        <span class="pia-item-tag tag-code">recuperar_paciente()</span>
+      </div>
+    </div>
+
+    <div class="pia-group">
+      <div class="pia-group-title">Reportes (submenú)</div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-8">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Reporte tabular de todos los pacientes activos</div>
+          <div class="pia-item-desc">Tabla con columnas ID, Nombre, Especie, Edad. Solo muestra los que tienen <code>Campo.ACTIVO = True</code>. Si no hay ninguno, muestra mensaje sin imprimir el encabezado.</div>
+        </div>
+        <span class="pia-item-tag tag-code">reportar_pacientes()</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-9">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Reporte por especie — sin resultados avisa</div>
+          <div class="pia-item-desc">Pide una especie, filtra el diccionario con dict comprehension por <code>Campo.ESPECIE</code> y muestra la tabla. Si esa especie no tiene pacientes, muestra el mensaje personalizado en lugar de la tabla vacía.</div>
+        </div>
+        <span class="pia-item-tag tag-code">reportar_por_especie()</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-10">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Reporte por edad máxima — sin resultados avisa</div>
+          <div class="pia-item-desc">Pide una edad límite (número entero), filtra por <code>Campo.EDAD &lt;= limite</code> y muestra la tabla. Si ningún paciente cumple la condición, avisa sin mostrar encabezado.</div>
+        </div>
+        <span class="pia-item-tag tag-code">reportar_por_edad()</span>
+      </div>
+    </div>
+
+    <div class="pia-group">
+      <div class="pia-group-title">Persistencia</div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-11">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Al iniciar: recupera estado previo del CSV — avisa si no existe</div>
+          <div class="pia-item-desc">Antes del menú, <code>recuperacion()</code> busca el CSV. Si existe, reconstruye el diccionario completo (activos e inactivos, con tipos correctos). Si no existe, imprime "No existe información previa..." y empieza vacío.</div>
+        </div>
+        <span class="pia-item-tag tag-code">recuperacion()</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pf-12">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Al salir: confirma → guarda CSV → termina</div>
+          <div class="pia-item-desc">La opción 6 pide confirmación. Si acepta: <code>preservar()</code> primero, luego <code>exit()</code>. Si rechaza, vuelve al menú sin guardar ni salir. El CSV incluye activos e inactivos para poder recuperar eliminados en la siguiente sesión.</div>
+        </div>
+        <span class="pia-item-tag tag-code">preservar() + exit()</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 1: BUENAS PRÁCTICAS -->
+  <div class="pia-tab-content" id="pia-tab-1">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem">
+      <span style="font-size:0.88rem;color:var(--muted)">Prácticas que el PDF pide explícitamente en el código Python.</span>
+      <button class="pia-reset-btn" onclick="piaReset('pp')">↺ Limpiar</button>
+    </div>
+    <div class="pia-group">
+      <div class="pia-group-title">Estructura obligatoria</div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pp-0">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Función main() como punto de entrada</div>
+          <div class="pia-item-desc">El programa tiene <code>main()</code> que controla el inicio: carga el CSV y entra al ciclo <code>while True</code>. Protegida con <code>if __name__ == '__main__':</code> para que solo corra al ejecutar el archivo directamente.</div>
+        </div>
+        <span class="pia-item-tag tag-code">Requisito explícito</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pp-1">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Una función para cada operación principal</div>
+          <div class="pia-item-desc">Cada operación del menú vive en su propia función: <code>crear_paciente()</code>, <code>modificar_paciente()</code>, <code>eliminar_paciente()</code>, etc. No todo en main() ni en bloques if/else gigantes sin función.</div>
+        </div>
+        <span class="pia-item-tag tag-code">Requisito explícito</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pp-2">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Validaciones centralizadas — sin código duplicado</div>
+          <div class="pia-item-desc">El PDF pide "centralizar validaciones para evitar duplicación de código". Una sola función <code>solicitar_con_validacion()</code> recibe el validador como parámetro y maneja el ciclo de reintento. No se repite el mismo <code>while/try</code> en cada función.</div>
+        </div>
+        <span class="pia-item-tag tag-code">Requisito explícito</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pp-3">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Identificadores claros y representativos</div>
+          <div class="pia-item-desc">Variables y funciones con nombres que explican su propósito: <code>catalogo</code>, <code>generar_clave</code>, <code>recuperacion</code>. La clase <code>Campo</code> elimina los índices numéricos misteriosos como <code>[0]</code> o <code>[2]</code>, reemplazándolos por <code>Campo.ACTIVO</code> y <code>Campo.ESPECIE</code>.</div>
+        </div>
+        <span class="pia-item-tag tag-code">Requisito explícito</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pp-4">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Sin comentarios # — solo docstrings y anotaciones de tipo</div>
+          <div class="pia-item-desc">El PDF dice que el código entregado no puede incluir comentarios. Un <strong>docstring</strong> es el string entre <code>"""triple comillas"""</code> al inicio de la función — esos sí van. Una <strong>anotación de tipo</strong> es <code>-> None</code> o <code>estado: dict</code> en los parámetros — esas también van. Un <strong>comentario</strong> empieza con <code>#</code> — esos están prohibidos en el entregable.</div>
+        </div>
+        <span class="pia-item-tag tag-warn">¡Sin # en el entregable!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: DOCUMENTO WORD -->
+  <div class="pia-tab-content" id="pia-tab-2">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem">
+      <span style="font-size:0.88rem;color:var(--muted)">Estructura del documento Word que entregan junto al .py</span>
+      <button class="pia-reset-btn" onclick="piaReset('pd')">↺ Limpiar</button>
+    </div>
+    <div class="pia-group">
+      <div class="pia-group-title">Páginas iniciales — no se numeran</div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pd-0">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Portada: integrantes en orden alfabético por apellido</div>
+          <div class="pia-item-desc">El PDF pide explícitamente "ordenado alfabéticamente por apellidos y nombres". Primer criterio: primer apellido. Si hay empate: segundo apellido. Si hay empate: nombre. No importa quién contribuyó más — el orden es alfabético.</div>
+        </div>
+        <span class="pia-item-tag tag-warn">Orden alfabético obligatorio</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pd-1">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Foto a color por integrante — rostro visible en primer plano</div>
+          <div class="pia-item-desc">El PDF pide foto "a color" con "el rostro claramente visible en primer plano", insertada junto al nombre de cada integrante. No foto grupal, no captura de pantalla borrosa, no imagen pequeña. Una foto individual y clara por persona.</div>
+        </div>
+        <span class="pia-item-tag tag-warn">Foto individual por persona</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pd-2">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Índice de contenidos</div>
+          <div class="pia-item-desc">Tabla de contenidos con las secciones del documento. Portada e índice no cuentan para la numeración — la página 1 empieza en la identificación de requerimientos.</div>
+        </div>
+        <span class="pia-item-tag tag-doc">Sección 2</span>
+      </div>
+    </div>
+    <div class="pia-group">
+      <div class="pia-group-title">Contenido numerado — página 1 en adelante</div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pd-3">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Identificación de requerimientos</div>
+          <div class="pia-item-desc">Listar y enunciar claramente qué pide el PIA. No copiar el enunciado completo — identificar cada requerimiento individual y describirlo. Esta sección inicia la numeración (página 1).</div>
+        </div>
+        <span class="pia-item-tag tag-doc">Sección 3</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pd-4">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Evidencia con capturas de pantalla legibles e identificadas</div>
+          <div class="pia-item-desc">Cada requerimiento necesita capturas que demuestren que funciona. El PDF dice: "en ausencia de dicha evidencia, el requerimiento se considerará no acreditado". Las capturas deben ser legibles y estar claramente identificadas — no una captura genérica para todo.</div>
+        </div>
+        <span class="pia-item-tag tag-warn">Sin captura = no acreditado</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pd-5">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Justificación de estructuras de datos con fragmento de código</div>
+          <div class="pia-item-desc">Explicar por qué se eligió cada estructura — diccionario, lista interna, IntEnum — y mostrar un fragmento de código que lo ilustre. No basta nombrarlas: hay que argumentar la decisión. Por ejemplo: por qué diccionario en lugar de lista, por qué Campo en lugar de índices numéricos.</div>
+        </div>
+        <span class="pia-item-tag tag-doc">Sección 5</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pd-6">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Código completo con numeración de líneas — sin comentarios #</div>
+          <div class="pia-item-desc">El código debe ser legible, mostrar el número de cada línea y no tener comentarios con <code>#</code>. Sí puede tener docstrings y anotaciones de tipo. Si hay un solo <code>#</code> en el código entregado, esa sección no se acepta.</div>
+        </div>
+        <span class="pia-item-tag tag-warn">Sin # en el código</span>
+      </div>
+      <div class="pia-item" onclick="piaCheck(this)" id="pd-7">
+        <div class="pia-checkbox"></div>
+        <div class="pia-item-body">
+          <div class="pia-item-title">Páginas numeradas en esquina inferior derecha</div>
+          <div class="pia-item-desc">Todas las páginas excepto portada e índice deben tener número en la esquina inferior derecha. Configurar en el pie de página de Word con sección diferente para que la numeración comience donde corresponde.</div>
+        </div>
+        <span class="pia-item-tag tag-doc">Formato</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: TRAMPAS -->
+  <div class="pia-tab-content" id="pia-tab-3">
+    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:2rem;line-height:1.65">Errores que los estudiantes cometen y que el profesor sí revisa. Léelos antes de entregar.</p>
+
+    <div class="pia-trap-box">
+      <div class="pia-trap-icon">🚫</div>
+      <div class="pia-trap-body">
+        <strong>Comentarios # en el código entregado</strong>
+        El PDF prohíbe comentarios explícitamente. Un <code style="color:var(--accent)">#</code> que explique algo parece útil pero no se acepta. Sí van: docstrings (<code style="color:var(--accent)">"""texto al inicio de la función"""</code>) y anotaciones de tipo (<code style="color:var(--accent)">-> None</code>, <code style="color:var(--accent)">estado: dict</code>). Haz Ctrl+F en el código antes de pegar en el Word y busca el símbolo #.
+      </div>
+    </div>
+
+    <div class="pia-trap-box">
+      <div class="pia-trap-icon">📸</div>
+      <div class="pia-trap-body">
+        <strong>Evidencia faltante = requerimiento no acreditado</strong>
+        El PDF dice literalmente que sin capturas, el requerimiento "se considerará no acreditado". Documenta cada caso: agregar, modificar, eliminar, recuperar, los 3 reportes, opción inválida del menú, clave inexistente al buscar, y comportamiento cuando no hay datos en el reporte.
+      </div>
+    </div>
+
+    <div class="pia-trap-box">
+      <div class="pia-trap-icon">🔤</div>
+      <div class="pia-trap-body">
+        <strong>Portada sin orden alfabético por apellido</strong>
+        El PDF pide "ordenado alfabéticamente por apellidos y nombres". Si los integrantes están en otro orden, hay que reorganizarlos. Primer criterio: primer apellido. Si hay empate: segundo apellido. Si hay empate: nombre de pila.
+      </div>
+    </div>
+
+    <div class="pia-trap-box">
+      <div class="pia-trap-icon">🖼️</div>
+      <div class="pia-trap-body">
+        <strong>Foto grupal, borrosa o de perfil pequeña en la portada</strong>
+        El PDF pide foto individual por persona, a color, con el rostro claramente visible en primer plano. Una captura de WhatsApp pequeña o borrosa no cumple. Cada integrante necesita su propia foto clara, insertada junto a su nombre en la portada.
+      </div>
+    </div>
+
+    <div class="pia-trap-box">
+      <div class="pia-trap-icon">📊</div>
+      <div class="pia-trap-body">
+        <strong>Reporte sin datos imprime encabezado vacío</strong>
+        El PDF pide que si el reporte no obtiene datos, "se deberá informar de dicha situación al usuario y no presentar el encabezado". Si tu función imprime la tabla aunque no haya resultados, ese requerimiento no está acreditado. <code style="color:var(--accent)">reportar_pacientes()</code> verifica si hay activos antes de imprimir cualquier cosa.
+      </div>
+    </div>
+
+    <div class="pia-trap-box">
+      <div class="pia-trap-icon">🔢</div>
+      <div class="pia-trap-body">
+        <strong>Portada e índice contados en la numeración</strong>
+        El PDF dice que portada e índice "no deben ser considerados para la numeración subsecuente". La página 1 comienza en identificación de requerimientos. En Word: usa saltos de sección y configura el pie de página de la segunda sección para que empiece en 1.
+      </div>
+    </div>
+
+    <div class="pia-trap-box">
+      <div class="pia-trap-icon">🧪</div>
+      <div class="pia-trap-body">
+        <strong>No probar el caso donde la clave no existe</strong>
+        El PDF pide que al editar o eliminar, si la clave no existe se informe y se regrese al menú. Si tu programa lanza un error de Python en lugar de un mensaje amable, ese requerimiento no está acreditado. Prueba con claves que no existan antes de capturar la evidencia.
+      </div>
+    </div>
+  </div>
+
+</section>
+
 <!-- PHASE 4 ENTRY -->
 <section id="phase4-entry" style="text-align:center;padding:4rem 2rem 7rem;background:radial-gradient(ellipse at center,rgba(255,209,102,0.04) 0%,transparent 70%);">
   <p style="font-family:var(--mono);font-size:0.72rem;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.5rem;">// Evaluación final</p>
@@ -4108,6 +4512,43 @@ function restartTest() {
   renderQuestion(0);
   document.getElementById('p4-question-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+// ── PIA CHECKLIST ─────────────────────────────────────────
+const piaTotals = { pf: 13, pp: 5, pd: 8 };
+
+function piaCheck(el) {
+  el.classList.toggle('checked');
+  piaUpdateProgress();
+}
+
+function piaUpdateProgress() {
+  const fc = document.querySelectorAll('[id^="pf-"].checked').length;
+  const pc = document.querySelectorAll('[id^="pp-"].checked').length;
+  const dc = document.querySelectorAll('[id^="pd-"].checked').length;
+  const total = piaTotals.pf + piaTotals.pp + piaTotals.pd;
+  const checked = fc + pc + dc;
+
+  document.getElementById('ov-func').textContent = fc + '/' + piaTotals.pf;
+  document.getElementById('ov-py').textContent = pc + '/' + piaTotals.pp;
+  document.getElementById('ov-doc').textContent = dc + '/' + piaTotals.pd;
+  document.getElementById('ov-total').textContent = checked + '/' + total;
+
+  document.getElementById('ov-func-bar').style.width = (fc / piaTotals.pf * 100) + '%';
+  document.getElementById('ov-py-bar').style.width = (pc / piaTotals.pp * 100) + '%';
+  document.getElementById('ov-doc-bar').style.width = (dc / piaTotals.pd * 100) + '%';
+  document.getElementById('ov-total-bar').style.width = (checked / total * 100) + '%';
+}
+
+function piaReset(prefix) {
+  document.querySelectorAll('[id^="' + prefix + '-"]').forEach(el => el.classList.remove('checked'));
+  piaUpdateProgress();
+}
+
+function piaTab(idx) {
+  document.querySelectorAll('.pia-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+  document.querySelectorAll('.pia-tab-content').forEach((c, i) => c.classList.toggle('active', i === idx));
+}
+
 </script>
 </body>
 </html>
