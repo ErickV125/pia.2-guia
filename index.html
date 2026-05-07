@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema Veterinaria — Guía Visual</title>
+<title>Sistema Veterinaria — Guía Visual (v2 con Campo)</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1236,6 +1236,10 @@
   <div class="sec-label">02 — Estructura de datos</div>
   <h2 class="sec-title">El corazón del programa:<br>el diccionario</h2>
   <p class="sec-desc">Todo el sistema vive en una sola variable: un <strong>diccionario</strong>. Piénsalo como un archivero donde cada cajón tiene un número, y dentro hay la ficha completa del paciente.</p>
+  
+  <div style="background:rgba(0,229,160,0.06);border:1px solid rgba(0,229,160,0.25);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;font-size:0.9rem;">
+    <div style="font-family:var(--mono);font-size:0.75rem;color:var(--accent);margin-bottom:0.75rem;font-weight:700">✨ NOVEDAD: clase Campo (IntEnum)</div>
+    El código usa una clase especial <code style="color:var(--accent)">Campo</code> para nombrar cada posición de la lista interna. En lugar de escribir el número <code style="color:var(--muted)">datos[0]</code> se escribe <code style="color:var(--accent)">datos[Campo.ACTIVO]</code> — el código se vuelve mucho más fácil de leer. <code style="color:var(--accent4)">Campo.ACTIVO=0, Campo.NOMBRE=1, Campo.ESPECIE=2, Campo.EDAD=3</code></p>
 
   <div class="analogy">
     <div class="analogy-icon">🗄️</div>
@@ -1308,11 +1312,11 @@
     </div>
     <div class="card">
       <div class="sec-label" style="margin-bottom:0.5rem">La LISTA interna</div>
-      <p style="font-size:0.9rem;color:var(--muted)">Cada cajón contiene una lista de 4 cosas en orden fijo:<br>
-      <span style="color:#56d364">[0] Estado (True/False)</span><br>
-      <span style="color:var(--accent4)">[1] Nombre</span><br>
-      <span style="color:var(--accent4)">[2] Especie</span><br>
-      <span style="color:#f78166">[3] Edad</span></p>
+      <p style="font-size:0.9rem;color:var(--muted)">Cada cajón contiene una lista de 4 posiciones, nombradas con una clase <code style="color:var(--accent)">Campo</code>:<br>
+      <span style="color:#56d364">Campo.ACTIVO [0] — Estado (True/False)</span><br>
+      <span style="color:var(--accent4)">Campo.NOMBRE [1] — Nombre</span><br>
+      <span style="color:var(--accent4)">Campo.ESPECIE [2] — Especie</span><br>
+      <span style="color:#f78166">Campo.EDAD [3] — Edad</span></p>
     </div>
   </div>
 </section>
@@ -1338,7 +1342,7 @@
         <div class="flow-branch-item" onclick="showFlowInfo('modificar')">modificar_paciente()</div>
         <div class="flow-branch-item" onclick="showFlowInfo('eliminar')">eliminar_paciente()</div>
         <div class="flow-branch-item" onclick="showFlowInfo('recuperar')">recuperar_paciente()</div>
-        <div class="flow-branch-item" onclick="showFlowInfo('reportar')">reportar_pacientes()</div>
+        <div class="flow-branch-item" onclick="showFlowInfo('reportar')">opciones_reportar() → reportes</div>
         <div class="flow-branch-item" onclick="showFlowInfo('salir')" style="color:var(--accent3)">preservar() → salir</div>
       </div>
       <div class="flow-info" id="flow-info">👆 Haz clic en cualquier bloque para ver qué hace</div>
@@ -1385,7 +1389,8 @@ try:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;for id_, existe, nombre, especie, edad in reader:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;estado[int(id_)] = [existe == 'True', ...]<br>
 except FileNotFoundError:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;pass  # No hay archivo, comenzamos vacíos
+&nbsp;&nbsp;&nbsp;&nbsp;print("No existe información previa...")<br>
+<span class="c-comment"># Ahora avisa al usuario en lugar de fallar silenciosamente</span>
           </div>
         </div>
       </div>
@@ -1400,10 +1405,10 @@ except FileNotFoundError:<br>
         <p class="fn-desc">Busca un paciente por su número de clave. Si no existe o está eliminado (y no se permite ver eliminados), avisa al usuario y devuelve None.</p>
         <div class="fn-expand">
           <div class="fn-example">
-# Si el paciente existe pero está eliminado y<br>
-# no pedimos incluir eliminados → error<br>
-if not incluir_eliminados and not paciente[0]:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;raise ValueError()
+# Usa Campo.ACTIVO en vez de índice numérico [0]<br>
+if not incluir_eliminados and not paciente[Campo.ACTIVO]:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;raise ValueError()<br>
+<span class="c-comment"># Campo.ACTIVO = 0 — más claro que paciente[0]</span>
           </div>
         </div>
       </div>
@@ -1454,8 +1459,9 @@ copia = datos.copy()<br>
         <p class="fn-desc">Marca al paciente como inactivo cambiando el primer valor de True a False. El paciente sigue existiendo en el diccionario, simplemente "desaparece" de la vista normal.</p>
         <div class="fn-expand">
           <div class="fn-example">
-# Solo cambia el estado, NO borra el registro<br>
-catalogo[clave][0] = False
+# Usa Campo.ACTIVO en vez de índice numérico [0]<br>
+datos[Campo.ACTIVO] = False<br>
+<span class="c-comment"># Campo.ACTIVO = 0, pero el nombre lo hace legible</span>
           </div>
         </div>
       </div>
@@ -1470,13 +1476,13 @@ catalogo[clave][0] = False
         <p class="fn-desc">Lista todos los pacientes eliminados (con False) y permite reactivar uno, cambiando su estado de False a True. El paciente vuelve a aparecer normalmente.</p>
         <div class="fn-expand">
           <div class="fn-example">
-# Muestra solo los eliminados<br>
-for clave, datos in catalogo.items():<br>
-&nbsp;&nbsp;&nbsp;&nbsp;if not datos[0]:  # Si está inactivo<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(clave, datos[1])<br>
-<br>
+# Dict comprehension para filtrar eliminados<br>
+catalogo_eliminados = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;k: v for k, v in catalogo.items()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if not v[Campo.ACTIVO]<br>
+}<br>
 # Para recuperar:<br>
-catalogo[clave][0] = True
+datos[Campo.ACTIVO] = True
           </div>
         </div>
       </div>
@@ -1491,14 +1497,58 @@ catalogo[clave][0] = True
         <p class="fn-desc">Muestra en pantalla una tabla ordenada con todos los pacientes activos. Solo incluye los que tienen True, ignorando los eliminados.</p>
         <div class="fn-expand">
           <div class="fn-example">
-# Filtra solo los activos<br>
-activos = [(k, v) for k, v in catalogo.items() if v[0]]<br>
+# Filtra solo los activos usando Campo.ACTIVO<br>
+activos = [(k, v) for k, v in catalogo.items() if v[Campo.ACTIVO]]<br>
 <br>
-# Imprime en formato de tabla
+# Unpacking: _, nombre, especie, edad = datos<br>
+# Imprime tabla. También llamada por reportar_por_especie/edad
           </div>
         </div>
       </div>
     </div>
+
+    <div class="fn-card" onclick="toggleFn(this)">
+      <div class="fn-header">
+        <span class="fn-icon">🔎</span>
+        <span class="fn-name">reportar_por_especie() / reportar_por_edad()</span>
+      </div>
+      <div class="fn-body">
+        <p class="fn-desc">Dos funciones que filtran el catálogo con dict comprehension antes de reportar. Por especie busca v[Campo.ESPECIE] == especie; por edad busca v[Campo.EDAD] <= limite. Ambas llaman a reportar_pacientes() con el subconjunto filtrado.</p>
+        <div class="fn-expand">
+          <div class="fn-example">
+# Filtrar por especie:<br>
+catalogo_reporte = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;k: v for k, v in catalogo.items()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if v[Campo.ESPECIE] == especie<br>
+}<br>
+reportar_pacientes(catalogo_reporte, 'Sin pacientes...')
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fn-card" onclick="toggleFn(this)">
+      <div class="fn-header">
+        <span class="fn-icon">🏷️</span>
+        <span class="fn-name">Campo (IntEnum)</span>
+      </div>
+      <div class="fn-body">
+        <p class="fn-desc">No es una función sino una clase especial que da nombres a los índices de la lista. En lugar de recordar que el estado está en [0], se escribe Campo.ACTIVO. El código se vuelve autoexplicativo.</p>
+        <div class="fn-expand">
+          <div class="fn-example">
+class Campo(IntEnum):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ACTIVO = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;NOMBRE = 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ESPECIE = 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;EDAD = 3<br>
+<br>
+# En lugar de: datos[0] = False<br>
+# Se escribe: datos[Campo.ACTIVO] = False
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1603,7 +1653,7 @@ activos = [(k, v) for k, v in catalogo.items() if v[0]]<br>
   <div class="grid-3" style="margin-bottom:2rem">
     <div class="card">
       <div class="fn-name" style="margin-bottom:0.5rem">validar_cadena()</div>
-      <p style="font-size:0.85rem;color:var(--muted)">Verifica que el texto no esté vacío ni sea solo espacios. Rechaza: <code style="color:var(--accent3)">""</code> o <code style="color:var(--accent3)">"   "</code></p>
+      <p style="font-size:0.85rem;color:var(--muted)">Verifica que el texto no esté vacío ni solo espacios. Además convierte a mayúsculas con <code style="color:var(--accent)">.upper()</code> automáticamente antes de guardar.</p>
     </div>
     <div class="card">
       <div class="fn-name" style="margin-bottom:0.5rem">validar_numero()</div>
@@ -1719,7 +1769,7 @@ activos = [(k, v) for k, v in catalogo.items() if v[0]]<br>
       <tr>
         <td class="req-check">✓</td>
         <td>Eliminación lógica (no física)</td>
-        <td>Solo cambia datos[0] de True a False, el registro persiste</td>
+        <td>Cambia <code>datos[Campo.ACTIVO]</code> de True a False — nombre simbólico, no índice numérico</td>
         <td><span class="req-tag">eliminar_paciente()</span></td>
       </tr>
       <tr>
@@ -1763,6 +1813,30 @@ activos = [(k, v) for k, v in catalogo.items() if v[0]]<br>
         <td>Menú con opciones inválidas controladas</td>
         <td>Usa match/case y avisa si la opción no es válida</td>
         <td><span class="req-tag">menu()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Reportar por especie</td>
+        <td>Filtra el diccionario por v[Campo.ESPECIE] == especie ingresada y llama a reportar_pacientes() con el resultado</td>
+        <td><span class="req-tag">reportar_por_especie()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Reportar hasta cierta edad</td>
+        <td>Filtra por v[Campo.EDAD] &lt;= edad_max usando dict comprehension y llama a reportar_pacientes()</td>
+        <td><span class="req-tag">reportar_por_edad()</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Índices con nombres legibles</td>
+        <td>Clase Campo (IntEnum) nombra ACTIVO=0, NOMBRE=1, ESPECIE=2, EDAD=3 en lugar de usar números directamente</td>
+        <td><span class="req-tag">Campo (IntEnum)</span></td>
+      </tr>
+      <tr>
+        <td class="req-check">✓</td>
+        <td>Datos textuales en mayúsculas</td>
+        <td>validar_cadena() aplica .upper() automáticamente — el dato llega siempre en mayúsculas al diccionario</td>
+        <td><span class="req-tag">validar_cadena()</span></td>
       </tr>
     </tbody>
   </table>
@@ -1978,25 +2052,25 @@ catalogo[<span class="c-num">47</span>]  <span class="c-comment"># ← directo, 
       <div class="la-title">Anatomía de un paciente:</div>
       <div class="la-row">
         <div class="la-bracket">[</div>
-        <div class="la-item la-bool" data-detail="El 'interruptor'. True = paciente activo y visible. False = paciente 'eliminado' pero guardado. Es el índice [0] de la lista.">
+        <div class="la-item la-bool" data-detail="Campo.ACTIVO (índice 0). True = activo. False = inactivo/eliminado lógicamente. El código usa el nombre Campo.ACTIVO en vez del número 0 para ser más legible.">
           <div class="la-index">[0]</div>
           <div class="la-value">True</div>
           <div class="la-label">Estado</div>
         </div>
         <div class="la-sep">,</div>
-        <div class="la-item la-str" data-detail="El nombre de la mascota en mayúsculas. Siempre texto. Es el índice [1] de la lista.">
+        <div class="la-item la-str" data-detail="Campo.NOMBRE (índice 1). El nombre en mayúsculas — validar_cadena() aplica .upper() automáticamente antes de guardarlo.">
           <div class="la-index">[1]</div>
           <div class="la-value">"FIRULAIS"</div>
           <div class="la-label">Nombre</div>
         </div>
         <div class="la-sep">,</div>
-        <div class="la-item la-str2" data-detail="La especie: PERRO, GATO, CONEJO, etc. Siempre texto en mayúsculas. Es el índice [2].">
+        <div class="la-item la-str2" data-detail="Campo.ESPECIE (índice 2). La especie en mayúsculas. reportar_por_especie() filtra por este campo con v[Campo.ESPECIE] == especie.">
           <div class="la-index">[2]</div>
           <div class="la-value">"PERRO"</div>
           <div class="la-label">Especie</div>
         </div>
         <div class="la-sep">,</div>
-        <div class="la-item la-num" data-detail="La edad en años, siempre número entero positivo. Nunca texto. Es el índice [3] de la lista.">
+        <div class="la-item la-num" data-detail="Campo.EDAD (índice 3). La edad como entero. reportar_por_edad() compara v[Campo.EDAD] <= edad_max para el filtro.">
           <div class="la-index">[3]</div>
           <div class="la-value">5</div>
           <div class="la-label">Edad</div>
@@ -2034,7 +2108,7 @@ catalogo = {<br>
       <div class="p2-eb-title">Ventajas concretas de agrupar en lista</div>
       <div class="benefit-list">
         <div class="benefit-item"><span class="b-icon">⚡</span><div><strong>Un acceso, todos los datos:</strong> <code class="ic">catalogo[1]</code> devuelve el estado, nombre, especie y edad de una vez.</div></div>
-        <div class="benefit-item"><span class="b-icon">✏️</span><div><strong>Modificación directa:</strong> <code class="ic">catalogo[1][3] = 6</code> cambia solo la edad. Preciso y limpio.</div></div>
+        <div class="benefit-item"><span class="b-icon">✏️</span><div><strong>Modificación directa:</strong> <code class="ic">datos[Campo.EDAD] = 6</code> cambia solo la edad. Con Campo el código es legible y no requiere recordar qué significa el índice 3.</div></div>
         <div class="benefit-item"><span class="b-icon">💾</span><div><strong>CSV simplificado:</strong> Con <code class="ic">writer.writerow([clave, *datos])</code> guardamos todo en una sola línea.</div></div>
         <div class="benefit-item"><span class="b-icon">🔄</span><div><strong>Reconstrucción fácil:</strong> Al leer el CSV, reconstruimos la lista en el mismo orden y funciona igual.</div></div>
       </div>
@@ -2250,6 +2324,9 @@ solicitar_con_validacion(<span class="c-bool-t">validar_numero</span>, <span cla
         <div class="fm-node fm-l2" data-fn="recuperar" onclick="selectFn('recuperar')" style="grid-area:recuperar">recuperar_paciente()</div>
         <div class="fm-node fm-l2" data-fn="reportar" onclick="selectFn('reportar')" style="grid-area:reportar">reportar_pacientes()</div>
         <div class="fm-node fm-l2" data-fn="preservar" onclick="selectFn('preservar')" style="grid-area:preservar">preservar()</div>
+        <div class="fm-node fm-l2" data-fn="opciones_reportar" onclick="selectFn('opciones_reportar')" style="grid-area:reportar">opciones_reportar()</div>
+        <div class="fm-node fm-l3" data-fn="reportar_especie" onclick="selectFn('reportar_especie')" style="grid-area:sol_val">reportar_por_especie()</div>
+        <div class="fm-node fm-l3" data-fn="reportar_edad" onclick="selectFn('reportar_edad')" style="grid-area:val_cad">reportar_por_edad()</div>
         <!-- level 3 -->
         <div class="fm-node fm-l3" data-fn="pedir" onclick="selectFn('pedir')" style="grid-area:pedir">pedir_datos_paciente()</div>
         <div class="fm-node fm-l3" data-fn="generar" onclick="selectFn('generar')" style="grid-area:generar">generar_clave()</div>
@@ -2301,7 +2378,7 @@ solicitar_con_validacion(<span class="c-bool-t">validar_numero</span>, <span cla
       <div class="ph-card">
         <div class="ph-icon">🏗️</div>
         <div class="ph-title">Estructura predecible</div>
-        <p class="ph-desc">Siempre: el índice [0] es el estado, [1] es el nombre, [2] es la especie, [3] es la edad. En todo el programa. Esto significa que cualquier función puede trabajar con cualquier paciente sin sorpresas ni inconsistencias.</p>
+        <p class="ph-desc">La clase <code class="ic">Campo</code> (IntEnum) nombra cada posición: <code class="ic">Campo.ACTIVO=0</code>, <code class="ic">Campo.NOMBRE=1</code>, <code class="ic">Campo.ESPECIE=2</code>, <code class="ic">Campo.EDAD=3</code>. En lugar de escribir <code class="ic">datos[0]</code> se escribe <code class="ic">datos[Campo.ACTIVO]</code> — mucho más legible y menos propenso a errores.</p>
       </div>
     </div>
 
@@ -2548,7 +2625,7 @@ __name__ = <span class="c-str">'__main__'</span>
         </div>
       </div>
       <div class="pd-code-walker">
-        <div class="pw-line" id="pwl-0">with open(ruta, <span class="c-str">'w'</span>, encoding=<span class="c-str">'UTF-8'</span>) as archivo:</div>
+        <div class="pw-line" id="pwl-0">with open(ruta, <span class="c-str">'w'</span>, encoding=<span class="c-str">'UTF-8'</span>, newline=<span class="c-str">''</span>) as archivo:</div>
         <div class="pw-line" id="pwl-1">&nbsp;&nbsp;writer = csv.writer(archivo)</div>
         <div class="pw-line" id="pwl-2">&nbsp;&nbsp;<span class="c-key">for</span> clave, datos <span class="c-key">in</span> estado.items():</div>
         <div class="pw-line" id="pwl-3">&nbsp;&nbsp;&nbsp;&nbsp;writer.writerow([clave, *datos])  <span class="c-comment">→ escribe fila 1</span></div>
@@ -2755,11 +2832,13 @@ catalogo[clave] = datos  <span class="c-comment">← modifica el objeto comparti
         <div class="cc-header"><span class="cc-icon">📋</span><span class="cc-title">¿Por qué .copy() en modificar_paciente()?</span><span class="cc-toggle">+</span></div>
         <div class="cc-body">
           <p>Si modificas la lista directamente y el usuario cancela, ya cambiaste los datos reales. Con .copy() trabajas en una copia independiente — si confirma se aplica, si cancela la copia se descarta.</p>
-          <div class="p3-code" style="font-size:0.76rem">copia = datos.copy()  <span class="c-comment">← copia independiente</span>
+          <div class="p3-code" style="font-size:0.76rem">copia = datos.copy()       <span class="c-comment">← copia independiente</span>
+<span class="c-comment"># for i, valor in enumerate(datos):</span>
+<span class="c-comment">#     copia[i] = nuevo_dato(valor, i)</span>
 <span class="c-key">if</span> confirmar == <span class="c-str">'s'</span>:
-    catalogo[clave] = copia  <span class="c-comment">← aplica</span>
+    catalogo[clave] = copia   <span class="c-comment">← aplica</span>
 <span class="c-key">else</span>:
-    pass  <span class="c-comment">← datos original intacto, copia descartada</span></div>
+    pass  <span class="c-comment">← datos original intacto</span></div>
         </div>
       </div>
       <div class="concept-card" onclick="toggleConcept(this)">
@@ -2816,7 +2895,7 @@ catalogo[clave] = datos  <span class="c-comment">← modifica el objeto comparti
 
 <footer>
   Sistema de Gestión Veterinaria — Programación Avanzada<br>
-  Guía visual interactiva · Fases 1, 2, 3 y Test Final · HTML + CSS + JS vanilla
+  Guía visual interactiva · Código final con Campo (IntEnum) · Fases 1–4 · HTML + CSS + JS vanilla
 </footer>
 <script>
 // ── FADE IN ON SCROLL ──────────────────────────────────────
@@ -2835,7 +2914,7 @@ const flowData = {
   modificar: { title: 'modificar_paciente()', desc: 'Busca el paciente, muestra cada campo con su valor actual. El usuario puede cambiar o presionar ENTER para conservar. Pide confirmación final.' },
   eliminar: { title: 'eliminar_paciente()', desc: 'Busca el paciente, muestra sus datos y pide confirmación. Si acepta, cambia datos[0] de True a False. No borra nada.' },
   recuperar: { title: 'recuperar_paciente()', desc: 'Lista todos los pacientes con False. El usuario elige uno y confirma. Cambia su estado a True para que vuelva a ser visible.' },
-  reportar: { title: 'reportar_pacientes()', desc: 'Filtra todos los pacientes con True y los muestra en una tabla ordenada con ID, nombre, especie y edad.' },
+  reportar: { title: 'opciones_reportar()', desc: 'Muestra un submenú de reportes: todos los pacientes, por especie (filtra por Campo.ESPECIE), o por edad máxima (filtra por Campo.EDAD). Delega a reportar_pacientes() pasando el catálogo ya filtrado.' },
   salir: { title: 'preservar() → exit()', desc: 'Si el usuario confirma salir, escribe todo el catálogo (activos e inactivos) en el CSV antes de cerrar el programa.' },
 };
 function showFlowInfo(key) {
@@ -3075,7 +3154,7 @@ function persistReset() {
 const fnData = {
   main: { title: 'main()', desc: 'El punto de entrada del programa. Llama a recuperacion() para cargar el CSV y luego entra en el ciclo infinito llamando a menu() repetidamente.', calls: ['recuperacion()', 'menu()'], calledBy: ['Sistema operativo (al ejecutar el script)'] },
   recuperacion: { title: 'recuperacion(estado, ruta)', desc: 'Lee el archivo CSV del disco y reconstruye el diccionario en memoria RAM. Si el archivo no existe, simplemente no hace nada (except FileNotFoundError: pass).', calls: ['csv.reader()'], calledBy: ['main()'] },
-  menu: { title: 'menu(catalogo, ruta_csv)', desc: 'Muestra las 6 opciones al usuario y usa match/case para dirigir a la función correcta. Se llama repetidamente desde el ciclo while True de main().', calls: ['desplegar_menu()', 'crear_paciente()', 'modificar_paciente()', 'eliminar_paciente()', 'recuperar_paciente()', 'reportar_pacientes()', 'preservar()'], calledBy: ['main() — en cada iteración del while True'] },
+  menu: { title: 'menu(catalogo, ruta_csv)', desc: 'Muestra las 6 opciones al usuario y usa match/case para dirigir a la función correcta. Opción 5 ahora llama a opciones_reportar() que ofrece submenú de reportes.', calls: ['desplegar_menu()', 'crear_paciente()', 'modificar_paciente()', 'eliminar_paciente()', 'recuperar_paciente()', 'opciones_reportar()', 'preservar()'], calledBy: ['main() — en cada iteración del while True'] },
   crear: { title: 'crear_paciente(catalogo)', desc: 'Orquesta la creación de un nuevo paciente: pide los datos, genera la clave y los inserta en el diccionario.', calls: ['pedir_datos_paciente()', 'generar_clave()'], calledBy: ['menu() — opción 1'] },
   modificar: { title: 'modificar_paciente(catalogo)', desc: 'Busca el paciente, crea una copia de sus datos, permite editar campo por campo y confirma antes de aplicar los cambios.', calls: ['buscar_paciente()', 'nuevo_dato()'], calledBy: ['menu() — opción 2'] },
   eliminar: { title: 'eliminar_paciente(catalogo)', desc: 'Busca el paciente activo y, previa confirmación, cambia su estado de True a False. Eliminación lógica.', calls: ['buscar_paciente()'], calledBy: ['menu() — opción 3'] },
@@ -3088,7 +3167,10 @@ const fnData = {
   nuevo_dato: { title: 'nuevo_dato(dato, indice)', desc: 'Muestra el valor actual de un campo y permite al usuario cambiarlo o conservarlo. Se llama para cada campo del paciente.', calls: ['validar_cadena()', 'validar_numero()'], calledBy: ['modificar_paciente()'] },
   sol_val: { title: 'solicitar_con_validacion(validar, mensaje)', desc: 'El validador centralizado. Pide un dato, lo valida con la función recibida, y repite si falla. Elimina la duplicación de código.', calls: ['validar_cadena() o validar_numero() — según se le pase'], calledBy: ['pedir_datos_paciente()'] },
   val_cad: { title: 'validar_cadena(cadena)', desc: 'Verifica que el texto no esté vacío ni sea solo espacios. Lanza ValueError si falla, lo cual captura solicitar_con_validacion().', calls: [], calledBy: ['solicitar_con_validacion()', 'nuevo_dato()'] },
-  val_num: { title: 'validar_numero(numero)', desc: 'Verifica que el texto sea un número entero positivo usando isnumeric(). Lanza ValueError si falla.', calls: [], calledBy: ['solicitar_con_validacion()', 'nuevo_dato()'] }
+  val_num: { title: 'validar_numero(numero)', desc: 'Verifica que el texto sea un número entero positivo usando isnumeric(). Lanza ValueError si falla.', calls: [], calledBy: ['solicitar_con_validacion()', 'nuevo_dato()'] },
+  reportar_especie: { title: 'reportar_por_especie(catalogo)', desc: 'Pide una especie al usuario, filtra el diccionario con dict comprehension usando Campo.ESPECIE, y llama a reportar_pacientes() con el subconjunto. Si no hay coincidencias, reportar_pacientes() muestra el mensaje correspondiente.', calls: ['solicitar_con_validacion()', 'validar_cadena()', 'reportar_pacientes()'], calledBy: ['opciones_reportar() — opción 2'] },
+  reportar_edad: { title: 'reportar_por_edad(catalogo)', desc: 'Pide una edad máxima, filtra el diccionario con Campo.EDAD <= limite, y llama a reportar_pacientes(). Reutiliza el mismo patrón que reportar_por_especie().', calls: ['solicitar_con_validacion()', 'validar_numero()', 'reportar_pacientes()'], calledBy: ['opciones_reportar() — opción 3'] },
+  opciones_reportar: { title: 'opciones_reportar(catalogo)', desc: 'Muestra el submenú de reportes (todos / por especie / por edad). Organiza las 3 opciones de reporte en su propio menú con match/case, separando la complejidad de reportes del menú principal.', calls: ['desplegar_menu_reportes()', 'reportar_pacientes()', 'reportar_por_especie()', 'reportar_por_edad()'], calledBy: ['menu() — opción 5'] }
 };
 
 function selectFn(key) {
@@ -3710,7 +3792,7 @@ else:
       'Solo preservar() para guardar los resultados'
     ],
     correct: 2,
-    explanation: '✓ Correcto. reportar_pacientes() ya filtra activos con v[0]. Una función por especie seguiría el mismo patrón añadiendo filtro por v[2]. validar_cadena() ya valida strings como la especie. La arquitectura modular permite esto.',
+    explanation: '✓ Correcto. El nuevo código usa reportar_por_especie() y reportar_por_edad() que filtran el diccionario con dict comprehension y llaman a reportar_pacientes() con el subconjunto. validar_cadena() valida la especie, validar_numero() valida la edad máxima. La arquitectura modular lo hace posible.',
     wrongExplanation: '✗ La arquitectura modular del sistema permite reutilizar: el patrón de filtrado de reportar_pacientes() (iterar catalogo, filtrar por condición) y validar_cadena() para validar el nombre de especie ingresado.',
     topic: 'estructura',
     points: 10
